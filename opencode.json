@@ -4,10 +4,7 @@
     "ai-game-developer": {
       "enabled": true,
       "type": "remote",
-      "url": "http://localhost:29702",
-      "headers": {
-        "Authorization": "Bearer cEHuwe3sj9PRnuxmXP9em59oa3_AdQeXBezcxAyJyXg"
-      }
+      "url": "http://localhost:29702"
     }
   }
 }
