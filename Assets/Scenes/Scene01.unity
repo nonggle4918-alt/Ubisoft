@@ -811,7 +811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 094335d9c594d6044b0428b6044d8ab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  startGold: 100
+  startGold: 1000
   startLives: 20
   firstWaveDelay: 3
   betweenWaveDelay: 5
