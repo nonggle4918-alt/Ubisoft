@@ -69,4 +69,11 @@ public class GridManager : MonoBehaviour
 
         return null;
     }
+
+    public void ClearGrid()
+    {
+        for (int y = 0; y < height; y++)
+            for (int x = 0; x < width; x++)
+                grid[x, y].RemovePiece();
+    }
 }

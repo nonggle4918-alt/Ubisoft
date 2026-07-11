@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5894c48ee7534744dad45d2a0fe14a68, type: 3}
+  m_Name: AllyQueenData
+  m_EditorClassIdentifier: 
+  pieceName: Queen
+  team: 0
+  sprite: {fileID: 21300000, guid: 9838f70716f4bdd4e972ac6de812e20a, type: 3}
+  cost: 100
+  maxHP: 80
+  attackDamage: 25
+  attackRange: 3
+  attackCooldown: 1.5
+  projectileSpeed: 6
