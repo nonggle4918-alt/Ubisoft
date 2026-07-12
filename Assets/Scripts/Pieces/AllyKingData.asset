@@ -10,25 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5894c48ee7534744dad45d2a0fe14a68, type: 3}
-  m_Name: AllyQueenData
-  m_EditorClassIdentifier: 
-  pieceName: Queen
+  m_Name: AllyKingData
+  m_EditorClassIdentifier: Assembly-CSharp::PieceData
+  pieceName: King
   team: 0
-  attackType: 4
-  sprite: {fileID: 21300000, guid: 9838f70716f4bdd4e972ac6de812e20a, type: 3}
-  cost: 100
-  maxHP: 80
-  attackDamage: 5
-  attackRange: 6
-  attackCooldown: 0.5
-  projectileSpeed: 6
-  bonusMaxHpPercent: 5
-  bonusDamageCapPercent: 100
-  projectileCount: 4
-  extraRange: 5
-  chargeDuration: 3
-  maxChargeMultiplier: 2
-  homingDuration: 1.5
+  attackType: 5
+  sprite: {fileID: 0}
+  cost: 200
+  maxHP: 100
+  attackDamage: 4
+  attackRange: 4
+  attackCooldown: 0.6666667
+  projectileSpeed: 0
+  bonusMaxHpPercent: 0
+  bonusDamageCapPercent: 0
+  projectileCount: 0
+  extraRange: 0
+  chargeDuration: 0
+  maxChargeMultiplier: 0
+  homingDuration: 0
   splashRadius: 1
   slowPercent: 20
   buffRange: 1.5

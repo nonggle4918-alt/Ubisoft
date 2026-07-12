@@ -15,6 +15,8 @@ public class Enemy : MonoBehaviour
     private List<Vector3> waypoints;
     private int currentWaypointIndex;
     private SpriteRenderer spriteRenderer;
+    private float slowTimer;
+    private float slowMultiplier = 1f;
 
     private void Awake()
     {
@@ -28,12 +30,17 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
+        if (slowTimer > 0)
+            slowTimer -= Time.deltaTime;
+        else
+            slowMultiplier = 1f;
+
         if (waypoints == null || currentWaypointIndex >= waypoints.Count)
             return;
 
         Vector3 target = waypoints[currentWaypointIndex];
         transform.position = Vector3.MoveTowards(
-            transform.position, target, moveSpeed * Time.deltaTime);
+            transform.position, target, moveSpeed * slowMultiplier * Time.deltaTime);
 
         if (Vector3.Distance(transform.position, target) < 0.05f)
         {
@@ -68,6 +75,12 @@ public class Enemy : MonoBehaviour
         CurrentHP -= Mathf.RoundToInt(damage);
         if (CurrentHP <= 0)
             Die();
+    }
+
+    public void ApplySlow(float multiplier, float duration)
+    {
+        slowMultiplier = Mathf.Min(slowMultiplier, multiplier);
+        slowTimer = Mathf.Max(slowTimer, duration);
     }
 
     private void Die()

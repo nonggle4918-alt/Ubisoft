@@ -14,10 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pieceName: Enemy Queen
   team: 1
+  attackType: 0
   sprite: {fileID: 21300000, guid: c31283f71f3be2b47a8110a15e61c3d9, type: 3}
   cost: 0
-  maxHP: 60
-  attackDamage: 15
-  attackRange: 1.5
-  attackCooldown: 1.2
+  maxHP: 40
+  attackDamage: 0
+  attackRange: 0
+  attackCooldown: 0
   projectileSpeed: 0
+  bonusMaxHpPercent: 5
+  bonusDamageCapPercent: 100
+  projectileCount: 4
+  extraRange: 3
+  chargeDuration: 3
+  maxChargeMultiplier: 2
+  homingDuration: 1.5
+  splashRadius: 1
+  slowPercent: 20
+  buffRange: 1.5
+  buffAttackPercent: 20
+  gachaWeight: 1000

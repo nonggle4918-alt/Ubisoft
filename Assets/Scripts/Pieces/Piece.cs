@@ -8,6 +8,8 @@ public class Piece : MonoBehaviour
     public int CurrentHP { get; private set; }
     public Team Team => data != null ? data.team : Team.Ally;
     public bool IsDead => CurrentHP <= 0;
+    public float AttackBuff { get; private set; } = 1f;
+    public GridCell CurrentCell { get; set; }
 
     private SpriteRenderer spriteRenderer;
 
@@ -51,6 +53,21 @@ public class Piece : MonoBehaviour
         CurrentHP = data.maxHP;
         if (spriteRenderer != null && data.sprite != null)
             spriteRenderer.sprite = data.sprite;
+    }
+
+    public void AddAttackBuff(float multiplier)
+    {
+        AttackBuff += multiplier;
+    }
+
+    public void ResetAttackBuff()
+    {
+        AttackBuff = 1f;
+    }
+
+    public float GetAttackDamage()
+    {
+        return data.attackDamage * AttackBuff;
     }
 
     public void TakeDamage(float damage)

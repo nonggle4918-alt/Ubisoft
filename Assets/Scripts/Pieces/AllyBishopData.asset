@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5894c48ee7534744dad45d2a0fe14a68, type: 3}
+  m_Name: AllyBishopData
+  m_EditorClassIdentifier: Assembly-CSharp::PieceData
+  pieceName: Bishop
+  team: 0
+  attackType: 2
+  sprite: {fileID: 0}
+  cost: 50
+  maxHP: 30
+  attackDamage: 3
+  attackRange: 3
+  attackCooldown: 0.5555556
+  projectileSpeed: 8
+  bonusMaxHpPercent: 0
+  bonusDamageCapPercent: 0
+  projectileCount: 4
+  extraRange: 3
+  chargeDuration: 0
+  maxChargeMultiplier: 0
+  homingDuration: 0
+  splashRadius: 0
+  slowPercent: 0
+  buffRange: 0
+  buffAttackPercent: 0
+  gachaWeight: 30000

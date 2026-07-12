@@ -25,7 +25,9 @@ Assets/
 │   ├── Enemies/Enemy.cs, EnemyManager.cs
 │   ├── Combat/CombatManager.cs, Projectile.cs
 │   ├── UI/UIManager.cs
-│   └── Pieces/AllyPawnData.asset, AllyQueenData.asset, EnemyPawnData.asset, EnemyQueenData.asset
+│   └── Pieces/AllyPawnData.asset, AllyQueenData.asset, AllyKnightData.asset,
+│            AllyBishopData.asset, AllyRookData.asset, AllyKingData.asset,
+│            EnemyPawnData.asset, EnemyQueenData.asset
 ├── Prefabs/
 │   ├── Tile/WhiteTile.prefab, GreenTile.prefab
 │   ├── Piece.prefab
@@ -66,26 +68,32 @@ Assets/
 
 ### PieceData (`Pieces/PieceData.cs`)
 - ScriptableObject, `[CreateAssetMenu(menuName = "Ubisoft/PieceData")]`
-- Fields: `pieceName`, `team` (Ally/Enemy), `sprite`, `cost`, `maxHP`, `attackDamage`, `attackRange`, `attackCooldown`, `projectileSpeed`
+- Fields: `pieceName`, `team` (Ally/Enemy), `attackType` (Projectile/Direct/DiagonalProjectile/Laser/Homing/Splash), `sprite`, `cost`, `maxHP`, `attackDamage`, `attackRange`, `attackCooldown`, `projectileSpeed`
+- Special ability fields: `bonusMaxHpPercent`, `bonusDamageCapPercent` (Knight), `projectileCount`, `extraRange` (Bishop/Rook/Queen), `chargeDuration`, `maxChargeMultiplier` (Rook), `homingDuration` (Queen), `splashRadius`, `slowPercent`, `buffRange`, `buffAttackPercent` (King)
+- Gacha field: `gachaWeight`
 
 ### Piece (`Pieces/Piece.cs`)
 - Holds `PieceData` reference, applies sprite/HP at Start
 - `Team → data.team`, `IsDead → CurrentHP <= 0`
+- `AttackBuff` — multiplicative damage buff (stackable, used by King aura)
+- `ResetAttackBuff()`, `AddAttackBuff(multiplier)`, `GetAttackDamage()` — returns `data.attackDamage * AttackBuff`
 - `SetData(data)` — reconfigures runtime
 - `TakeDamage(damage)`, `Die()` (Destroy)
 - Ally pieces auto-register with `CombatManager`; unregister on `OnDestroy`
 
 ### PieceManager (`Pieces/PieceManager.cs`)
-- References: `gridManager`, `piecePrefab`, `allyPieceData`
-- `SpawnPiece()` — checks gold, finds empty cell, instantiates piece, deducts gold; refunds if board full
-- `GetCurrentPieceData()` — returns current `allyPieceData` (used by UIManager for button text)
+- References: `gridManager`, `piecePrefab`, `pullCost` (50)
+- `Start()` — collects all `Team.Ally` PieceData assets with `gachaWeight > 0` into gacha pool
+- `PullPiece()` — spends gold, weighted random selection (Knight/Bishop/Rook:30000, Queen/King:1000), places on empty cell
+- `OnPiecePulled` event — notifies UI with the pulled PieceData
 
 ### Enemy (`Enemies/Enemy.cs`)
 - Properties: `CurrentHP`, `IsDead`
 - Static event `OnAnyEnemyRemoved` — triggers EnemyManager wave-end check
 - `SetData(data)`, `SetWaypoints(List<Vector3>)`
-- `Update()` — moves toward current waypoint at `moveSpeed` (2); when distance < 0.05, advances to next waypoint
-- `TakeDamage(damage)`, `Die()` → AddGold(10) + fire event + SpawnDeathEffect + Destroy
+- `Update()` — moves toward current waypoint at `moveSpeed` (2) with slow support; when distance < 0.05, advances to next waypoint
+- `TakeDamage(damage)`, `ApplySlow(multiplier, duration)` — stackable slow
+- `Die()` → AddGold(10) + fire event + SpawnDeathEffect + Destroy
 - `ReachEnd()` → LoseLife(1) + fire event + Destroy
 
 ### EnemyManager (`Enemies/EnemyManager.cs`)
@@ -99,18 +107,27 @@ Assets/
 - References: `projectilePrefab`
 - Maintains `List<Piece> allyPieces` + `Dictionary<Piece, float> lastAttackTime` (cooldown tracking)
 - `RegisterPiece(piece)`, `UnregisterPiece(piece)`
-- `Update()` — iterates ally pieces (reverse), removes dead/null, calls `TryAttack()`
-- `TryAttack()` — checks cooldown, finds nearest enemy in range via `FindObjectsByType<Enemy>`, fires projectile
-- `FireProjectile()` — instantiates `projectilePrefab`, calls `projectile.Initialize(target, damage, speed)`
+- `Update()` — resets attack buffs, applies King auras, then iterates ally pieces (reverse) calling `TryAttack()`
+- `TryAttack()` — routes to handler based on `AttackType`:
+  - **Direct** (Knight): instant damage with bonus %maxHP damage
+  - **Projectile** (Pawn): fires standard homing projectile
+  - **DiagonalProjectile** (Bishop): fires 4 diagonal line projectiles
+  - **Laser** (Rook): charges for duration, then deals AoE in 4 directions with multiplier
+  - **Homing** (Queen): fires homing projectile with limited tracking time
+  - **Splash** (King): AoE damage + slow to enemies, buffs adjacent allies
 
 ### Projectile (`Combat/Projectile.cs`)
-- Properties: `target`, `damage`, `speed`
-- `Update()` — moves toward target at `speed`; destroys if target null; deals damage on proximity (< 0.2)
+- Three modes: `Standard` (track target), `Line` (fixed direction), `Homing` (track then line after timeout)
+- `Initialize(target, damage, speed)` — standard homing
+- `InitializeLine(dir, damage, speed, maxDist)` — line projectile (Bishop)
+- `InitializeHoming(target, damage, speed, homingTime)` — homing with timeout (Queen)
+- `Update()` — delegates to mode-specific update
 - `SpawnHitEffect()` — loads `Resources/FX/HitEffect` and instantiates at impact position
 
 ### UIManager (`UI/UIManager.cs`)
-- References TMP texts for gold, lives, wave, countdown; Game Over / Victory panels
+- References TMP texts for gold, lives, wave, countdown, buy button, pull result; Game Over / Victory panels
 - Subscribes to `GameManager.OnGoldChanged`, `OnLivesChanged`, `OnWaveChanged`, `OnStateChanged`
+- Subscribes to `PieceManager.OnPiecePulled` — shows pulled piece name for 2s
 - `Start()` — initializes text values, hides panels; calls `UpdateBuyButtonText()`
 - `Update()` — shows countdown text only when `State == Ready`
 - `OnStateChanged()` — shows GameOverPanel on `GameOver`, VictoryPanel on `Victory`
@@ -120,12 +137,16 @@ Assets/
 
 ## PieceData Assets
 
-| Asset | Team | Cost | HP | ATK | Range | Cooldown | Speed |
-|---|---|---|---|---|---|---|---|
-| AllyPawnData | Ally | 50 | 50 | 10 | 2 | 1.0 | 5 |
-| AllyQueenData | Ally | 100 | 80 | 25 | 3 | 1.5 | 6 |
-| EnemyPawnData | Enemy | — | 30 | 5 | 1 | 1.0 | — |
-| EnemyQueenData | Enemy | — | 60 | 15 | 1.5 | 1.2 | — |
+| Asset | Team | Cost | HP | ATK | Range | Cooldown | Speed | AttackType |
+|---|---|---|---|---|---|---|---|---|
+| AllyPawnData | Ally | 50 | 50 | 10 | 2 | 1.0 | 5 | Projectile |
+| AllyKnightData | Ally | 50 | 40 | 5 | 2 | 0.67 | — | Direct |
+| AllyBishopData | Ally | 50 | 30 | 3 | 3 | 0.56 | 8 | DiagonalProjectile |
+| AllyRookData | Ally | 50 | 60 | 4 | 4 | 1.0 | — | Laser |
+| AllyQueenData | Ally | 100 | 80 | 5 | 6 | 0.5 | 6 | Homing |
+| AllyKingData | Ally | 200 | 100 | 4 | 4 | 0.67 | — | Splash |
+| EnemyPawnData | Enemy | — | 30 | 5 | 1 | 1.0 | — | Projectile |
+| EnemyQueenData | Enemy | — | 60 | 15 | 1.5 | 1.2 | — | Projectile |
 
 ---
 
@@ -138,11 +159,12 @@ Assets/
 | **PieceManager** | PieceManager | GridManager (ref), Piece.prefab, AllyPawnData |
 | **Canvas** | Canvas, CanvasScaler, GraphicRaycaster, UIManager | GoldText, LivesText, WaveText, CountdownText, GameOverPanel, VictoryPanel |
 | ├─ EventSystem | EventSystem | — |
-| ├─ BuyPieceButton | Button (Text TMP child) | OnClick → PieceManager.SpawnPiece, btn text="Buy Pawn (50G)" |
+| ├─ BuyPieceButton | Button (Text TMP child) | OnClick → PieceManager.PullPiece, btn text="Pull (50G)" |
 | ├─ GoldText | TextMeshProUGUI | "Gold: 100" |
 | ├─ LivesText | TextMeshProUGUI | "Lives: 20" |
 | ├─ WaveText | TextMeshProUGUI | "Wave: 1" |
 | ├─ CountdownText | TextMeshProUGUI | "Wave N starts soon..." (hidden during wave) |
+| ├─ PullResultText | TextMeshProUGUI | Shows pulled piece name (hidden by default) |
 | ├─ GameOverPanel | Panel (Image) + Title + RestartBtn | Hidden by default |
 | └─ VictoryPanel | Panel (Image) + Title | Hidden by default |
 | **EnemyManager** | EnemyManager | Enemy.prefab, EnemyPawnData, EnemyQueenData |
@@ -160,3 +182,4 @@ Assets/
 ## Next Steps (Phase 4 — Polish)
 - Sound effects / music
 - Balancing & tuning
+- 적군 기물 다양화 (EnemyManager에 Knight/Bishop/Rook/King 대응)

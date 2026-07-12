@@ -70,6 +70,32 @@ public class GridManager : MonoBehaviour
         return null;
     }
 
+    public GridCell GetNearestEmptyCell(Vector3 worldPos)
+    {
+        int cx = Mathf.Clamp(Mathf.RoundToInt(worldPos.x), 0, width - 1);
+        int cy = Mathf.Clamp(Mathf.RoundToInt(worldPos.y), 0, height - 1);
+
+        if (grid[cx, cy].IsEmpty)
+            return grid[cx, cy];
+
+        GridCell nearest = null;
+        float nearestDist = float.MaxValue;
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                if (!grid[x, y].IsEmpty) continue;
+                float d = Vector2.Distance(new Vector2(x, y), new Vector2(cx, cy));
+                if (d < nearestDist)
+                {
+                    nearestDist = d;
+                    nearest = grid[x, y];
+                }
+            }
+        }
+        return nearest;
+    }
+
     public void ClearGrid()
     {
         for (int y = 0; y < height; y++)

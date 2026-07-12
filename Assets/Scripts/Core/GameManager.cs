@@ -37,12 +37,12 @@ public class GameManager : MonoBehaviour
             return;
         }
         Instance = this;
+        Gold = startGold;
+        Lives = startLives;
     }
 
     private void Start()
     {
-        Gold = startGold;
-        Lives = startLives;
         Invoke(nameof(StartWave), firstWaveDelay);
     }
 

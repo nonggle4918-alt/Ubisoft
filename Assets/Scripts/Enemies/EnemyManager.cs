@@ -44,7 +44,7 @@ public class EnemyManager : MonoBehaviour
         for (int x = -1; x <= 8; x++)
             waypoints.Add(new Vector3(x, -1, 0));
 
-        for (int y = 0; y <= 7; y++)
+        for (int y = 0; y <= 8; y++)
             waypoints.Add(new Vector3(8, y, 0));
 
         for (int x = 7; x >= -1; x--)
@@ -52,8 +52,6 @@ public class EnemyManager : MonoBehaviour
 
         for (int y = 7; y >= 0; y--)
             waypoints.Add(new Vector3(-1, y, 0));
-
-        waypoints.Add(new Vector3(-1, -1, 0));
     }
 
     private IEnumerator SpawnWave()

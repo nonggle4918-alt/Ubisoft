@@ -1,43 +1,74 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PieceManager : MonoBehaviour
 {
     [SerializeField] private GridManager gridManager;
     [SerializeField] private Piece piecePrefab;
-    [SerializeField] private PieceData allyPieceData;
+    [SerializeField] private int pullCost = 50;
+    [SerializeField] private List<PieceData> allyPiecePool = new List<PieceData>();
 
-    public PieceData GetCurrentPieceData() => allyPieceData;
+    public event Action<PieceData> OnPiecePulled;
 
-    public void SpawnPiece()
+    private List<PieceData> gachaPool = new List<PieceData>();
+    private int totalWeight;
+
+    private void Start()
+    {
+        foreach (var pd in allyPiecePool)
+        {
+            if (pd != null && pd.team == Team.Ally && pd.gachaWeight > 0)
+            {
+                gachaPool.Add(pd);
+                totalWeight += pd.gachaWeight;
+            }
+        }
+    }
+
+    public void PullPiece()
     {
         if (GameManager.Instance == null) return;
-        if (allyPieceData == null)
-        {
-            Debug.Log("PieceData가 할당되지 않았습니다.");
-            return;
-        }
 
-        if (!GameManager.Instance.SpendGold(allyPieceData.cost))
+        if (!GameManager.Instance.SpendGold(pullCost))
         {
             Debug.Log("골드가 부족합니다.");
             return;
         }
 
-        GridCell cell = gridManager.GetEmptyCell();
-
-        if (cell == null)
+        PieceData selected = WeightedRandom();
+        if (selected == null)
         {
-            Debug.Log("빈 칸이 없습니다.");
-            GameManager.Instance.AddGold(allyPieceData.cost);
+            GameManager.Instance.AddGold(pullCost);
             return;
         }
 
-        Piece piece = Instantiate(
-            piecePrefab,
-            cell.transform.position,
-            Quaternion.identity);
+        GridCell cell = gridManager.GetEmptyCell();
+        if (cell == null)
+        {
+            Debug.Log("빈 칸이 없습니다.");
+            GameManager.Instance.AddGold(pullCost);
+            return;
+        }
 
-        piece.SetData(allyPieceData);
+        Piece piece = Instantiate(piecePrefab, cell.transform.position, Quaternion.identity);
+        piece.SetData(selected);
+        piece.CurrentCell = cell;
         cell.SetPiece(piece);
+
+        OnPiecePulled?.Invoke(selected);
+    }
+
+    private PieceData WeightedRandom()
+    {
+        int roll = UnityEngine.Random.Range(0, totalWeight);
+        int cumulative = 0;
+        foreach (var pd in gachaPool)
+        {
+            cumulative += pd.gachaWeight;
+            if (roll < cumulative)
+                return pd;
+        }
+        return gachaPool.Count > 0 ? gachaPool[0] : null;
     }
 }

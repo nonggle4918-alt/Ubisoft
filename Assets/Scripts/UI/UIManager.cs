@@ -9,18 +9,29 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI waveText;
     [SerializeField] private TextMeshProUGUI countdownText;
     [SerializeField] private TextMeshProUGUI buyButtonText;
+    [SerializeField] private TextMeshProUGUI pullResultText;
 
     [Header("Panels")]
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject victoryPanel;
 
+    private PieceManager pieceManager;
+    private bool subscribed;
+
     private void OnEnable()
     {
+        TrySubscribe();
+    }
+
+    private void TrySubscribe()
+    {
+        if (subscribed) return;
         if (GameManager.Instance == null) return;
         GameManager.Instance.OnGoldChanged += UpdateGold;
         GameManager.Instance.OnLivesChanged += UpdateLives;
         GameManager.Instance.OnWaveChanged += UpdateWave;
         GameManager.Instance.OnStateChanged += OnStateChanged;
+        subscribed = true;
     }
 
     private void OnDisable()
@@ -30,10 +41,13 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.OnLivesChanged -= UpdateLives;
         GameManager.Instance.OnWaveChanged -= UpdateWave;
         GameManager.Instance.OnStateChanged -= OnStateChanged;
+        subscribed = false;
     }
 
     private void Start()
     {
+        TrySubscribe();
+        pieceManager = FindFirstObjectByType<PieceManager>();
         UpdateGold(GameManager.Instance.Gold);
         UpdateLives(GameManager.Instance.Lives);
         UpdateWave(GameManager.Instance.CurrentWave);
@@ -41,6 +55,15 @@ public class UIManager : MonoBehaviour
         if (victoryPanel != null) victoryPanel.SetActive(false);
         UpdateBuyButtonText();
         WireRestartButton();
+
+        if (pieceManager != null)
+            pieceManager.OnPiecePulled += OnPiecePulled;
+    }
+
+    private void OnDestroy()
+    {
+        if (pieceManager != null)
+            pieceManager.OnPiecePulled -= OnPiecePulled;
     }
 
     private void WireRestartButton()
@@ -58,7 +81,7 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        if (countdownText == null) return;
+        if (countdownText == null || GameManager.Instance == null) return;
         if (GameManager.Instance.State == GameState.Ready)
         {
             countdownText.gameObject.SetActive(true);
@@ -88,12 +111,24 @@ public class UIManager : MonoBehaviour
 
     private void UpdateBuyButtonText()
     {
-        var pm = FindFirstObjectByType<PieceManager>();
-        if (buyButtonText != null && pm != null)
+        if (buyButtonText != null)
+            buyButtonText.text = "Pull (50G)";
+    }
+
+    private void OnPiecePulled(PieceData data)
+    {
+        if (pullResultText != null)
         {
-            var pd = pm.GetCurrentPieceData();
-            if (pd != null)
-                buyButtonText.text = $"Buy {pd.pieceName} ({pd.cost}G)";
+            pullResultText.gameObject.SetActive(true);
+            pullResultText.text = $"Got {data.pieceName}!";
+            CancelInvoke(nameof(HidePullResult));
+            Invoke(nameof(HidePullResult), 2f);
         }
+    }
+
+    private void HidePullResult()
+    {
+        if (pullResultText != null)
+            pullResultText.gameObject.SetActive(false);
     }
 }
