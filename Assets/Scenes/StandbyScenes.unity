@@ -341,7 +341,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3819813492842459698, guid: c6939e3e28fcd435d89da272fd1bf81b, type: 3}
       propertyPath: m_text
-      value: Chess Defence
+      value: Chess Rnadom Defence
       objectReference: {fileID: 0}
     - target: {fileID: 3819813492842459698, guid: c6939e3e28fcd435d89da272fd1bf81b, type: 3}
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
