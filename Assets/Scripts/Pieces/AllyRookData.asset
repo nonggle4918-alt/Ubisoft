@@ -15,7 +15,7 @@ MonoBehaviour:
   pieceName: Rook
   team: 0
   attackType: 3
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 2843386aa6c2f6f428161574bf456bd9, type: 3}
   cost: 50
   maxHP: 60
   attackDamage: 4

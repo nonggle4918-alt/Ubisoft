@@ -15,7 +15,7 @@ MonoBehaviour:
   pieceName: Queen
   team: 0
   attackType: 4
-  sprite: {fileID: 21300000, guid: 9838f70716f4bdd4e972ac6de812e20a, type: 3}
+  sprite: {fileID: 21300000, guid: 4005d4ca8910d9745b85cfae05a10eda, type: 3}
   cost: 100
   maxHP: 80
   attackDamage: 5
