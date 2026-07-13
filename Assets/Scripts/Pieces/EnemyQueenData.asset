@@ -15,7 +15,7 @@ MonoBehaviour:
   pieceName: Enemy Queen
   team: 1
   attackType: 0
-  sprite: {fileID: 21300000, guid: 00e1affb97039634ba83020cb1c2346b, type: 3}
+  sprite: {fileID: 21300000, guid: 771484bd70fcc304f89f3acb552802b6, type: 3}
   cost: 0
   maxHP: 40
   attackDamage: 0

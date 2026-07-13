@@ -15,7 +15,7 @@ MonoBehaviour:
   pieceName: Bishop
   team: 0
   attackType: 2
-  sprite: {fileID: 21300000, guid: 0ba71f2efdbce8d499f3e12ef3a9fa3d, type: 3}
+  sprite: {fileID: 21300000, guid: a47cc875a0d83654f9d958ba9ac652ed, type: 3}
   cost: 50
   maxHP: 30
   attackDamage: 3

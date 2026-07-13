@@ -15,7 +15,7 @@ MonoBehaviour:
   pieceName: Enemy Pawn
   team: 1
   attackType: 0
-  sprite: {fileID: 21300000, guid: b1a6fc586112ff2438c97f0e62a561ba, type: 3}
+  sprite: {fileID: 21300000, guid: f56ad3fd879d38d468024969bb0d235c, type: 3}
   cost: 0
   maxHP: 20
   attackDamage: 0

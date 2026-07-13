@@ -15,7 +15,7 @@ MonoBehaviour:
   pieceName: Knight
   team: 0
   attackType: 1
-  sprite: {fileID: 21300000, guid: c1c854de059cd864b9ee75e8a95511cd, type: 3}
+  sprite: {fileID: 21300000, guid: 5158fdd7fd472864e89e6698509fe163, type: 3}
   cost: 50
   maxHP: 40
   attackDamage: 5
