@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI countdownText;
     [SerializeField] private TextMeshProUGUI buyButtonText;
     [SerializeField] private TextMeshProUGUI pullResultText;
+    [SerializeField] private GameObject optionPanel;
+    [SerializeField] private Button openButton;
+    [SerializeField] private Button closeButton;
 
     [Header("Panels")]
     [SerializeField] private GameObject gameOverPanel;
@@ -53,6 +57,7 @@ public class UIManager : MonoBehaviour
         UpdateWave(GameManager.Instance.CurrentWave);
         if (gameOverPanel != null) gameOverPanel.SetActive(false);
         if (victoryPanel != null) victoryPanel.SetActive(false);
+        if (optionPanel != null) optionPanel.SetActive(false);
         UpdateBuyButtonText();
         WireRestartButton();
 
@@ -130,5 +135,23 @@ public class UIManager : MonoBehaviour
     {
         if (pullResultText != null)
             pullResultText.gameObject.SetActive(false);
+    }
+    public void OpenOptionWindow()
+    {
+        if (optionPanel != null)
+        {
+            optionPanel.SetActive(true);
+            Debug.Log("button!!");
+            Time.timeScale = 0f;
+        }
+    }
+
+    public void CloseOptionWindow()
+    {
+        if (optionPanel != null)
+        {
+            optionPanel.SetActive(false);
+            Time.timeScale = 1f; 
+        }
     }
 }
