@@ -26,7 +26,13 @@ public class UIManager : MonoBehaviour
     [SerializeField] private AudioSource backgroundMusic;
     [SerializeField] private AudioSource[] effectSoundSources;
 
+    [Header("Selected Ally Status")]
+    [SerializeField] private GameObject panelStatus;
+    [SerializeField] private TextMeshProUGUI statusTextTitle;
+    [SerializeField] private TextMeshProUGUI statusText;
+
     private PieceManager pieceManager;
+    private Piece selectedPiece;
     private bool subscribed;
 
     private const string EffectsVolumeKey = "EffectsVolume";
@@ -35,6 +41,8 @@ public class UIManager : MonoBehaviour
     private void OnEnable()
     {
         TrySubscribe();
+        PieceDragHandler.OnAllyPieceSelected += ToggleSelectedPieceInfo;
+        PieceDragHandler.OnAllyPieceDeselected += HideSelectedPieceInfo;
     }
 
     private void TrySubscribe()
@@ -50,12 +58,16 @@ public class UIManager : MonoBehaviour
 
     private void OnDisable()
     {
-        if (GameManager.Instance == null) return;
-        GameManager.Instance.OnGoldChanged -= UpdateGold;
-        GameManager.Instance.OnLivesChanged -= UpdateLives;
-        GameManager.Instance.OnWaveChanged -= UpdateWave;
-        GameManager.Instance.OnStateChanged -= OnStateChanged;
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.OnGoldChanged -= UpdateGold;
+            GameManager.Instance.OnLivesChanged -= UpdateLives;
+            GameManager.Instance.OnWaveChanged -= UpdateWave;
+            GameManager.Instance.OnStateChanged -= OnStateChanged;
+        }
         subscribed = false;
+        PieceDragHandler.OnAllyPieceSelected -= ToggleSelectedPieceInfo;
+        PieceDragHandler.OnAllyPieceDeselected -= HideSelectedPieceInfo;
     }
 
     private void Start()
@@ -71,6 +83,7 @@ public class UIManager : MonoBehaviour
         UpdateBuyButtonText();
         WireRestartButton();
         InitializeSoundControls();
+        InitializeSelectedPieceStatus();
 
         if (pieceManager != null)
             pieceManager.OnPiecePulled += OnPiecePulled;
@@ -85,6 +98,9 @@ public class UIManager : MonoBehaviour
             efxSound.onValueChanged.RemoveListener(SetEffectsVolume);
         if (bgSound != null)
             bgSound.onValueChanged.RemoveListener(SetBackgroundVolume);
+
+        PieceDragHandler.OnAllyPieceSelected -= ToggleSelectedPieceInfo;
+        PieceDragHandler.OnAllyPieceDeselected -= HideSelectedPieceInfo;
     }
 
     private void WireRestartButton()
@@ -203,6 +219,43 @@ public class UIManager : MonoBehaviour
     {
         if (backgroundMusic != null)
             backgroundMusic.volume = volume;
+    }
+
+    private void InitializeSelectedPieceStatus()
+    {
+        if (panelStatus != null)
+            panelStatus.SetActive(false);
+    }
+
+    private void ToggleSelectedPieceInfo(Piece piece)
+    {
+        if (piece == null || piece.Data == null || piece.Team != Team.Ally) return;
+
+        if (selectedPiece == piece)
+        {
+            selectedPiece = null;
+            HideSelectedPieceInfo();
+            return;
+        }
+
+        selectedPiece = piece;
+
+        if (panelStatus == null || statusTextTitle == null || statusText == null) return;
+
+        PieceData data = piece.Data;
+        statusTextTitle.text = data.pieceName;
+        statusText.text =
+            $"공격력: {data.attackDamage:0.#}\n" +
+            $"사거리: {data.attackRange:0.#}\n" +
+            $"공격속도: {data.attackCooldown:0.##}초";
+        panelStatus.SetActive(true);
+    }
+
+    private void HideSelectedPieceInfo()
+    {
+        selectedPiece = null;
+        if (panelStatus != null)
+            panelStatus.SetActive(false);
     }
 
     public void OpenOptionWindow()
