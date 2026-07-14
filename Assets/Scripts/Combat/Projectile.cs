@@ -137,6 +137,9 @@ public class Projectile : MonoBehaviour
     {
         var prefab = Resources.Load<GameObject>("FX/HitEffect");
         if (prefab != null)
-            Instantiate(prefab, transform.position, Quaternion.identity);
+        {
+            GameObject effect = Instantiate(prefab, transform.position, Quaternion.identity);
+            Destroy(effect, 1f);
+        }
     }
 }

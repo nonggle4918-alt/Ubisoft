@@ -1,0 +1,64 @@
+{
+    "rows": [
+        {
+            "resourceId": "Char_Bishop",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Bishop"
+        },
+        {
+            "resourceId": "Char_Knight",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Knight"
+        },
+        {
+            "resourceId": "Char_Rook",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Rook"
+        },
+        {
+            "resourceId": "Char_Pawn",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Pawn"
+        },
+        {
+            "resourceId": "Char_Queen",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Queen"
+        },
+        {
+            "resourceId": "Char_King",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_King"
+        },
+        {
+            "resourceId": "Enemy_Bishop",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\Black\\Char_Black_Bishop"
+        },
+        {
+            "resourceId": "Enemy_Knight",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\Black\\Char_Black_Knight"
+        },
+        {
+            "resourceId": "Enemy_Rook",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\Black\\Char_Black_Rook"
+        },
+        {
+            "resourceId": "Enemy_Pawn",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\Black\\Char_Black_Pawn"
+        },
+        {
+            "resourceId": "Enemy_Queen",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\Black\\Char_Black_Queen"
+        },
+        {
+            "resourceId": "Enemy_King",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\Black\\Char_Black_King"
+        }
+    ]
+}

@@ -1,0 +1,172 @@
+{
+    "rows": [
+        {
+            "spawnId": 201,
+            "groupId": "Stg_Spawn_01",
+            "enemyId": 20001,
+            "enemyCount": 40
+        },
+        {
+            "spawnId": 202,
+            "groupId": "Stg_Spawn_02",
+            "enemyId": 20001,
+            "enemyCount": 30
+        },
+        {
+            "spawnId": 203,
+            "groupId": "Stg_Spawn_02",
+            "enemyId": 20002,
+            "enemyCount": 10
+        },
+        {
+            "spawnId": 204,
+            "groupId": "Stg_Spawn_03",
+            "enemyId": 20001,
+            "enemyCount": 20
+        },
+        {
+            "spawnId": 205,
+            "groupId": "Stg_Spawn_03",
+            "enemyId": 20002,
+            "enemyCount": 20
+        },
+        {
+            "spawnId": 206,
+            "groupId": "Stg_Spawn_04",
+            "enemyId": 20001,
+            "enemyCount": 10
+        },
+        {
+            "spawnId": 207,
+            "groupId": "Stg_Spawn_04",
+            "enemyId": 20002,
+            "enemyCount": 30
+        },
+        {
+            "spawnId": 208,
+            "groupId": "Stg_Spawn_05",
+            "enemyId": 20003,
+            "enemyCount": 5
+        },
+        {
+            "spawnId": 209,
+            "groupId": "Stg_Spawn_05",
+            "enemyId": 20001,
+            "enemyCount": 5
+        },
+        {
+            "spawnId": 210,
+            "groupId": "Stg_Spawn_05",
+            "enemyId": 20002,
+            "enemyCount": 25
+        },
+        {
+            "spawnId": 211,
+            "groupId": "Stg_Spawn_05",
+            "enemyId": 20003,
+            "enemyCount": 15
+        },
+        {
+            "spawnId": 212,
+            "groupId": "Stg_Spawn_06",
+            "enemyId": 20002,
+            "enemyCount": 15
+        },
+        {
+            "spawnId": 213,
+            "groupId": "Stg_Spawn_06",
+            "enemyId": 20003,
+            "enemyCount": 35
+        },
+        {
+            "spawnId": 214,
+            "groupId": "Stg_Spawn_07",
+            "enemyId": 20002,
+            "enemyCount": 20
+        },
+        {
+            "spawnId": 215,
+            "groupId": "Stg_Spawn_07",
+            "enemyId": 20003,
+            "enemyCount": 25
+        },
+        {
+            "spawnId": 216,
+            "groupId": "Stg_Spawn_07",
+            "enemyId": 20004,
+            "enemyCount": 20
+        },
+        {
+            "spawnId": 217,
+            "groupId": "Stg_Spawn_08",
+            "enemyId": 20003,
+            "enemyCount": 25
+        },
+        {
+            "spawnId": 218,
+            "groupId": "Stg_Spawn_08",
+            "enemyId": 20004,
+            "enemyCount": 30
+        },
+        {
+            "spawnId": 219,
+            "groupId": "Stg_Spawn_09",
+            "enemyId": 20002,
+            "enemyCount": 25
+        },
+        {
+            "spawnId": 220,
+            "groupId": "Stg_Spawn_09",
+            "enemyId": 20003,
+            "enemyCount": 15
+        },
+        {
+            "spawnId": 221,
+            "groupId": "Stg_Spawn_09",
+            "enemyId": 20004,
+            "enemyCount": 25
+        },
+        {
+            "spawnId": 222,
+            "groupId": "Stg_Spawn_09",
+            "enemyId": 20005,
+            "enemyCount": 3
+        },
+        {
+            "spawnId": 223,
+            "groupId": "Stg_Spawn_10",
+            "enemyId": 20001,
+            "enemyCount": 10
+        },
+        {
+            "spawnId": 224,
+            "groupId": "Stg_Spawn_10",
+            "enemyId": 20002,
+            "enemyCount": 15
+        },
+        {
+            "spawnId": 225,
+            "groupId": "Stg_Spawn_10",
+            "enemyId": 20003,
+            "enemyCount": 25
+        },
+        {
+            "spawnId": 226,
+            "groupId": "Stg_Spawn_10",
+            "enemyId": 20004,
+            "enemyCount": 15
+        },
+        {
+            "spawnId": 227,
+            "groupId": "Stg_Spawn_10",
+            "enemyId": 20005,
+            "enemyCount": 2
+        },
+        {
+            "spawnId": 228,
+            "groupId": "Stg_Spawn_10",
+            "enemyId": 20006,
+            "enemyCount": 1
+        }
+    ]
+}

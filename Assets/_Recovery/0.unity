@@ -672,10 +672,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 611df3e3b22fb8044917bc3ba8b004b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridManager
-  width: 6
-  height: 6
+  width: 8
+  height: 8
   whiteTilePrefab: {fileID: 1448229869736067443, guid: 527b0b21b97167d41a98b6ff6e9cadcd, type: 3}
-  greenTilePrefab: {fileID: 5731758552042434439, guid: fa4f87c19beb3414a9da93384ec57ded, type: 3}
+  greenTilePrefab: {fileID: 5731758552042434439, guid: 89c3b629b6da4a34283b6901d235e43d, type: 3}
 --- !u!224 &295611253 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2105623296283178825, guid: f16c3747dc22c4c198776cf2d55f86c9, type: 3}
@@ -778,7 +778,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3448568139047586556, guid: f16c3747dc22c4c198776cf2d55f86c9, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -710
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3448568139047586556, guid: f16c3747dc22c4c198776cf2d55f86c9, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3993,7 +3993,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4628168ecea6e745b5c640692f6d19f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TimerManager
-  readyDuration: 5
+  currentState: 0
+  readyDuration: 10
   stageDuration: 40
   timerText: {fileID: 808414584}
 --- !u!4 &1838490374

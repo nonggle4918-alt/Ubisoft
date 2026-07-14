@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public int Lives { get; private set; }
     public int CurrentWave { get; private set; } = 1;
     public GameState State { get; private set; } = GameState.Ready;
+    public GameDatabase Database { get; private set; }
 
     public event Action<int> OnGoldChanged;
     public event Action<int> OnLivesChanged;
@@ -37,13 +38,9 @@ public class GameManager : MonoBehaviour
             return;
         }
         Instance = this;
+        Database = GameDatabase.Load();
         Gold = startGold;
         Lives = startLives;
-    }
-
-    private void Start()
-    {
-        Invoke(nameof(StartWave), firstWaveDelay);
     }
 
     public void StartWave()
@@ -79,7 +76,6 @@ public class GameManager : MonoBehaviour
         CurrentWave++;
         OnWaveChanged?.Invoke(CurrentWave);
         SetState(GameState.Ready);
-        Invoke(nameof(StartWave), betweenWaveDelay);
     }
 
     public void Restart()
@@ -102,7 +98,10 @@ public class GameManager : MonoBehaviour
         OnLivesChanged?.Invoke(Lives);
         OnWaveChanged?.Invoke(CurrentWave);
         SetState(GameState.Ready);
-        Invoke(nameof(StartWave), firstWaveDelay);
+
+        var timerManager = FindFirstObjectByType<TimerManager>();
+        if (timerManager != null)
+            timerManager.RestartTimer();
     }
 
     private void SetState(GameState newState)

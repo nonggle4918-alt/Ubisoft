@@ -1,0 +1,63 @@
+using System;
+using System.Collections.Generic;
+
+[Serializable]
+public class DatabaseTable<T>
+{
+    public List<T> rows = new List<T>();
+}
+
+[Serializable]
+public class AssetRecord
+{
+    public string resourceId;
+    public string type;
+    public string path;
+}
+
+[Serializable]
+public class CharacterRecord
+{
+    public int id;
+    public string name;
+    public string type;
+    public int attackDamage;
+    public float attackRange;
+    public float attackCooldown;
+    public int cost;
+    public string imageResourceId;
+    public string effectId;
+    public string soundId;
+}
+
+[Serializable]
+public class EnemyRecord
+{
+    public int id;
+    public string name;
+    public string type;
+    public int hp;
+    public float speed;
+    public int dropGold;
+    public string imageResourceId;
+    public string effectId;
+    public string soundId;
+}
+
+[Serializable]
+public class SpawnRecord
+{
+    public int spawnId;
+    public string groupId;
+    public int enemyId;
+    public int enemyCount;
+}
+
+[Serializable]
+public class StageRecord
+{
+    public int id;
+    public int nextId;
+    public int stageNumber;
+    public string spawnGroupId;
+}

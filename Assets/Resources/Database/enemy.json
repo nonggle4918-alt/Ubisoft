@@ -1,0 +1,70 @@
+{
+    "rows": [
+        {
+            "id": 20001,
+            "name": "pawn",
+            "type": "1",
+            "hp": 25,
+            "speed": 2.0,
+            "dropGold": 2,
+            "imageResourceId": "Enemy_Pawn",
+            "effectId": "",
+            "soundId": ""
+        },
+        {
+            "id": 20002,
+            "name": "bishop",
+            "type": "1",
+            "hp": 80,
+            "speed": 2.4000000953674318,
+            "dropGold": 3,
+            "imageResourceId": "Enemy_Bishop",
+            "effectId": "",
+            "soundId": ""
+        },
+        {
+            "id": 20003,
+            "name": "knight",
+            "type": "1",
+            "hp": 100,
+            "speed": 4.5,
+            "dropGold": 5,
+            "imageResourceId": "Enemy_Knight",
+            "effectId": "",
+            "soundId": ""
+        },
+        {
+            "id": 20004,
+            "name": "rook",
+            "type": "1",
+            "hp": 400,
+            "speed": 3.0,
+            "dropGold": 8,
+            "imageResourceId": "Enemy_Rook",
+            "effectId": "",
+            "soundId": ""
+        },
+        {
+            "id": 20005,
+            "name": "queen",
+            "type": "1",
+            "hp": 800,
+            "speed": 4.0,
+            "dropGold": 15,
+            "imageResourceId": "Enemy_Queen",
+            "effectId": "",
+            "soundId": ""
+        },
+        {
+            "id": 20006,
+            "name": "king",
+            "type": "2",
+            "hp": 4000,
+            "speed": 2.799999952316284,
+            "dropGold": 100,
+            "imageResourceId": "Enemy_King",
+            "effectId": "",
+            "soundId": ""
+        }
+    ]
+}
