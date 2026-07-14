@@ -435,6 +435,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LineTextFrame_05_White
       objectReference: {fileID: 0}
+    - target: {fileID: 3819813493434763774, guid: c6939e3e28fcd435d89da272fd1bf81b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -809,7 +813,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2932770076158448896, guid: 994afdd5e4673431b82ac34e105f4ec4, type: 3}
       propertyPath: m_Name
-      value: Button_Rectangle_05_Deco_White
+      value: Button_StartGame
       objectReference: {fileID: 0}
     - target: {fileID: 2932770076158448897, guid: 994afdd5e4673431b82ac34e105f4ec4, type: 3}
       propertyPath: m_Pivot.x
@@ -837,11 +841,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2932770076158448897, guid: 994afdd5e4673431b82ac34e105f4ec4, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 320
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 2932770076158448897, guid: 994afdd5e4673431b82ac34e105f4ec4, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 161
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 2932770076158448897, guid: 994afdd5e4673431b82ac34e105f4ec4, type: 3}
       propertyPath: m_LocalScale.x
@@ -889,7 +893,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2932770076158448897, guid: 994afdd5e4673431b82ac34e105f4ec4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -250
+      value: -356
       objectReference: {fileID: 0}
     - target: {fileID: 2932770076158448897, guid: 994afdd5e4673431b82ac34e105f4ec4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -921,7 +925,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2932770076158448902, guid: 994afdd5e4673431b82ac34e105f4ec4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SceneChange
+      value: StartGame
       objectReference: {fileID: 0}
     - target: {fileID: 2932770076158448902, guid: 994afdd5e4673431b82ac34e105f4ec4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

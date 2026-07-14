@@ -12,15 +12,25 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI buyButtonText;
     [SerializeField] private TextMeshProUGUI pullResultText;
     [SerializeField] private GameObject optionPanel;
-    [SerializeField] private Button openButton;
-    [SerializeField] private Button closeButton;
+
 
     [Header("Panels")]
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject victoryPanel;
 
+    [Header("Option")]
+    [SerializeField] private Button openButton;
+    [SerializeField] private Button closeButton;
+    [SerializeField] private Slider efxSound;
+    [SerializeField] private Slider bgSound;
+    [SerializeField] private AudioSource backgroundMusic;
+    [SerializeField] private AudioSource[] effectSoundSources;
+
     private PieceManager pieceManager;
     private bool subscribed;
+
+    private const string EffectsVolumeKey = "EffectsVolume";
+    private const string BackgroundVolumeKey = "BackgroundVolume";
 
     private void OnEnable()
     {
@@ -60,6 +70,7 @@ public class UIManager : MonoBehaviour
         if (optionPanel != null) optionPanel.SetActive(false);
         UpdateBuyButtonText();
         WireRestartButton();
+        InitializeSoundControls();
 
         if (pieceManager != null)
             pieceManager.OnPiecePulled += OnPiecePulled;
@@ -69,6 +80,11 @@ public class UIManager : MonoBehaviour
     {
         if (pieceManager != null)
             pieceManager.OnPiecePulled -= OnPiecePulled;
+
+        if (efxSound != null)
+            efxSound.onValueChanged.RemoveListener(SetEffectsVolume);
+        if (bgSound != null)
+            bgSound.onValueChanged.RemoveListener(SetBackgroundVolume);
     }
 
     private void WireRestartButton()
@@ -136,12 +152,64 @@ public class UIManager : MonoBehaviour
         if (pullResultText != null)
             pullResultText.gameObject.SetActive(false);
     }
+
+    private void InitializeSoundControls()
+    {
+        float effectsVolume = PlayerPrefs.GetFloat(EffectsVolumeKey, 1f);
+        float backgroundVolume = PlayerPrefs.GetFloat(BackgroundVolumeKey, 1f);
+
+        if (efxSound != null)
+        {
+            efxSound.SetValueWithoutNotify(effectsVolume);
+            efxSound.onValueChanged.AddListener(SetEffectsVolume);
+        }
+
+        if (bgSound != null)
+        {
+            bgSound.SetValueWithoutNotify(backgroundVolume);
+            bgSound.onValueChanged.AddListener(SetBackgroundVolume);
+        }
+
+        ApplyEffectsVolume(effectsVolume);
+        ApplyBackgroundVolume(backgroundVolume);
+    }
+
+    public void SetEffectsVolume(float volume)
+    {
+        ApplyEffectsVolume(volume);
+        PlayerPrefs.SetFloat(EffectsVolumeKey, volume);
+        PlayerPrefs.Save();
+    }
+
+    public void SetBackgroundVolume(float volume)
+    {
+        ApplyBackgroundVolume(volume);
+        PlayerPrefs.SetFloat(BackgroundVolumeKey, volume);
+        PlayerPrefs.Save();
+    }
+
+    private void ApplyEffectsVolume(float volume)
+    {
+        if (effectSoundSources == null) return;
+
+        foreach (AudioSource effectSource in effectSoundSources)
+        {
+            if (effectSource != null)
+                effectSource.volume = volume;
+        }
+    }
+
+    private void ApplyBackgroundVolume(float volume)
+    {
+        if (backgroundMusic != null)
+            backgroundMusic.volume = volume;
+    }
+
     public void OpenOptionWindow()
     {
         if (optionPanel != null)
         {
             optionPanel.SetActive(true);
-            Debug.Log("button!!");
             Time.timeScale = 0f;
         }
     }

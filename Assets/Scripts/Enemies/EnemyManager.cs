@@ -71,7 +71,7 @@ public class EnemyManager : MonoBehaviour
     {
         var units = new List<PieceData>();
 
-        int pawnCount = 2 + wave;
+        int pawnCount = 10 + wave;
         int queenCount = Mathf.Max(0, wave - 2);
 
         for (int i = 0; i < pawnCount; i++)
