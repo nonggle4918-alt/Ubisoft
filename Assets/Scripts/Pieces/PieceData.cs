@@ -25,6 +25,8 @@ public class PieceData : ScriptableObject
     public float attackRange;
     public float attackCooldown;
     public float projectileSpeed;
+    public float movementSpeed = 2f;
+    public int goldReward = 10;
 
     [Header("Knight")]
     public float bonusMaxHpPercent = 5f;

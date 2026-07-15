@@ -39,8 +39,9 @@ public class Enemy : MonoBehaviour
             return;
 
         Vector3 target = waypoints[currentWaypointIndex];
+        float speed = data != null && data.movementSpeed > 0f ? data.movementSpeed : moveSpeed;
         transform.position = Vector3.MoveTowards(
-            transform.position, target, moveSpeed * slowMultiplier * Time.deltaTime);
+            transform.position, target, speed * slowMultiplier * Time.deltaTime);
 
         if (Vector3.Distance(transform.position, target) < 0.05f)
         {
@@ -85,7 +86,8 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
-        GameManager.Instance.AddGold(10);
+        int goldReward = data != null ? data.goldReward : 10;
+        GameManager.Instance.AddGold(goldReward);
         OnAnyEnemyRemoved?.Invoke();
         SpawnDeathEffect();
         Destroy(gameObject);
@@ -95,7 +97,10 @@ public class Enemy : MonoBehaviour
     {
         var prefab = Resources.Load<GameObject>("FX/DeathEffect");
         if (prefab != null)
-            Instantiate(prefab, transform.position, Quaternion.identity);
+        {
+            GameObject effect = Instantiate(prefab, transform.position, Quaternion.identity);
+            Destroy(effect, 1f);
+        }
     }
 
     private void ReachEnd()

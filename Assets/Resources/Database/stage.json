@@ -1,0 +1,64 @@
+{
+    "rows": [
+        {
+            "id": 101,
+            "nextId": 102,
+            "stageNumber": 1,
+            "spawnGroupId": "Stg_Spawn_01"
+        },
+        {
+            "id": 102,
+            "nextId": 103,
+            "stageNumber": 2,
+            "spawnGroupId": "Stg_Spawn_02"
+        },
+        {
+            "id": 103,
+            "nextId": 104,
+            "stageNumber": 3,
+            "spawnGroupId": "Stg_Spawn_03"
+        },
+        {
+            "id": 104,
+            "nextId": 105,
+            "stageNumber": 4,
+            "spawnGroupId": "Stg_Spawn_04"
+        },
+        {
+            "id": 105,
+            "nextId": 106,
+            "stageNumber": 5,
+            "spawnGroupId": "Stg_Spawn_05"
+        },
+        {
+            "id": 106,
+            "nextId": 107,
+            "stageNumber": 6,
+            "spawnGroupId": "Stg_Spawn_06"
+        },
+        {
+            "id": 107,
+            "nextId": 108,
+            "stageNumber": 7,
+            "spawnGroupId": "Stg_Spawn_07"
+        },
+        {
+            "id": 108,
+            "nextId": 109,
+            "stageNumber": 8,
+            "spawnGroupId": "Stg_Spawn_08"
+        },
+        {
+            "id": 109,
+            "nextId": 110,
+            "stageNumber": 9,
+            "spawnGroupId": "Stg_Spawn_09"
+        },
+        {
+            "id": 110,
+            "nextId": 111,
+            "stageNumber": 10,
+            "spawnGroupId": "Stg_Spawn_10"
+        }
+    ]
+}

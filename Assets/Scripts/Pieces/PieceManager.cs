@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PieceManager : MonoBehaviour
 {
@@ -14,8 +15,16 @@ public class PieceManager : MonoBehaviour
     private List<PieceData> gachaPool = new List<PieceData>();
     private int totalWeight;
 
+    private void Update()
+    {
+        if (Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame)
+            PullPiece();
+    }
+
     private void Start()
     {
+        ApplyCharacterDatabase();
+
         foreach (var pd in allyPiecePool)
         {
             if (pd != null && pd.team == Team.Ally && pd.gachaWeight > 0)
@@ -57,6 +66,30 @@ public class PieceManager : MonoBehaviour
         cell.SetPiece(piece);
 
         OnPiecePulled?.Invoke(selected);
+    }
+
+    private void ApplyCharacterDatabase()
+    {
+        GameDatabase database = GameManager.Instance?.Database;
+        if (database == null) return;
+
+        foreach (PieceData pieceData in allyPiecePool)
+        {
+            if (pieceData == null || pieceData.team != Team.Ally) continue;
+
+            CharacterRecord record = database.Characters.rows.Find(row =>
+                string.Equals(row.name, pieceData.pieceName, System.StringComparison.OrdinalIgnoreCase));
+            if (record == null) continue;
+
+            pieceData.attackDamage = record.attackDamage;
+            pieceData.attackRange = record.attackRange;
+            pieceData.attackCooldown = record.attackCooldown;
+            pieceData.cost = record.cost;
+
+            Sprite sprite = database.GetSprite(record.imageResourceId);
+            if (sprite != null)
+                pieceData.sprite = sprite;
+        }
     }
 
     private PieceData WeightedRandom()

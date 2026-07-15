@@ -1,9 +1,13 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Piece))]
 public class PieceDragHandler : MonoBehaviour
 {
+    public static event Action<Piece> OnAllyPieceSelected;
+    public static event Action OnAllyPieceDeselected;
+
     [SerializeField] private float holdThreshold = 0.25f;
 
     private Piece piece;
@@ -47,11 +51,14 @@ public class PieceDragHandler : MonoBehaviour
             {
                 float range = piece.Data != null ? piece.Data.attackRange : 0;
                 ShowRange(range);
+                if (piece.Team == Team.Ally && !piece.IsDead)
+                    OnAllyPieceSelected?.Invoke(piece);
                 BeginHold();
             }
             else if (hit == null || hit.gameObject.GetComponent<Piece>()?.Team != Team.Ally)
             {
                 HideRange();
+                OnAllyPieceDeselected?.Invoke();
             }
         }
 

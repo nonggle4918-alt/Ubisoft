@@ -1,0 +1,12 @@
+﻿id,next_id,stg_number,spawn_id
+int,int,int,string
+101,102,1,Stg_Spawn_01
+102,103,2,Stg_Spawn_02
+103,104,3,Stg_Spawn_03
+104,105,4,Stg_Spawn_04
+105,106,5,Stg_Spawn_05
+106,107,6,Stg_Spawn_06
+107,108,7,Stg_Spawn_07
+108,109,8,Stg_Spawn_08
+109,110,9,Stg_Spawn_09
+110,111,10,Stg_Spawn_10
