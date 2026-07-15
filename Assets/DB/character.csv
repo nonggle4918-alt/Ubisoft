@@ -1,0 +1,9 @@
+﻿,,,,,,뽑기 확률,,,
+id,name,type,Attack_Damage,Attack_Range,Attack_Cooldown,Cost,img_res,efx,sf
+int,string,enum,int,float,float,int,string,string,string
+10001,bishop,nomal,4,2.5,0.8,22,Char_White_Bishop,,
+10002,knight,nomal,12,1.5,1.2,22,Char_White_Knight,,
+10003,rook,nomal,3,2,1.5,22,Char_White_Rook,,
+10111,pawn,special,1,2,1.5,11,Char_White_Pawn,,
+10112,queen,special,15,4,0.5,11,Char_White_Queen,,
+10113,king,special,1,4.5,2,11,Char_White_King,,
