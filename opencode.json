@@ -4,7 +4,7 @@
     "ai-game-developer": {
       "enabled": true,
       "type": "remote",
-      "url": "http://localhost:22227"
+      "url": "http://localhost:22227/p/93cb39a0"
     }
   }
 }

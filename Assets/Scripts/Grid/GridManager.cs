@@ -22,6 +22,8 @@ public class GridManager : MonoBehaviour
 
     private void GenerateGrid()
     {
+        float offsetX = (8 - width) * 0.5f;
+
         for (int y = 0; y < height; y++)
         {
             for (int x = 0; x < width; x++)
@@ -33,7 +35,7 @@ public class GridManager : MonoBehaviour
 
                 GameObject obj = Instantiate(
                     prefab,
-                    new Vector3(x, y, 0),
+                    new Vector3(x + offsetX, y, 0),
                     Quaternion.identity,
                     transform);
 
