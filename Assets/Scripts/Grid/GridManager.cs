@@ -4,6 +4,8 @@ public class GridManager : MonoBehaviour
 {
     [SerializeField] private int width = 8;
     [SerializeField] private int height = 8;
+    public int Width => width;
+    public int Height => height;
 
     [SerializeField] private GameObject whiteTilePrefab;
     [SerializeField] private GameObject greenTilePrefab;

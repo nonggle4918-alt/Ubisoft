@@ -15,7 +15,7 @@ public class EnemyManager : MonoBehaviour
 
     public int RemainingEnemies => Mathf.Max(0, enemiesAlive);
 
-    private void Awake()
+    private void Start()
     {
         GenerateWaypoints();
     }
@@ -44,6 +44,39 @@ public class EnemyManager : MonoBehaviour
     {
         waypoints = new List<Vector3>();
 
+        GridManager grid = FindFirstObjectByType<GridManager>();
+        if (grid == null)
+        {
+            GenerateLegacyWaypoints();
+            return;
+        }
+
+        var cell00 = grid.GetCell(0, 0);
+        if (cell00 == null) { GenerateLegacyWaypoints(); return; }
+        var cellLast = grid.GetCell(grid.Width - 1, grid.Height - 1);
+        if (cellLast == null) { GenerateLegacyWaypoints(); return; }
+        Vector3 tile00 = cell00.transform.position;
+        Vector3 tileLast = cellLast.transform.position;
+        float left = tile00.x - 1f;
+        float bottom = tile00.y - 1f;
+        float right = tileLast.x + 1f;
+        float top = tileLast.y + 1f;
+
+        for (float x = left; x <= right; x++)
+            waypoints.Add(new Vector3(x, bottom, 0));
+
+        for (float y = bottom + 1f; y <= top; y++)
+            waypoints.Add(new Vector3(right, y, 0));
+
+        for (float x = right - 1f; x >= left; x--)
+            waypoints.Add(new Vector3(x, top, 0));
+
+        for (float y = top - 1f; y >= bottom + 1f; y--)
+            waypoints.Add(new Vector3(left, y, 0));
+    }
+
+    private void GenerateLegacyWaypoints()
+    {
         for (int x = -1; x <= 8; x++)
             waypoints.Add(new Vector3(x, -1, 0));
 
