@@ -1,15 +1,21 @@
 ﻿이미지 아이디,타입,경로
 Res_id,type,path
 string,string,string
-Char_Bishop,img,C:\Project\Ubisoft\Assets\Resources\Sprites\White\Char_White_Bishop
-Char_Knight,img,C:\Project\Ubisoft\Assets\Resources\Sprites\White\Char_White_Knight
-Char_Rook,img,C:\Project\Ubisoft\Assets\Resources\Sprites\White\Char_White_Rook
-Char_Pawn,img,C:\Project\Ubisoft\Assets\Resources\Sprites\White\Char_White_Pawn
-Char_Queen,img,C:\Project\Ubisoft\Assets\Resources\Sprites\White\Char_White_Queen
-Char_King,img,C:\Project\Ubisoft\Assets\Resources\Sprites\White\Char_White_King
+Piece_Bishop,img,C:\Project\Ubisoft\Assets\Resources\Sprites\White\Char_White_Bishop
+Piece_Knight,img,C:\Project\Ubisoft\Assets\Resources\Sprites\White\Char_White_Knight
+Piece_Rook,img,C:\Project\Ubisoft\Assets\Resources\Sprites\White\Char_White_Rook
+Piece_Pawn,img,C:\Project\Ubisoft\Assets\Resources\Sprites\White\Char_White_Pawn
+Piece_Queen,img,C:\Project\Ubisoft\Assets\Resources\Sprites\White\Char_White_Queen
+Piece_King,img,C:\Project\Ubisoft\Assets\Resources\Sprites\White\Char_White_King
 Enemy_Bishop,img,C:\Project\Ubisoft\Assets\Resources\Sprites\Black\Char_Black_Bishop
 Enemy_Knight,img,C:\Project\Ubisoft\Assets\Resources\Sprites\Black\Char_Black_Knight
 Enemy_Rook,img,C:\Project\Ubisoft\Assets\Resources\Sprites\Black\Char_Black_Rook
 Enemy_Pawn,img,C:\Project\Ubisoft\Assets\Resources\Sprites\Black\Char_Black_Pawn
 Enemy_Queen,img,C:\Project\Ubisoft\Assets\Resources\Sprites\Black\Char_Black_Queen
 Enemy_King,img,C:\Project\Ubisoft\Assets\Resources\Sprites\Black\Char_Black_King
+Piece_Unicorn,,C:\Project\Ubisoft\Assets\Resources\Sprites\Black\Char_White_Unicorn
+Piece_Pegasus,,C:\Project\Ubisoft\Assets\Resources\Sprites\Black\Char_White_Pegasus
+Piece_Dragon,,C:\Project\Ubisoft\Assets\Resources\Sprites\Black\Char_White_Dragon
+Piece_Checkmate,,C:\Project\Ubisoft\Assets\Resources\Sprites\Black\Char_White_Checkmate
+Piece_ShoutgunKing,,C:\Project\Ubisoft\Assets\Resources\Sprites\Black\Char_White_ShotgunKing
+Piece_Mage,,C:\Project\Ubisoft\Assets\Resources\Sprites\Black\Char_Black_King

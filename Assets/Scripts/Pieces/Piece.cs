@@ -26,6 +26,9 @@ public class Piece : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (CurrentCell != null)
+            CurrentCell.RemovePiece();
+
         var cm = FindFirstObjectByType<CombatManager>();
         if (cm != null)
             cm.UnregisterPiece(this);

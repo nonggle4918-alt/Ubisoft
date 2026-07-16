@@ -60,12 +60,84 @@ public class PieceManager : MonoBehaviour
             return;
         }
 
+        int tier = GameManager.Instance.Database.RollTier();
+
+        PieceData runtimeData = ScriptableObject.CreateInstance<PieceData>();
+        runtimeData.pieceName = selected.pieceName;
+        runtimeData.team = selected.team;
+        runtimeData.attackType = selected.attackType;
+        runtimeData.maxHP = selected.maxHP;
+        runtimeData.attackDamage = selected.attackDamage;
+        runtimeData.attackRange = selected.attackRange;
+        runtimeData.attackCooldown = selected.attackCooldown;
+        runtimeData.cost = selected.cost;
+        runtimeData.projectileSpeed = selected.projectileSpeed;
+        runtimeData.bonusMaxHpPercent = selected.bonusMaxHpPercent;
+        runtimeData.bonusDamageCapPercent = selected.bonusDamageCapPercent;
+        runtimeData.extraRange = selected.extraRange;
+        runtimeData.chargeDuration = selected.chargeDuration;
+        runtimeData.maxChargeMultiplier = selected.maxChargeMultiplier;
+        runtimeData.homingDuration = selected.homingDuration;
+        runtimeData.splashRadius = selected.splashRadius;
+        runtimeData.slowPercent = selected.slowPercent;
+        runtimeData.buffRange = selected.buffRange;
+        runtimeData.buffAttackPercent = selected.buffAttackPercent;
+        runtimeData.movementSpeed = selected.movementSpeed;
+        runtimeData.goldReward = selected.goldReward;
+        runtimeData.projectileCount = selected.projectileCount;
+        runtimeData.sprite = selected.sprite;
+
+        ApplyTierToData(runtimeData, tier);
+
         Piece piece = Instantiate(piecePrefab, cell.transform.position, Quaternion.identity);
-        piece.SetData(selected);
+        piece.SetData(runtimeData);
         piece.CurrentCell = cell;
         cell.SetPiece(piece);
 
-        OnPiecePulled?.Invoke(selected);
+        OnPiecePulled?.Invoke(runtimeData);
+    }
+
+    private void ApplyTierToData(PieceData data, int tier)
+    {
+        int pieceId = GetPieceIdByName(data.pieceName);
+        if (pieceId <= 0) return;
+
+        TierStatRecord stat = GameManager.Instance.Database.GetTierStat(pieceId, tier);
+        if (stat == null) return;
+
+        if (stat.attackDamage > 0) data.attackDamage = Mathf.RoundToInt(stat.attackDamage);
+        if (stat.attackRange > 0) data.attackRange = stat.attackRange;
+        if (stat.attackCooldown > 0) data.attackCooldown = stat.attackCooldown;
+        if (stat.cost > 0) data.cost = stat.cost;
+
+        if (tier > 1)
+        {
+            Sprite tierSprite = GetTierSprite(data.pieceName, tier);
+            if (tierSprite != null)
+                data.sprite = tierSprite;
+        }
+    }
+
+    private int GetPieceIdByName(string pieceName)
+    {
+        if (string.IsNullOrEmpty(pieceName)) return 0;
+        string lower = pieceName.ToLower();
+        switch (lower)
+        {
+            case "bishop": return 10001;
+            case "knight": return 10002;
+            case "rook": return 10003;
+            case "pawn": return 10111;
+            case "queen": return 10112;
+            case "king": return 10113;
+            default: return 0;
+        }
+    }
+
+    private Sprite GetTierSprite(string pieceName, int tier)
+    {
+        string resourceId = $"Char_{pieceName}_{tier}";
+        return GameManager.Instance.Database.GetSprite(resourceId);
     }
 
     private void ApplyCharacterDatabase()

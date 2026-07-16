@@ -1,0 +1,15 @@
+﻿기물아이디,이름,타입,공격력,사거리,공격속도,이미지,이펙트,사운드
+Piece_id,name,type,Attack_Damage,Attack_Range,Attack_Cooldown,Res_id,efx,sf
+int,string,enum,int,float,float,string,string,string
+10001,bishop,nomal,3,3,0.55,Piece_Bishop,,
+10002,knight,nomal,5,2,0.66,Piece_Knight,,
+10003,rook,nomal,4,4,2,Piece_Rook,,
+10111,pawn,special,1,2,1.5,Piece_Pawn,,
+10112,queen,special,15,4,0.5,Piece_Queen,,
+10113,king,special,1,4.5,2,Piece_King,,
+10211,unicron,promotion,10,3,1,Piece_Unicorn,,
+10212,pegasuse,promotion,10,4,1,Piece_Pegasus,,
+10213,dragon,promotion,10,5,1,Piece_Dragon,,
+10214,chekmate,promotion,30,2,1,Piece_Checkmate,,
+10215,ShoutgunKing,promotion,20,1,1,Piece_ShoutgunKing,,
+10216,Mage,promotion,15,6,1,Piece_Mage,,

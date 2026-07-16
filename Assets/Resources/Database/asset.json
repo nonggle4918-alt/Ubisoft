@@ -59,6 +59,66 @@
             "resourceId": "Enemy_King",
             "type": "img",
             "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\Black\\Char_Black_King"
+        },
+        {
+            "resourceId": "Char_Bishop_2",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Bishop_2"
+        },
+        {
+            "resourceId": "Char_Bishop_3",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Bishop_3"
+        },
+        {
+            "resourceId": "Char_Bishop_4",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Bishop_4"
+        },
+        {
+            "resourceId": "Char_Bishop_5",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Bishop_5"
+        },
+        {
+            "resourceId": "Char_Knight_2",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Knight_2"
+        },
+        {
+            "resourceId": "Char_Knight_3",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Knight_3"
+        },
+        {
+            "resourceId": "Char_Knight_4",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Knight_4"
+        },
+        {
+            "resourceId": "Char_Knight_5",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Knight_5"
+        },
+        {
+            "resourceId": "Char_Rook_2",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Rook_2"
+        },
+        {
+            "resourceId": "Char_Rook_3",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Rook_3"
+        },
+        {
+            "resourceId": "Char_Rook_4",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Rook_4"
+        },
+        {
+            "resourceId": "Char_Rook_5",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Rook_5"
         }
     ]
 }

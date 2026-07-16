@@ -74,14 +74,30 @@ public class GridManager : MonoBehaviour
         return null;
     }
 
+    public GridCell GetNearestCell(Vector3 worldPos)
+    {
+        GridCell nearest = null;
+        float nearestDist = float.MaxValue;
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                Vector3 cellPos = grid[x, y].transform.position;
+                float dx = worldPos.x - cellPos.x;
+                float dy = worldPos.y - cellPos.y;
+                float d = dx * dx + dy * dy;
+                if (d < nearestDist)
+                {
+                    nearestDist = d;
+                    nearest = grid[x, y];
+                }
+            }
+        }
+        return nearest;
+    }
+
     public GridCell GetNearestEmptyCell(Vector3 worldPos)
     {
-        int cx = Mathf.Clamp(Mathf.RoundToInt(worldPos.x), 0, width - 1);
-        int cy = Mathf.Clamp(Mathf.RoundToInt(worldPos.y), 0, height - 1);
-
-        if (grid[cx, cy].IsEmpty)
-            return grid[cx, cy];
-
         GridCell nearest = null;
         float nearestDist = float.MaxValue;
         for (int y = 0; y < height; y++)
@@ -89,7 +105,10 @@ public class GridManager : MonoBehaviour
             for (int x = 0; x < width; x++)
             {
                 if (!grid[x, y].IsEmpty) continue;
-                float d = Vector2.Distance(new Vector2(x, y), new Vector2(cx, cy));
+                Vector3 cellPos = grid[x, y].transform.position;
+                float dx = worldPos.x - cellPos.x;
+                float dy = worldPos.y - cellPos.y;
+                float d = dx * dx + dy * dy;
                 if (d < nearestDist)
                 {
                     nearestDist = d;

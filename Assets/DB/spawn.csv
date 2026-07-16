@@ -1,7 +1,7 @@
 ﻿스폰아이디,그룹아이디,적아이디,적수
 spawn_id,group_id,enmey,enemy_count
 int,int,int,int
-201,Stg_Spawn_01,20001,40
+201,Stg_Spawn_01,20001,34
 202,Stg_Spawn_02,20001,30
 203,Stg_Spawn_02,20002,10
 204,Stg_Spawn_03,20001,20

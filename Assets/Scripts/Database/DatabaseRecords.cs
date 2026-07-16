@@ -61,3 +61,22 @@ public class StageRecord
     public int stageNumber;
     public string spawnGroupId;
 }
+
+[Serializable]
+public class TierDrawRecord
+{
+    public int tier;
+    public float weight;
+}
+
+[Serializable]
+public class TierStatRecord
+{
+    public int id;
+    public int tier;
+    public float attackDamage;
+    public float attackRange;
+    public float attackCooldown;
+    public int cost;
+    public int sell;
+}

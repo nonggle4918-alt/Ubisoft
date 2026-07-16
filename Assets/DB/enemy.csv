@@ -1,8 +1,8 @@
 ﻿id,name,type,Hp,speed,drop_gold,img_res,efx,sf
 int,string,enum,int,float,int,string,string,string
-20001,pawn,1,25,2,2,Enemy_Pawn,,
-20002,bishop,1,85,2.4,3,Enemy_Bishop,,
-20003,knight,1,110,4.5,5,Enemy_Knight,,
-20004,rook,1,400,3,8,Enemy_Rook,,
-20005,queen,1,800,4,15,Enemy_Queen,,
-20006,king,2,4000,2.8,100,Enemy_King,,
+20001,pawn,1,24,1.8,3,Enemy_Pawn,,
+20002,bishop,1,75,2.3,5,Enemy_Bishop,,
+20003,knight,1,120,5.5,10,Enemy_Knight,,
+20004,rook,1,300,3.5,15,Enemy_Rook,,
+20005,queen,1,600,4.2,50,Enemy_Queen,,
+20006,king,2,3000,3,200,Enemy_King,,

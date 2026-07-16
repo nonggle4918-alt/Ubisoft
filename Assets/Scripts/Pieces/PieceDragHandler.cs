@@ -142,15 +142,9 @@ public class PieceDragHandler : MonoBehaviour
         Destroy(ghost);
         ghost = null;
 
-        GridCell targetCell = gridManager.GetNearestEmptyCell(dropPos);
+        GridCell targetCell = gridManager.GetNearestCell(dropPos);
 
-        if (targetCell != null)
-        {
-            transform.position = new Vector3(targetCell.transform.position.x, targetCell.transform.position.y, 0);
-            targetCell.SetPiece(piece);
-            piece.CurrentCell = targetCell;
-        }
-        else
+        if (targetCell == null || targetCell == originalCell || !IsDropOnGrid(dropPos))
         {
             transform.position = originalPos;
             if (originalCell != null)
@@ -158,7 +152,33 @@ public class PieceDragHandler : MonoBehaviour
                 originalCell.SetPiece(piece);
                 piece.CurrentCell = originalCell;
             }
+            return;
         }
+
+        Piece existingPiece = targetCell.CurrentPiece;
+        if (existingPiece != null && existingPiece != piece)
+        {
+            existingPiece.CurrentCell = originalCell;
+            if (originalCell != null)
+            {
+                originalCell.SetPiece(existingPiece);
+                existingPiece.transform.position = new Vector3(originalCell.transform.position.x, originalCell.transform.position.y, 0);
+            }
+        }
+        else if (originalCell != null)
+        {
+            originalCell.RemovePiece();
+        }
+
+        transform.position = new Vector3(targetCell.transform.position.x, targetCell.transform.position.y, 0);
+        targetCell.SetPiece(piece);
+        piece.CurrentCell = targetCell;
+    }
+
+    private bool IsDropOnGrid(Vector3 pos)
+    {
+        return pos.x >= -0.5f && pos.x <= gridManager.Width - 0.5f
+            && pos.y >= -0.5f && pos.y <= gridManager.Height - 0.5f;
     }
 
     private void CreateGhost()

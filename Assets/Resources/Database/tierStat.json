@@ -1,0 +1,19 @@
+{
+    "rows": [
+        { "id": 10001, "tier": 1, "attackDamage": 0, "attackRange": 0, "attackCooldown": 0, "cost": 50, "sell": 20 },
+        { "id": 10001, "tier": 2, "attackDamage": 4, "attackRange": 3, "attackCooldown": 0.5, "cost": 50, "sell": 25 },
+        { "id": 10001, "tier": 3, "attackDamage": 6, "attackRange": 3, "attackCooldown": 0.45, "cost": 50, "sell": 30 },
+        { "id": 10001, "tier": 4, "attackDamage": 12, "attackRange": 4, "attackCooldown": 0.4, "cost": 50, "sell": 0 },
+        { "id": 10001, "tier": 5, "attackDamage": 24, "attackRange": 5, "attackCooldown": 0.35, "cost": 50, "sell": 0 },
+        { "id": 10002, "tier": 1, "attackDamage": 0, "attackRange": 0, "attackCooldown": 0, "cost": 50, "sell": 20 },
+        { "id": 10002, "tier": 2, "attackDamage": 7, "attackRange": 2, "attackCooldown": 0.6, "cost": 50, "sell": 25 },
+        { "id": 10002, "tier": 3, "attackDamage": 9, "attackRange": 2, "attackCooldown": 0.52, "cost": 50, "sell": 30 },
+        { "id": 10002, "tier": 4, "attackDamage": 18, "attackRange": 3, "attackCooldown": 0.46, "cost": 50, "sell": 0 },
+        { "id": 10002, "tier": 5, "attackDamage": 36, "attackRange": 4, "attackCooldown": 0.4, "cost": 50, "sell": 0 },
+        { "id": 10003, "tier": 1, "attackDamage": 0, "attackRange": 0, "attackCooldown": 0, "cost": 50, "sell": 20 },
+        { "id": 10003, "tier": 2, "attackDamage": 5.5, "attackRange": 5, "attackCooldown": 1.8, "cost": 50, "sell": 25 },
+        { "id": 10003, "tier": 3, "attackDamage": 7, "attackRange": 6, "attackCooldown": 1.6, "cost": 50, "sell": 30 },
+        { "id": 10003, "tier": 4, "attackDamage": 14, "attackRange": 7, "attackCooldown": 1.4, "cost": 50, "sell": 0 },
+        { "id": 10003, "tier": 5, "attackDamage": 28, "attackRange": 8, "attackCooldown": 1.2, "cost": 50, "sell": 0 }
+    ]
+}

@@ -10,6 +10,11 @@ public class GameDatabase
     public DatabaseTable<EnemyRecord> Enemies { get; private set; }
     public DatabaseTable<SpawnRecord> Spawns { get; private set; }
     public DatabaseTable<StageRecord> Stages { get; private set; }
+    public DatabaseTable<TierDrawRecord> TierDraw { get; private set; }
+    public DatabaseTable<TierStatRecord> TierStats { get; private set; }
+
+    private float totalTierWeight;
+    private bool tierWeightCalculated;
 
     public static GameDatabase Load()
     {
@@ -19,7 +24,9 @@ public class GameDatabase
             Characters = LoadTable<CharacterRecord>("character"),
             Enemies = LoadTable<EnemyRecord>("enemy"),
             Spawns = LoadTable<SpawnRecord>("spawn"),
-            Stages = LoadTable<StageRecord>("stage")
+            Stages = LoadTable<StageRecord>("stage"),
+            TierDraw = LoadTable<TierDrawRecord>("tierDraw"),
+            TierStats = LoadTable<TierStatRecord>("tierStat")
         };
     }
 
@@ -28,6 +35,32 @@ public class GameDatabase
     public StageRecord GetStage(int stageNumber) => Stages.rows.FirstOrDefault(row => row.stageNumber == stageNumber);
     public SpawnRecord[] GetSpawns(string groupId) => Spawns.rows.Where(row => row.groupId == groupId).ToArray();
     public AssetRecord GetAsset(string resourceId) => Assets.rows.FirstOrDefault(row => row.resourceId == resourceId);
+
+    public int RollTier()
+    {
+        if (!tierWeightCalculated)
+        {
+            totalTierWeight = 0;
+            foreach (var row in TierDraw.rows)
+                totalTierWeight += row.weight;
+            tierWeightCalculated = true;
+        }
+
+        float roll = UnityEngine.Random.Range(0f, totalTierWeight);
+        float cumulative = 0;
+        foreach (var row in TierDraw.rows)
+        {
+            cumulative += row.weight;
+            if (roll < cumulative)
+                return row.tier;
+        }
+        return TierDraw.rows.Count > 0 ? TierDraw.rows[0].tier : 1;
+    }
+
+    public TierStatRecord GetTierStat(int pieceId, int tier)
+    {
+        return TierStats.rows.FirstOrDefault(row => row.id == pieceId && row.tier == tier);
+    }
 
     public Sprite GetSprite(string resourceId)
     {
