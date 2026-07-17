@@ -51,6 +51,11 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    private void LateUpdate()
+    {
+        UpdateSortingOrder();
+    }
+
     public void SetData(PieceData newData)
     {
         data = newData;
@@ -69,6 +74,12 @@ public class Enemy : MonoBehaviour
         CurrentHP = data.maxHP;
         if (spriteRenderer != null && data.sprite != null)
             spriteRenderer.sprite = data.sprite;
+    }
+
+    private void UpdateSortingOrder()
+    {
+        if (spriteRenderer == null) return;
+        spriteRenderer.sortingOrder = 10000 - Mathf.RoundToInt(transform.position.y * 100f);
     }
 
     public void TakeDamage(float damage)

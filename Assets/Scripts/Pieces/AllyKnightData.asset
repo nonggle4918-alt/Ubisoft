@@ -22,6 +22,9 @@ MonoBehaviour:
   attackRange: 2
   attackCooldown: 0.6666667
   projectileSpeed: 0
+  visualScale: 1
+  movementSpeed: 2
+  goldReward: 10
   bonusMaxHpPercent: 5
   bonusDamageCapPercent: 100
   projectileCount: 0

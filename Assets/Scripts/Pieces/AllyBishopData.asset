@@ -16,12 +16,15 @@ MonoBehaviour:
   team: 0
   attackType: 2
   sprite: {fileID: 21300000, guid: a47cc875a0d83654f9d958ba9ac652ed, type: 3}
-  cost: 50
+  cost: 22
   maxHP: 30
-  attackDamage: 3
-  attackRange: 3
-  attackCooldown: 0.5555556
+  attackDamage: 4
+  attackRange: 2.5
+  attackCooldown: 0.8
   projectileSpeed: 8
+  visualScale: 1.0925
+  movementSpeed: 2
+  goldReward: 10
   bonusMaxHpPercent: 0
   bonusDamageCapPercent: 0
   projectileCount: 4

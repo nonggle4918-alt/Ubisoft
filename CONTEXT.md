@@ -58,7 +58,7 @@ Assets/
 
 ### GridManager (`Grid/GridManager.cs`)
 - Generates 8×8 chessboard-pattern grid from `WhiteTile.prefab` / `GreenTile.prefab`
-- Tiles placed at integer positions (0,0)–(7,7), each exactly 1.0×1.0 world units
+- Tiles placed at integer positions (0,0)–(7,7) relative to `GridManager`, each exactly 1.0×1.0 world units
 - `GetCell(x, y)` with bounds check
 - `GetEmptyCell()` — scans grid row-major for first `IsEmpty` cell
 
@@ -68,7 +68,7 @@ Assets/
 
 ### PieceData (`Pieces/PieceData.cs`)
 - ScriptableObject, `[CreateAssetMenu(menuName = "Ubisoft/PieceData")]`
-- Fields: `pieceName`, `team` (Ally/Enemy), `attackType` (Projectile/Direct/DiagonalProjectile/Laser/Homing/Splash), `sprite`, `cost`, `maxHP`, `attackDamage`, `attackRange`, `attackCooldown`, `projectileSpeed`
+- Fields: `pieceName`, `team` (Ally/Enemy), `attackType` (Projectile/Direct/DiagonalProjectile/Laser/Homing/Splash), `sprite`, `cost`, `maxHP`, `attackDamage`, `attackRange`, `attackCooldown`, `projectileSpeed`, `visualScale`
 - Special ability fields: `bonusMaxHpPercent`, `bonusDamageCapPercent` (Knight), `projectileCount`, `extraRange` (Bishop/Rook/Queen), `chargeDuration`, `maxChargeMultiplier` (Rook), `homingDuration` (Queen), `splashRadius`, `slowPercent`, `buffRange`, `buffAttackPercent` (King)
 - Gacha field: `gachaWeight`
 
@@ -77,14 +77,15 @@ Assets/
 - `Team → data.team`, `IsDead → CurrentHP <= 0`
 - `AttackBuff` — multiplicative damage buff (stackable, used by King aura)
 - `ResetAttackBuff()`, `AddAttackBuff(multiplier)`, `GetAttackDamage()` — returns `data.attackDamage * AttackBuff`
-- `SetData(data)` — reconfigures runtime
+- `SetData(data)` — reconfigures runtime and applies `visualScale`, normalized by the sprite's world height (`localScale = baseScale * visualScale / sprite.bounds.size.y`) so pieces render at a consistent height regardless of per-tier sprite pixel dimensions
+- Updates `SpriteRenderer.sortingOrder` so lower board rows render in front of higher rows
 - `TakeDamage(damage)`, `Die()` (Destroy)
 - Ally pieces auto-register with `CombatManager`; unregister on `OnDestroy`
 
 ### PieceManager (`Pieces/PieceManager.cs`)
 - References: `gridManager`, `piecePrefab`, `pullCost` (50)
 - `Start()` — collects all `Team.Ally` PieceData assets with `gachaWeight > 0` into gacha pool
-- `PullPiece()` — spends gold, weighted random selection (Knight/Bishop/Rook:30000, Queen/King:1000), places on empty cell
+- `PullPiece()` — spends gold, weighted random selection (Knight/Bishop/Rook:30000, Queen/King:1000), copies `visualScale` to runtime data, places on empty cell
 - `OnPiecePulled` event — notifies UI with the pulled PieceData
 
 ### Enemy (`Enemies/Enemy.cs`)
@@ -92,6 +93,7 @@ Assets/
 - Static event `OnAnyEnemyRemoved` — triggers EnemyManager wave-end check
 - `SetData(data)`, `SetWaypoints(List<Vector3>)`
 - `Update()` — moves toward current waypoint at `moveSpeed` (2) with slow support; when distance < 0.05, advances to next waypoint
+- Updates `SpriteRenderer.sortingOrder` in an order range above all ally pieces
 - `TakeDamage(damage)`, `ApplySlow(multiplier, duration)` — stackable slow
 - `Die()` → AddGold(10) + fire event + SpawnDeathEffect + Destroy
 - `ReachEnd()` → LoseLife(1) + fire event + Destroy
@@ -141,7 +143,7 @@ Assets/
 |---|---|---|---|---|---|---|---|---|
 | AllyPawnData | Ally | 50 | 50 | 10 | 2 | 1.0 | 5 | Projectile |
 | AllyKnightData | Ally | 50 | 40 | 5 | 2 | 0.67 | — | Direct |
-| AllyBishopData | Ally | 50 | 30 | 3 | 3 | 0.56 | 8 | DiagonalProjectile |
+| AllyBishopData | Ally | 50 | 30 | 3 | 3 | 0.56 | 8 | DiagonalProjectile, visualScale 1.15 |
 | AllyRookData | Ally | 50 | 60 | 4 | 4 | 1.0 | — | Laser |
 | AllyQueenData | Ally | 100 | 80 | 5 | 6 | 0.5 | 6 | Homing |
 | AllyKingData | Ally | 200 | 100 | 4 | 4 | 0.67 | — | Splash |
@@ -155,7 +157,8 @@ Assets/
 | GameObject | Components | Key References |
 |---|---|---|
 | **Main Camera** | Camera (Ortho, Size=5, Pos=3.5,3.5,-10) | — |
-| **GridManager** | GridManager | WhiteTile.prefab, GreenTile.prefab |
+| **InGameBackground** | SpriteRenderer | `Resources/Img/BG/ingame_backs.png`, sorting order -1000 |
+| **GridManager** | GridManager | WhiteTile.prefab, GreenTile.prefab, position (0,0.5,0) |
 | **PieceManager** | PieceManager | GridManager (ref), Piece.prefab, AllyPawnData |
 | **Canvas** | Canvas, CanvasScaler, GraphicRaycaster, UIManager | GoldText, LivesText, WaveText, CountdownText, GameOverPanel, VictoryPanel |
 | ├─ EventSystem | EventSystem | — |
@@ -164,7 +167,7 @@ Assets/
 | ├─ LivesText | TextMeshProUGUI | "Lives: 20" |
 | ├─ WaveText | TextMeshProUGUI | "Wave: 1" |
 | ├─ CountdownText | TextMeshProUGUI | "Wave N starts soon..." (hidden during wave) |
-| ├─ PullResultText | TextMeshProUGUI | Shows pulled piece name (hidden by default) |
+| ├─ PullResultText | TextMeshProUGUI | Shows pulled piece name between the canvas center and top (hidden by default) |
 | ├─ GameOverPanel | Panel (Image) + Title + RestartBtn | Hidden by default |
 | └─ VictoryPanel | Panel (Image) + Title | Hidden by default |
 | **EnemyManager** | EnemyManager | Enemy.prefab, EnemyPawnData, EnemyQueenData |
@@ -178,6 +181,8 @@ Assets/
 2. **Tile sprite PPU mismatch** → Changed PPU from 100→128 on both tile sprites so tiles are exactly 1.0×1.0 world units
 3. **Restart button** → GameManager.Restart() resets gold/lives/wave, clears enemies/pieces/grid; UIManager.WireRestartButton() wires RestartBtn onClick
 4. **Visual effects** → HitEffect (yellow burst, 0.3s) and DeathEffect (orange burst, 0.5s) via ParticleSystem, loaded from Resources/FX/
+5. **Piece size inconsistent across tiers** → Tier sprites (`Char_White_Rook_2..5`, `Char_White_Knight`) have differing pixel heights at a fixed PPU (512), so a constant `visualScale` produced erratic sizes (e.g. Rook_3 at 392px rendered ~77%). Fixed by normalizing `Piece.ApplyData()` by `sprite.bounds.size.y`; set Knight/Rook `visualScale` to 1.0 (Bishop stays 1.0925)
+6. **Drag&drop couldn't reach rightmost column** → `PieceDragHandler.IsDropOnGrid()` hardcoded bounds as `pos.x <= gridManager.Width - 0.5f`, assuming the grid starts at world x=0. The actual grid is centered via `offsetX = (8 - width) * 0.5f` in `GridManager.GenerateGrid()` (current `width`/`height` = 6, not 8 as this doc previously stated — needs a fuller audit), which shifts the rightmost column past that hardcoded bound. Fixed by checking distance from the drop position to the actual `targetCell.transform.position` (±0.5) instead of a hardcoded formula
 
 ## Next Steps (Phase 4 — Polish)
 - Sound effects / music

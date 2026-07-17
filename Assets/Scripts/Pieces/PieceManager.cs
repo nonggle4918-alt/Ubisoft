@@ -72,6 +72,7 @@ public class PieceManager : MonoBehaviour
         runtimeData.attackCooldown = selected.attackCooldown;
         runtimeData.cost = selected.cost;
         runtimeData.projectileSpeed = selected.projectileSpeed;
+        runtimeData.visualScale = selected.visualScale;
         runtimeData.bonusMaxHpPercent = selected.bonusMaxHpPercent;
         runtimeData.bonusDamageCapPercent = selected.bonusDamageCapPercent;
         runtimeData.extraRange = selected.extraRange;

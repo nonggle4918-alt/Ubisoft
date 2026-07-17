@@ -144,7 +144,7 @@ public class PieceDragHandler : MonoBehaviour
 
         GridCell targetCell = gridManager.GetNearestCell(dropPos);
 
-        if (targetCell == null || targetCell == originalCell || !IsDropOnGrid(dropPos))
+        if (targetCell == null || targetCell == originalCell || !IsDropOnGrid(dropPos, targetCell))
         {
             transform.position = originalPos;
             if (originalCell != null)
@@ -175,10 +175,10 @@ public class PieceDragHandler : MonoBehaviour
         piece.CurrentCell = targetCell;
     }
 
-    private bool IsDropOnGrid(Vector3 pos)
+    private bool IsDropOnGrid(Vector3 pos, GridCell cell)
     {
-        return pos.x >= -0.5f && pos.x <= gridManager.Width - 0.5f
-            && pos.y >= -0.5f && pos.y <= gridManager.Height - 0.5f;
+        Vector3 cellPos = cell.transform.position;
+        return Mathf.Abs(pos.x - cellPos.x) <= 0.5f && Mathf.Abs(pos.y - cellPos.y) <= 0.5f;
     }
 
     private void CreateGhost()

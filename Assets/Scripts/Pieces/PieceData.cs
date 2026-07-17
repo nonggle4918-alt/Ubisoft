@@ -25,6 +25,7 @@ public class PieceData : ScriptableObject
     public float attackRange;
     public float attackCooldown;
     public float projectileSpeed;
+    public float visualScale = 1f;
     public float movementSpeed = 2f;
     public int goldReward = 10;
 

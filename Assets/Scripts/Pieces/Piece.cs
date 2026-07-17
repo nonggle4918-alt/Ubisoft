@@ -12,16 +12,23 @@ public class Piece : MonoBehaviour
     public GridCell CurrentCell { get; set; }
 
     private SpriteRenderer spriteRenderer;
+    private Vector3 baseScale;
 
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        baseScale = transform.localScale;
     }
 
     private void Start()
     {
         ApplyData();
         RegisterToCombat();
+    }
+
+    private void LateUpdate()
+    {
+        UpdateSortingOrder();
     }
 
     private void OnDestroy()
@@ -40,6 +47,18 @@ public class Piece : MonoBehaviour
         CurrentHP = data.maxHP;
         if (spriteRenderer != null && data.sprite != null)
             spriteRenderer.sprite = data.sprite;
+
+        float spriteHeight = spriteRenderer != null && spriteRenderer.sprite != null
+            ? spriteRenderer.sprite.bounds.size.y
+            : 1f;
+        float normalized = spriteHeight > 0.0001f ? data.visualScale / spriteHeight : data.visualScale;
+        transform.localScale = baseScale * normalized;
+    }
+
+    private void UpdateSortingOrder()
+    {
+        if (spriteRenderer == null) return;
+        spriteRenderer.sortingOrder = 1000 - Mathf.RoundToInt(transform.position.y * 100f);
     }
 
     private void RegisterToCombat()
@@ -53,9 +72,7 @@ public class Piece : MonoBehaviour
     public void SetData(PieceData newData)
     {
         data = newData;
-        CurrentHP = data.maxHP;
-        if (spriteRenderer != null && data.sprite != null)
-            spriteRenderer.sprite = data.sprite;
+        ApplyData();
     }
 
     public void AddAttackBuff(float multiplier)

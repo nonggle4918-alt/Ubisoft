@@ -37,7 +37,7 @@ public class GridManager : MonoBehaviour
 
                 GameObject obj = Instantiate(
                     prefab,
-                    new Vector3(x + offsetX, y, 0),
+                    transform.position + new Vector3(x + offsetX, y, 0),
                     Quaternion.identity,
                     transform);
 
