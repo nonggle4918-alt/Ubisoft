@@ -16,12 +16,16 @@ MonoBehaviour:
   team: 0
   attackType: 5
   sprite: {fileID: 21300000, guid: 29dd770b0302e8a4da4c7442cba651b6, type: 3}
-  cost: 200
+  cost: 11
   maxHP: 100
-  attackDamage: 4
-  attackRange: 4
-  attackCooldown: 0.6666667
+  attackDamage: 1
+  attackRange: 4.5
+  attackCooldown: 2
   projectileSpeed: 0
+  visualScale: 1
+  movementSpeed: 2
+  goldReward: 10
+  tier: 1
   bonusMaxHpPercent: 0
   bonusDamageCapPercent: 0
   projectileCount: 0
@@ -33,4 +37,4 @@ MonoBehaviour:
   slowPercent: 20
   buffRange: 1.5
   buffAttackPercent: 20
-  gachaWeight: 1000
+  gachaWeight: 2000

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Piece))]
@@ -43,7 +44,8 @@ public class PieceDragHandler : MonoBehaviour
 
     private void Update()
     {
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        if (Mouse.current.leftButton.wasPressedThisFrame &&
+            (EventSystem.current == null || !EventSystem.current.IsPointerOverGameObject()))
         {
             Vector2 mousePos = mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             Collider2D hit = Physics2D.OverlapPoint(mousePos);
@@ -139,6 +141,7 @@ public class PieceDragHandler : MonoBehaviour
         if (spriteRenderer != null) spriteRenderer.sortingOrder = originalSortingOrder;
 
         Vector3 dropPos = ghost.transform.position;
+        ghost.SetActive(false);
         Destroy(ghost);
         ghost = null;
 
@@ -152,6 +155,7 @@ public class PieceDragHandler : MonoBehaviour
                 originalCell.SetPiece(piece);
                 piece.CurrentCell = originalCell;
             }
+            MoveRangeToPiece();
             return;
         }
 
@@ -173,6 +177,7 @@ public class PieceDragHandler : MonoBehaviour
         transform.position = new Vector3(targetCell.transform.position.x, targetCell.transform.position.y, 0);
         targetCell.SetPiece(piece);
         piece.CurrentCell = targetCell;
+        MoveRangeToPiece();
     }
 
     private bool IsDropOnGrid(Vector3 pos, GridCell cell)
@@ -188,6 +193,7 @@ public class PieceDragHandler : MonoBehaviour
         sr.sprite = spriteRenderer.sprite;
         sr.color = new Color(1, 1, 1, 0.5f);
         sr.sortingOrder = spriteRenderer.sortingOrder + 1;
+        ghost.transform.localScale = transform.localScale;
 
         Vector3 m = mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         m.z = -0.5f;
@@ -222,6 +228,13 @@ public class PieceDragHandler : MonoBehaviour
             float y = center.y + Mathf.Sin(angle) * currentRangeRadius;
             rangeLine.SetPosition(i, new Vector3(x, y, center.z));
         }
+    }
+
+    private void MoveRangeToPiece()
+    {
+        if (rangeIndicator == null || !rangeIndicator.activeSelf) return;
+
+        UpdateRangePosition(new Vector3(transform.position.x, transform.position.y, -0.1f));
     }
 
     private static void HideRange()

@@ -33,7 +33,11 @@ public class UIManager : MonoBehaviour
 
     private PieceManager pieceManager;
     private Piece selectedPiece;
+    private TextMeshProUGUI statusTierText;
+    private Button statusSellButton;
+    private TextMeshProUGUI statusSellText;
     private bool subscribed;
+    private bool upgradeSubscribed;
 
     private const string EffectsVolumeKey = "EffectsVolume";
     private const string BackgroundVolumeKey = "BackgroundVolume";
@@ -47,13 +51,20 @@ public class UIManager : MonoBehaviour
 
     private void TrySubscribe()
     {
-        if (subscribed) return;
-        if (GameManager.Instance == null) return;
-        GameManager.Instance.OnGoldChanged += UpdateGold;
-        GameManager.Instance.OnLivesChanged += UpdateLives;
-        GameManager.Instance.OnWaveChanged += UpdateWave;
-        GameManager.Instance.OnStateChanged += OnStateChanged;
-        subscribed = true;
+        if (!subscribed && GameManager.Instance != null)
+        {
+            GameManager.Instance.OnGoldChanged += UpdateGold;
+            GameManager.Instance.OnLivesChanged += UpdateLives;
+            GameManager.Instance.OnWaveChanged += UpdateWave;
+            GameManager.Instance.OnStateChanged += OnStateChanged;
+            subscribed = true;
+        }
+
+        if (!upgradeSubscribed && UpgradeManager.Instance != null)
+        {
+            UpgradeManager.Instance.OnUpgradeChanged += OnUpgradeChanged;
+            upgradeSubscribed = true;
+        }
     }
 
     private void OnDisable()
@@ -66,6 +77,11 @@ public class UIManager : MonoBehaviour
             GameManager.Instance.OnStateChanged -= OnStateChanged;
         }
         subscribed = false;
+
+        if (upgradeSubscribed && UpgradeManager.Instance != null)
+            UpgradeManager.Instance.OnUpgradeChanged -= OnUpgradeChanged;
+        upgradeSubscribed = false;
+
         PieceDragHandler.OnAllyPieceSelected -= ToggleSelectedPieceInfo;
         PieceDragHandler.OnAllyPieceDeselected -= HideSelectedPieceInfo;
     }
@@ -81,7 +97,7 @@ public class UIManager : MonoBehaviour
         if (victoryPanel != null) victoryPanel.SetActive(false);
         if (optionPanel != null) optionPanel.SetActive(false);
         UpdateBuyButtonText();
-        WireRestartButton();
+        WireGameOverButtons();
         InitializeSoundControls();
         InitializeSelectedPieceStatus();
 
@@ -103,17 +119,60 @@ public class UIManager : MonoBehaviour
         PieceDragHandler.OnAllyPieceDeselected -= HideSelectedPieceInfo;
     }
 
-    private void WireRestartButton()
+    private void WireGameOverButtons()
     {
         if (gameOverPanel == null) return;
-        var btn = gameOverPanel.GetComponentInChildren<UnityEngine.UI.Button>();
-        if (btn != null)
-            btn.onClick.AddListener(Restart);
+
+        var restartButton = gameOverPanel.GetComponentInChildren<Button>(true);
+        if (restartButton == null) return;
+
+        restartButton.onClick.AddListener(Restart);
+
+        var quitButton = FindQuitButton();
+        if (quitButton == null)
+        {
+            quitButton = Instantiate(restartButton, restartButton.transform.parent);
+            quitButton.name = "Button_Quit";
+
+            var restartTransform = restartButton.transform as RectTransform;
+            var quitTransform = quitButton.transform as RectTransform;
+            if (restartTransform != null && quitTransform != null)
+            {
+                quitTransform.anchoredPosition = restartTransform.anchoredPosition
+                    + Vector2.down * (restartTransform.rect.height + 20f);
+            }
+
+            var quitLabel = quitButton.GetComponentInChildren<TMP_Text>(true);
+            if (quitLabel != null)
+                quitLabel.text = "QUIT";
+        }
+
+        quitButton.onClick.AddListener(Quit);
+    }
+
+    private Button FindQuitButton()
+    {
+        foreach (var button in gameOverPanel.GetComponentsInChildren<Button>(true))
+        {
+            if (button.name == "Button_Quit")
+                return button;
+        }
+
+        return null;
     }
 
     public void Restart()
     {
         GameManager.Instance.Restart();
+    }
+
+    public void Quit()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 
     private void Update()
@@ -223,8 +282,69 @@ public class UIManager : MonoBehaviour
 
     private void InitializeSelectedPieceStatus()
     {
+        CreateStatusTierText();
+        CreateStatusSellButton();
+
         if (panelStatus != null)
             panelStatus.SetActive(false);
+    }
+
+    private void CreateStatusTierText()
+    {
+        if (statusTierText != null || panelStatus == null || statusTextTitle == null) return;
+
+        statusTierText = Instantiate(statusTextTitle, statusTextTitle.transform.parent);
+        statusTierText.name = "StatusTierText";
+        statusTierText.alignment = TextAlignmentOptions.TopRight;
+        statusTierText.fontSize = statusTextTitle.fontSize;
+        statusTierText.raycastTarget = false;
+
+        var titleTransform = statusTextTitle.rectTransform;
+        var tierTransform = statusTierText.rectTransform;
+        tierTransform.anchorMin = new Vector2(1f, titleTransform.anchorMin.y);
+        tierTransform.anchorMax = new Vector2(1f, titleTransform.anchorMax.y);
+        tierTransform.pivot = new Vector2(1f, titleTransform.pivot.y);
+        tierTransform.anchoredPosition = new Vector2(-24f, titleTransform.anchoredPosition.y);
+        tierTransform.sizeDelta = new Vector2(180f, titleTransform.sizeDelta.y);
+        tierTransform.SetAsLastSibling();
+    }
+
+    private void CreateStatusSellButton()
+    {
+        if (statusSellButton != null || panelStatus == null || statusTextTitle == null) return;
+
+        var sellObject = new GameObject("StatusSellButton", typeof(RectTransform), typeof(Image), typeof(Button));
+        sellObject.transform.SetParent(panelStatus.transform, false);
+
+        var sellRect = sellObject.GetComponent<RectTransform>();
+        sellRect.anchorMin = new Vector2(0.5f, 0f);
+        sellRect.anchorMax = new Vector2(0.5f, 0f);
+        sellRect.pivot = new Vector2(0.5f, 0f);
+        sellRect.anchoredPosition = new Vector2(0f, 18f);
+        sellRect.sizeDelta = new Vector2(230f, 44f);
+
+        Image background = sellObject.GetComponent<Image>();
+        background.sprite = Resources.GetBuiltinResource<Sprite>("UI/Skin/UISprite.psd");
+        background.type = Image.Type.Sliced;
+        background.color = new Color(0.65f, 0.2f, 0.18f, 0.95f);
+
+        statusSellButton = sellObject.GetComponent<Button>();
+        statusSellButton.targetGraphic = background;
+        statusSellButton.onClick.AddListener(SellSelectedPiece);
+
+        statusSellText = Instantiate(statusTextTitle, sellObject.transform);
+        statusSellText.name = "StatusSellText";
+        statusSellText.alignment = TextAlignmentOptions.Center;
+        statusSellText.fontSize = statusTextTitle.fontSize;
+        statusSellText.color = Color.white;
+        statusSellText.raycastTarget = false;
+
+        RectTransform textRect = statusSellText.rectTransform;
+        textRect.anchorMin = Vector2.zero;
+        textRect.anchorMax = Vector2.one;
+        textRect.pivot = new Vector2(0.5f, 0.5f);
+        textRect.anchoredPosition = Vector2.zero;
+        textRect.sizeDelta = Vector2.zero;
     }
 
     private void ToggleSelectedPieceInfo(Piece piece)
@@ -239,16 +359,94 @@ public class UIManager : MonoBehaviour
         }
 
         selectedPiece = piece;
+        RefreshSelectedPieceInfo();
+    }
+
+    private void RefreshSelectedPieceInfo()
+    {
+        if (selectedPiece == null || selectedPiece.Data == null || selectedPiece.Team != Team.Ally) return;
 
         if (panelStatus == null || statusTextTitle == null || statusText == null) return;
 
-        PieceData data = piece.Data;
+        PieceData data = selectedPiece.Data;
         statusTextTitle.text = data.pieceName;
+        UpdateStatusTier(data);
         statusText.text =
-            $"공격력: {data.attackDamage:0.#}\n" +
-            $"사거리: {data.attackRange:0.#}\n" +
-            $"공격속도: {data.attackCooldown:0.##}초";
+            $"공격력: {selectedPiece.GetAttackDamage():0.0}\n" +
+            $"사거리: {data.attackRange:0.0}\n" +
+            $"공격속도: {selectedPiece.GetAttackCooldown():0.0}초";
+
+        if (statusSellText != null)
+            statusSellText.text = $"판매  +{GetSellPrice(selectedPiece)}G";
+
         panelStatus.SetActive(true);
+    }
+
+    private void SellSelectedPiece()
+    {
+        if (selectedPiece == null || selectedPiece.Data == null || selectedPiece.IsDead) return;
+
+        int sellPrice = GetSellPrice(selectedPiece);
+        Piece pieceToSell = selectedPiece;
+        HideSelectedPieceInfo();
+
+        if (GameManager.Instance != null)
+            GameManager.Instance.AddGold(sellPrice);
+
+        Destroy(pieceToSell.gameObject);
+    }
+
+    private static int GetSellPrice(Piece piece)
+    {
+        if (piece == null || piece.Data == null) return 0;
+
+        PieceData data = piece.Data;
+        GameDatabase database = GameManager.Instance != null ? GameManager.Instance.Database : null;
+        if (database != null)
+        {
+            TierStatRecord stat = database.GetTierStat(GetPieceId(data.pieceName), data.tier);
+            if (stat != null && stat.sell > 0)
+                return stat.sell;
+        }
+
+        return Mathf.Max(1, Mathf.CeilToInt(data.cost * 0.5f));
+    }
+
+    private static int GetPieceId(string pieceName)
+    {
+        if (string.IsNullOrEmpty(pieceName)) return 0;
+
+        switch (pieceName.ToLowerInvariant())
+        {
+            case "bishop": return 10001;
+            case "knight": return 10002;
+            case "rook": return 10003;
+            case "pawn": return 10111;
+            case "queen": return 10112;
+            case "king": return 10113;
+            default: return 0;
+        }
+    }
+
+    private void OnUpgradeChanged(PieceUpgradeType type)
+    {
+        if (selectedPiece == null || selectedPiece.Data == null || panelStatus == null || !panelStatus.activeSelf) return;
+
+        if (UpgradeManager.TryGetType(selectedPiece.Data.pieceName, out PieceUpgradeType selectedType) && selectedType == type)
+            RefreshSelectedPieceInfo();
+    }
+
+    private void UpdateStatusTier(PieceData data)
+    {
+        if (statusTierText == null || data == null) return;
+
+        bool isBasicUnit = UpgradeManager.TryGetType(data.pieceName, out _);
+        statusTierText.gameObject.SetActive(isBasicUnit);
+
+        if (!isBasicUnit) return;
+
+        statusTierText.text = $"TIER {data.tier}";
+        statusTierText.color = PieceData.TierColor(data.tier);
     }
 
     private void HideSelectedPieceInfo()

@@ -9,7 +9,20 @@ public enum AttackType
     DiagonalProjectile,
     Laser,
     Homing,
-    Splash
+    Splash,
+    Pegasus,
+    Dragon,
+    Cannon,
+    Meteor,
+    Alchemy
+}
+
+public enum UpgradeFamily
+{
+    None,
+    Bishop,
+    Knight,
+    Rook
 }
 
 [CreateAssetMenu(menuName = "Ubisoft/PieceData")]
@@ -28,10 +41,13 @@ public class PieceData : ScriptableObject
     public float visualScale = 1f;
     public float movementSpeed = 2f;
     public int goldReward = 10;
+    public int tier = 1;
+    public UpgradeFamily upgradeFamily;
 
     [Header("Knight")]
     public float bonusMaxHpPercent = 5f;
     public float bonusDamageCapPercent = 100f;
+    public bool bonusUsesTargetMaxHP;
 
     [Header("Bishop / Rook / Queen")]
     public int projectileCount = 4;
@@ -52,4 +68,16 @@ public class PieceData : ScriptableObject
 
     [Header("Gacha")]
     public int gachaWeight = 1000;
+
+    public static Color TierColor(int tier)
+    {
+        switch (tier)
+        {
+            case 2: return new Color(0.3f, 1f, 0.45f, 1f);
+            case 3: return new Color(1f, 0.9f, 0.25f, 1f);
+            case 4: return new Color(0.35f, 0.6f, 1f, 1f);
+            case 5: return new Color(1f, 0.3f, 0.3f, 1f);
+            default: return new Color(1f, 1f, 1f, 1f);
+        }
+    }
 }

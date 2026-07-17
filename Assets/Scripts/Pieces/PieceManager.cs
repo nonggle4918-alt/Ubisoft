@@ -88,6 +88,7 @@ public class PieceManager : MonoBehaviour
         runtimeData.projectileCount = selected.projectileCount;
         runtimeData.sprite = selected.sprite;
 
+        runtimeData.tier = tier;
         ApplyTierToData(runtimeData, tier);
 
         Piece piece = Instantiate(piecePrefab, cell.transform.position, Quaternion.identity);

@@ -366,10 +366,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2105170456}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 61}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 109, y: -60}
+  m_SizeDelta: {x: 64, y: 61}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &263363020
 MonoBehaviour:
@@ -2455,6 +2455,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CombatManager
   projectilePrefab: {fileID: 1406205540994851187, guid: cd5c9da3900a5994f9588bc7f2279803, type: 3}
+  rookLaserBeamTexture: {fileID: 2800000, guid: 34f3faf8380d32d4b9cb8b276e3a543a, type: 3}
 --- !u!4 &1108858157
 Transform:
   m_ObjectHideFlags: 0
@@ -4524,10 +4525,10 @@ RectTransform:
   - {fileID: 1296323227}
   m_Father: {fileID: 2105170456}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 68}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 400, y: -60}
+  m_SizeDelta: {x: 62, y: 68}
   m_Pivot: {x: 1.0000001, y: 0.5}
 --- !u!114 &2020635577
 MonoBehaviour:
@@ -5166,10 +5167,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2105170456}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 50}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 333, y: -60}
+  m_SizeDelta: {x: 155, y: 50}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &2142886420
 MonoBehaviour:

@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class EnemyDeathFragment : MonoBehaviour
 {
-    private const float Lifetime = 1.5f;
-    private const float Gravity = 4.25f;
+    private const float Lifetime = 1.1f;
+    private const float Gravity = 8.5f;
 
     private SpriteRenderer spriteRenderer;
     private Vector2 velocity;
@@ -17,7 +17,7 @@ public class EnemyDeathFragment : MonoBehaviour
 
         spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
         spriteRenderer.sprite = sprite;
-        spriteRenderer.color = Color.black;
+        spriteRenderer.color = Color.white;
         spriteRenderer.sortingLayerID = sortingLayerId;
         spriteRenderer.sortingOrder = sortingOrder;
 
