@@ -28,6 +28,7 @@ public static class ExcelDatabaseImporter
         ImportEnemies();
         ImportSpawns();
         ImportStages();
+        ImportPieceUpgrades();
 
         AssetDatabase.Refresh();
         Debug.Log("Excel database import completed. Gacha data was skipped.");
@@ -121,6 +122,26 @@ public static class ExcelDatabaseImporter
             });
         }
         WriteJson("stage", output);
+    }
+
+    private static void ImportPieceUpgrades()
+    {
+        var output = new DatabaseTable<PieceUpgradeRecord>();
+        foreach (ExcelRow row in ReadTable("Piece_Upgrade.xlsx", "level"))
+        {
+            output.rows.Add(new PieceUpgradeRecord
+            {
+                level = row.GetInt("level"),
+                cost = row.GetInt("cost"),
+                bishopAtk = row.GetFloat("up_bishop_atk"),
+                bishopCool = row.GetFloat("up_bishop_cool"),
+                knightAtk = row.GetFloat("up_knight_atk"),
+                knightCool = row.GetFloat("up_knight_cool"),
+                rookAtk = row.GetFloat("up_rook_atk"),
+                rookCool = row.GetFloat("up_rook_cool")
+            });
+        }
+        WriteJson("pieceUpgrade", output);
     }
 
     private static void WriteJson<T>(string fileName, DatabaseTable<T> table)

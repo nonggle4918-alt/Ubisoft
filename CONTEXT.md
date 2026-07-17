@@ -22,6 +22,8 @@ Assets/
 │   ├── Core/GameManager.cs
 │   ├── Grid/GridManager.cs, GridCell.cs
 │   ├── Pieces/Piece.cs, PieceData.cs, PieceManager.cs
+│   ├── Upgrade/UpgradeManager.cs, UpgradeUI.cs
+│   ├── Database/GameDatabase.cs, DatabaseRecords.cs
 │   ├── Enemies/Enemy.cs, EnemyManager.cs
 │   ├── Combat/CombatManager.cs, Projectile.cs
 │   ├── UI/UIManager.cs
@@ -126,6 +128,21 @@ Assets/
 - `Update()` — delegates to mode-specific update
 - `SpawnHitEffect()` — loads `Resources/FX/HitEffect` and instantiates at impact position
 
+### UpgradeManager (`Upgrade/UpgradeManager.cs`)
+- Singleton (`Instance`); `PieceUpgradeType { Bishop, Knight, Rook }`
+- Per-type level (0 = no bonus, max = `Database.MaxUpgradeLevel` = 50), session-only (reset on `GameManager.Restart()`)
+- Reads `PieceUpgradeRecord` from DB; percent bonuses are **non-cumulative** — only the current level's value applies
+- `TryUpgrade(type)` spends gold (`PieceUpgradeRecord.cost` of next level) → level+1 → `OnUpgradeChanged`
+- `GetAtkMultiplier` = `1 + atk%/100`; `GetCoolMultiplier` = `1 - cool%/100` (cooldown reduction = attack-speed up)
+- `GetAtkPercentAt/GetCoolPercentAt(type, level)`, `NextCost`, `IsMaxed`, `ResetLevels`, static `TryGetType(pieceName)`
+- `Piece.GetAttackDamage()`/`GetAttackCooldown()` apply the multipliers by `data.pieceName`; only Bishop/Knight/Rook affected
+
+### UpgradeUI (`Upgrade/UpgradeUI.cs`)
+- On Canvas; finds scene objects by name at runtime (no serialized refs)
+- 3 open buttons (`Canvas/UpgradeBtn_Bishop/Knight/Rook`, Layer Lab Convex buttons Purple/Blue/Red) placed above the pull button; labels are piece names (auto-sized)
+- Popup (`Canvas/UpgradePopup`, Layer Lab `Popup_01_Basic_White`): activates `Content_Demo`, repurposes `Button_OK` as 강화 (upgrade) and clones it into `Button_Close` (닫기)
+- Shows level, current→next atk%/cool%, next cost; upgrade button disabled when maxed or gold insufficient
+
 ### UIManager (`UI/UIManager.cs`)
 - References TMP texts for gold, lives, wave, countdown, buy button, pull result; Game Over / Victory panels
 - Subscribes to `GameManager.OnGoldChanged`, `OnLivesChanged`, `OnWaveChanged`, `OnStateChanged`
@@ -158,7 +175,7 @@ Assets/
 |---|---|---|
 | **Main Camera** | Camera (Ortho, Size=5, Pos=3.5,3.5,-10) | — |
 | **InGameBackground** | SpriteRenderer | `Resources/Img/BG/ingame_backs.png`, sorting order -1000 |
-| **GridManager** | GridManager | WhiteTile.prefab, GreenTile.prefab, position (0,0.5,0) |
+| **GridManager** | GridManager | WhiteTile.prefab, GreenTile.prefab (`spr_tileGreen`), position (0,0.5,0) |
 | **PieceManager** | PieceManager | GridManager (ref), Piece.prefab, AllyPawnData |
 | **Canvas** | Canvas, CanvasScaler, GraphicRaycaster, UIManager | GoldText, LivesText, WaveText, CountdownText, GameOverPanel, VictoryPanel |
 | ├─ EventSystem | EventSystem | — |
@@ -183,6 +200,7 @@ Assets/
 4. **Visual effects** → HitEffect (yellow burst, 0.3s) and DeathEffect (orange burst, 0.5s) via ParticleSystem, loaded from Resources/FX/
 5. **Piece size inconsistent across tiers** → Tier sprites (`Char_White_Rook_2..5`, `Char_White_Knight`) have differing pixel heights at a fixed PPU (512), so a constant `visualScale` produced erratic sizes (e.g. Rook_3 at 392px rendered ~77%). Fixed by normalizing `Piece.ApplyData()` by `sprite.bounds.size.y`; set Knight/Rook `visualScale` to 1.0 (Bishop stays 1.0925)
 6. **Drag&drop couldn't reach rightmost column** → `PieceDragHandler.IsDropOnGrid()` hardcoded bounds as `pos.x <= gridManager.Width - 0.5f`, assuming the grid starts at world x=0. The actual grid is centered via `offsetX = (8 - width) * 0.5f` in `GridManager.GenerateGrid()` (current `width`/`height` = 6, not 8 as this doc previously stated — needs a fuller audit), which shifts the rightmost column past that hardcoded bound. Fixed by checking distance from the drop position to the actual `targetCell.transform.position` (±0.5) instead of a hardcoded formula
+7. **Korean text rendered as tofu (□) in Layer Lab UI** → Layer Lab TMP fonts (Alata SDF) have no Korean glyphs. Added `Assets/Fonts/NotoSansKR-Regular SDF` to TMP Settings' global fallback list (TMP Settings asset) so all fonts resolve Hangul via fallback
 
 ## Next Steps (Phase 4 — Polish)
 - Sound effects / music

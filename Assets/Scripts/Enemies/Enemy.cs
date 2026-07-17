@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    private const int DeathFragmentCount = 10;
+
     public static event Action OnAnyEnemyRemoved;
 
     [SerializeField] private PieceData data;
@@ -17,6 +19,9 @@ public class Enemy : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private float slowTimer;
     private float slowMultiplier = 1f;
+    private bool isDying;
+
+    private static Sprite deathFragmentSprite;
 
     private void Awake()
     {
@@ -84,6 +89,8 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        if (isDying) return;
+
         CurrentHP -= Mathf.RoundToInt(damage);
         if (CurrentHP <= 0)
             Die();
@@ -97,11 +104,62 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
+        if (isDying) return;
+        isDying = true;
+
         int goldReward = data != null ? data.goldReward : 10;
         GameManager.Instance.AddGold(goldReward);
         OnAnyEnemyRemoved?.Invoke();
+        SpawnDeathFragments();
         SpawnDeathEffect();
         Destroy(gameObject);
+    }
+
+    private void SpawnDeathFragments()
+    {
+        Sprite fragmentSprite = GetDeathFragmentSprite();
+        if (fragmentSprite == null) return;
+
+        Bounds bounds = spriteRenderer != null ? spriteRenderer.bounds : new Bounds(transform.position, Vector3.one);
+        int sortingLayerId = spriteRenderer != null ? spriteRenderer.sortingLayerID : 0;
+        int sortingOrder = spriteRenderer != null ? spriteRenderer.sortingOrder + 2 : 2;
+
+        for (int i = 0; i < DeathFragmentCount; i++)
+        {
+            Vector3 spawnPosition = transform.position + new Vector3(
+                Random.Range(-bounds.extents.x * 0.65f, bounds.extents.x * 0.65f),
+                Random.Range(-bounds.extents.y * 0.35f, bounds.extents.y * 0.35f),
+                0f);
+
+            var fragmentObject = new GameObject("Enemy Death Fragment");
+            var fragment = fragmentObject.AddComponent<EnemyDeathFragment>();
+            fragment.Initialize(
+                fragmentSprite,
+                spawnPosition,
+                new Vector2(Random.Range(-1.4f, 1.4f), Random.Range(0.45f, 1.7f)),
+                Random.Range(0.055f, 0.11f),
+                Random.Range(-540f, 540f),
+                sortingLayerId,
+                sortingOrder);
+        }
+    }
+
+    private static Sprite GetDeathFragmentSprite()
+    {
+        if (deathFragmentSprite != null)
+            return deathFragmentSprite;
+
+        var texture = new Texture2D(1, 1, TextureFormat.RGBA32, false)
+        {
+            hideFlags = HideFlags.HideAndDontSave,
+            filterMode = FilterMode.Point
+        };
+        texture.SetPixel(0, 0, Color.white);
+        texture.Apply();
+
+        deathFragmentSprite = Sprite.Create(texture, new Rect(0f, 0f, 1f, 1f), new Vector2(0.5f, 0.5f), 1f);
+        deathFragmentSprite.hideFlags = HideFlags.HideAndDontSave;
+        return deathFragmentSprite;
     }
 
     private void SpawnDeathEffect()

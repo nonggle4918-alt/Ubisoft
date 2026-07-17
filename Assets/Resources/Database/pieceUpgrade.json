@@ -1,0 +1,504 @@
+{
+    "rows": [
+        {
+            "level": 1,
+            "cost": 25,
+            "bishopAtk": 1.0,
+            "bishopCool": 0.5,
+            "knightAtk": 1.5,
+            "knightCool": 0.5,
+            "rookAtk": 1.5,
+            "rookCool": 0.5
+        },
+        {
+            "level": 2,
+            "cost": 30,
+            "bishopAtk": 1.5,
+            "bishopCool": 1.0,
+            "knightAtk": 2.0,
+            "knightCool": 1.0,
+            "rookAtk": 2.0,
+            "rookCool": 1.0
+        },
+        {
+            "level": 3,
+            "cost": 35,
+            "bishopAtk": 2.0,
+            "bishopCool": 1.5,
+            "knightAtk": 2.5,
+            "knightCool": 1.5,
+            "rookAtk": 2.5,
+            "rookCool": 1.5
+        },
+        {
+            "level": 4,
+            "cost": 40,
+            "bishopAtk": 2.5,
+            "bishopCool": 2.0,
+            "knightAtk": 3.0,
+            "knightCool": 2.0,
+            "rookAtk": 3.0,
+            "rookCool": 2.0
+        },
+        {
+            "level": 5,
+            "cost": 45,
+            "bishopAtk": 3.0,
+            "bishopCool": 2.5,
+            "knightAtk": 3.5,
+            "knightCool": 2.5,
+            "rookAtk": 3.5,
+            "rookCool": 2.5
+        },
+        {
+            "level": 6,
+            "cost": 50,
+            "bishopAtk": 3.5,
+            "bishopCool": 3.0,
+            "knightAtk": 4.0,
+            "knightCool": 3.0,
+            "rookAtk": 4.0,
+            "rookCool": 3.0
+        },
+        {
+            "level": 7,
+            "cost": 50,
+            "bishopAtk": 4.0,
+            "bishopCool": 3.5,
+            "knightAtk": 4.5,
+            "knightCool": 3.5,
+            "rookAtk": 4.5,
+            "rookCool": 3.5
+        },
+        {
+            "level": 8,
+            "cost": 50,
+            "bishopAtk": 4.5,
+            "bishopCool": 4.0,
+            "knightAtk": 5.0,
+            "knightCool": 4.0,
+            "rookAtk": 5.0,
+            "rookCool": 4.0
+        },
+        {
+            "level": 9,
+            "cost": 50,
+            "bishopAtk": 5.0,
+            "bishopCool": 4.5,
+            "knightAtk": 5.5,
+            "knightCool": 4.5,
+            "rookAtk": 5.5,
+            "rookCool": 4.5
+        },
+        {
+            "level": 10,
+            "cost": 55,
+            "bishopAtk": 7.5,
+            "bishopCool": 6.0,
+            "knightAtk": 10.0,
+            "knightCool": 5.0,
+            "rookAtk": 8.0,
+            "rookCool": 5.0
+        },
+        {
+            "level": 11,
+            "cost": 60,
+            "bishopAtk": 8.5,
+            "bishopCool": 7.0,
+            "knightAtk": 11.0,
+            "knightCool": 5.5,
+            "rookAtk": 9.0,
+            "rookCool": 5.5
+        },
+        {
+            "level": 12,
+            "cost": 65,
+            "bishopAtk": 9.5,
+            "bishopCool": 8.0,
+            "knightAtk": 12.0,
+            "knightCool": 6.0,
+            "rookAtk": 10.0,
+            "rookCool": 6.0
+        },
+        {
+            "level": 13,
+            "cost": 70,
+            "bishopAtk": 10.5,
+            "bishopCool": 9.0,
+            "knightAtk": 13.0,
+            "knightCool": 6.5,
+            "rookAtk": 11.0,
+            "rookCool": 6.5
+        },
+        {
+            "level": 14,
+            "cost": 75,
+            "bishopAtk": 11.5,
+            "bishopCool": 10.0,
+            "knightAtk": 14.0,
+            "knightCool": 7.0,
+            "rookAtk": 12.0,
+            "rookCool": 7.0
+        },
+        {
+            "level": 15,
+            "cost": 75,
+            "bishopAtk": 12.5,
+            "bishopCool": 11.0,
+            "knightAtk": 15.0,
+            "knightCool": 7.5,
+            "rookAtk": 13.0,
+            "rookCool": 7.5
+        },
+        {
+            "level": 16,
+            "cost": 75,
+            "bishopAtk": 13.5,
+            "bishopCool": 12.0,
+            "knightAtk": 16.0,
+            "knightCool": 8.0,
+            "rookAtk": 14.0,
+            "rookCool": 8.0
+        },
+        {
+            "level": 17,
+            "cost": 75,
+            "bishopAtk": 14.5,
+            "bishopCool": 13.0,
+            "knightAtk": 17.0,
+            "knightCool": 8.5,
+            "rookAtk": 15.0,
+            "rookCool": 8.5
+        },
+        {
+            "level": 18,
+            "cost": 75,
+            "bishopAtk": 15.5,
+            "bishopCool": 14.0,
+            "knightAtk": 18.0,
+            "knightCool": 9.0,
+            "rookAtk": 16.0,
+            "rookCool": 9.0
+        },
+        {
+            "level": 19,
+            "cost": 75,
+            "bishopAtk": 16.5,
+            "bishopCool": 15.0,
+            "knightAtk": 19.0,
+            "knightCool": 9.5,
+            "rookAtk": 17.0,
+            "rookCool": 9.5
+        },
+        {
+            "level": 20,
+            "cost": 75,
+            "bishopAtk": 17.5,
+            "bishopCool": 16.0,
+            "knightAtk": 20.0,
+            "knightCool": 10.0,
+            "rookAtk": 18.0,
+            "rookCool": 10.0
+        },
+        {
+            "level": 21,
+            "cost": 80,
+            "bishopAtk": 20.0,
+            "bishopCool": 18.0,
+            "knightAtk": 22.0,
+            "knightCool": 11.0,
+            "rookAtk": 20.0,
+            "rookCool": 10.5
+        },
+        {
+            "level": 22,
+            "cost": 85,
+            "bishopAtk": 21.0,
+            "bishopCool": 19.0,
+            "knightAtk": 24.0,
+            "knightCool": 12.0,
+            "rookAtk": 22.0,
+            "rookCool": 11.0
+        },
+        {
+            "level": 23,
+            "cost": 90,
+            "bishopAtk": 22.0,
+            "bishopCool": 20.0,
+            "knightAtk": 26.0,
+            "knightCool": 13.0,
+            "rookAtk": 24.0,
+            "rookCool": 11.5
+        },
+        {
+            "level": 24,
+            "cost": 95,
+            "bishopAtk": 23.0,
+            "bishopCool": 21.0,
+            "knightAtk": 28.0,
+            "knightCool": 14.0,
+            "rookAtk": 26.0,
+            "rookCool": 12.0
+        },
+        {
+            "level": 25,
+            "cost": 100,
+            "bishopAtk": 24.0,
+            "bishopCool": 22.0,
+            "knightAtk": 30.0,
+            "knightCool": 15.0,
+            "rookAtk": 28.0,
+            "rookCool": 12.5
+        },
+        {
+            "level": 26,
+            "cost": 100,
+            "bishopAtk": 25.0,
+            "bishopCool": 23.0,
+            "knightAtk": 32.0,
+            "knightCool": 16.0,
+            "rookAtk": 30.0,
+            "rookCool": 13.0
+        },
+        {
+            "level": 27,
+            "cost": 100,
+            "bishopAtk": 26.0,
+            "bishopCool": 24.0,
+            "knightAtk": 34.0,
+            "knightCool": 17.0,
+            "rookAtk": 32.0,
+            "rookCool": 13.5
+        },
+        {
+            "level": 28,
+            "cost": 100,
+            "bishopAtk": 27.0,
+            "bishopCool": 25.0,
+            "knightAtk": 36.0,
+            "knightCool": 18.0,
+            "rookAtk": 34.0,
+            "rookCool": 14.0
+        },
+        {
+            "level": 29,
+            "cost": 100,
+            "bishopAtk": 28.0,
+            "bishopCool": 26.0,
+            "knightAtk": 38.0,
+            "knightCool": 19.0,
+            "rookAtk": 36.0,
+            "rookCool": 14.5
+        },
+        {
+            "level": 30,
+            "cost": 100,
+            "bishopAtk": 29.0,
+            "bishopCool": 27.0,
+            "knightAtk": 40.0,
+            "knightCool": 20.0,
+            "rookAtk": 38.0,
+            "rookCool": 15.0
+        },
+        {
+            "level": 31,
+            "cost": 100,
+            "bishopAtk": 30.0,
+            "bishopCool": 28.0,
+            "knightAtk": 42.0,
+            "knightCool": 21.0,
+            "rookAtk": 40.0,
+            "rookCool": 15.5
+        },
+        {
+            "level": 32,
+            "cost": 100,
+            "bishopAtk": 31.0,
+            "bishopCool": 29.0,
+            "knightAtk": 44.0,
+            "knightCool": 22.0,
+            "rookAtk": 42.0,
+            "rookCool": 16.0
+        },
+        {
+            "level": 33,
+            "cost": 100,
+            "bishopAtk": 32.0,
+            "bishopCool": 30.0,
+            "knightAtk": 46.0,
+            "knightCool": 23.0,
+            "rookAtk": 44.0,
+            "rookCool": 16.5
+        },
+        {
+            "level": 34,
+            "cost": 100,
+            "bishopAtk": 33.0,
+            "bishopCool": 31.0,
+            "knightAtk": 48.0,
+            "knightCool": 24.0,
+            "rookAtk": 46.0,
+            "rookCool": 17.0
+        },
+        {
+            "level": 35,
+            "cost": 100,
+            "bishopAtk": 34.0,
+            "bishopCool": 32.0,
+            "knightAtk": 50.0,
+            "knightCool": 25.0,
+            "rookAtk": 48.0,
+            "rookCool": 17.5
+        },
+        {
+            "level": 36,
+            "cost": 100,
+            "bishopAtk": 35.0,
+            "bishopCool": 33.0,
+            "knightAtk": 52.0,
+            "knightCool": 26.0,
+            "rookAtk": 50.0,
+            "rookCool": 18.0
+        },
+        {
+            "level": 37,
+            "cost": 100,
+            "bishopAtk": 36.0,
+            "bishopCool": 34.0,
+            "knightAtk": 54.0,
+            "knightCool": 27.0,
+            "rookAtk": 52.0,
+            "rookCool": 18.5
+        },
+        {
+            "level": 38,
+            "cost": 100,
+            "bishopAtk": 37.0,
+            "bishopCool": 35.0,
+            "knightAtk": 56.0,
+            "knightCool": 28.0,
+            "rookAtk": 54.0,
+            "rookCool": 19.0
+        },
+        {
+            "level": 39,
+            "cost": 100,
+            "bishopAtk": 38.0,
+            "bishopCool": 36.0,
+            "knightAtk": 58.0,
+            "knightCool": 29.0,
+            "rookAtk": 56.0,
+            "rookCool": 19.5
+        },
+        {
+            "level": 40,
+            "cost": 100,
+            "bishopAtk": 39.0,
+            "bishopCool": 37.0,
+            "knightAtk": 60.0,
+            "knightCool": 30.0,
+            "rookAtk": 58.0,
+            "rookCool": 20.0
+        },
+        {
+            "level": 41,
+            "cost": 120,
+            "bishopAtk": 45.0,
+            "bishopCool": 40.0,
+            "knightAtk": 65.0,
+            "knightCool": 31.0,
+            "rookAtk": 60.0,
+            "rookCool": 20.5
+        },
+        {
+            "level": 42,
+            "cost": 140,
+            "bishopAtk": 48.0,
+            "bishopCool": 42.0,
+            "knightAtk": 70.0,
+            "knightCool": 32.0,
+            "rookAtk": 63.0,
+            "rookCool": 21.0
+        },
+        {
+            "level": 43,
+            "cost": 160,
+            "bishopAtk": 51.0,
+            "bishopCool": 44.0,
+            "knightAtk": 75.0,
+            "knightCool": 33.0,
+            "rookAtk": 66.0,
+            "rookCool": 21.5
+        },
+        {
+            "level": 44,
+            "cost": 180,
+            "bishopAtk": 54.0,
+            "bishopCool": 46.0,
+            "knightAtk": 80.0,
+            "knightCool": 34.0,
+            "rookAtk": 69.0,
+            "rookCool": 22.0
+        },
+        {
+            "level": 45,
+            "cost": 200,
+            "bishopAtk": 57.0,
+            "bishopCool": 48.0,
+            "knightAtk": 85.0,
+            "knightCool": 35.0,
+            "rookAtk": 72.0,
+            "rookCool": 22.5
+        },
+        {
+            "level": 46,
+            "cost": 250,
+            "bishopAtk": 60.0,
+            "bishopCool": 50.0,
+            "knightAtk": 90.0,
+            "knightCool": 36.0,
+            "rookAtk": 75.0,
+            "rookCool": 23.0
+        },
+        {
+            "level": 47,
+            "cost": 300,
+            "bishopAtk": 63.0,
+            "bishopCool": 52.0,
+            "knightAtk": 95.0,
+            "knightCool": 37.0,
+            "rookAtk": 78.0,
+            "rookCool": 23.5
+        },
+        {
+            "level": 48,
+            "cost": 350,
+            "bishopAtk": 66.0,
+            "bishopCool": 54.0,
+            "knightAtk": 100.0,
+            "knightCool": 38.0,
+            "rookAtk": 85.0,
+            "rookCool": 24.0
+        },
+        {
+            "level": 49,
+            "cost": 400,
+            "bishopAtk": 69.0,
+            "bishopCool": 56.0,
+            "knightAtk": 110.0,
+            "knightCool": 39.0,
+            "rookAtk": 90.0,
+            "rookCool": 24.5
+        },
+        {
+            "level": 50,
+            "cost": 450,
+            "bishopAtk": 75.0,
+            "bishopCool": 60.0,
+            "knightAtk": 120.0,
+            "knightCool": 40.0,
+            "rookAtk": 95.0,
+            "rookCool": 25.0
+        }
+    ]
+}

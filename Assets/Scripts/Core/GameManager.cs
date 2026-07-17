@@ -99,6 +99,9 @@ public class GameManager : MonoBehaviour
         OnWaveChanged?.Invoke(CurrentWave);
         SetState(GameState.Ready);
 
+        if (UpgradeManager.Instance != null)
+            UpgradeManager.Instance.ResetLevels();
+
         var timerManager = FindFirstObjectByType<TimerManager>();
         if (timerManager != null)
             timerManager.RestartTimer();

@@ -87,7 +87,28 @@ public class Piece : MonoBehaviour
 
     public float GetAttackDamage()
     {
-        return data.attackDamage * AttackBuff;
+        return data.attackDamage * AttackBuff * GetUpgradeAtkMultiplier();
+    }
+
+    public float GetAttackCooldown()
+    {
+        return data.attackCooldown * GetUpgradeCoolMultiplier();
+    }
+
+    private float GetUpgradeAtkMultiplier()
+    {
+        if (UpgradeManager.Instance == null || data == null) return 1f;
+        if (UpgradeManager.TryGetType(data.pieceName, out PieceUpgradeType type))
+            return UpgradeManager.Instance.GetAtkMultiplier(type);
+        return 1f;
+    }
+
+    private float GetUpgradeCoolMultiplier()
+    {
+        if (UpgradeManager.Instance == null || data == null) return 1f;
+        if (UpgradeManager.TryGetType(data.pieceName, out PieceUpgradeType type))
+            return UpgradeManager.Instance.GetCoolMultiplier(type);
+        return 1f;
     }
 
     public void TakeDamage(float damage)

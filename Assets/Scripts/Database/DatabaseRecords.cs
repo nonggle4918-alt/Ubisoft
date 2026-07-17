@@ -80,3 +80,16 @@ public class TierStatRecord
     public int cost;
     public int sell;
 }
+
+[Serializable]
+public class PieceUpgradeRecord
+{
+    public int level;
+    public int cost;
+    public float bishopAtk;
+    public float bishopCool;
+    public float knightAtk;
+    public float knightCool;
+    public float rookAtk;
+    public float rookCool;
+}

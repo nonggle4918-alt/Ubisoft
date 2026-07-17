@@ -52,7 +52,7 @@ public class CombatManager : MonoBehaviour
         float lastTime = 0;
         lastAttackTime.TryGetValue(piece, out lastTime);
 
-        if (Time.time - lastTime < piece.Data.attackCooldown)
+        if (Time.time - lastTime < piece.GetAttackCooldown())
             return;
 
         switch (piece.Data.attackType)
