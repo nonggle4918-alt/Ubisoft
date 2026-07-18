@@ -1,0 +1,148 @@
+{
+    "rows": [
+        {
+            "id": 10001,
+            "name": "bishop",
+            "type": "nomal",
+            "attackDamage": 3,
+            "attackRange": 3.0,
+            "attackCooldown": 0.550000011920929,
+            "cost": 0,
+            "imageResourceId": "Piece_Bishop",
+            "effectId": "",
+            "soundId": ""
+        },
+        {
+            "id": 10002,
+            "name": "knight",
+            "type": "nomal",
+            "attackDamage": 7,
+            "attackRange": 2.0,
+            "attackCooldown": 0.6600000262260437,
+            "cost": 0,
+            "imageResourceId": "Piece_Knight",
+            "effectId": "",
+            "soundId": ""
+        },
+        {
+            "id": 10003,
+            "name": "rook",
+            "type": "nomal",
+            "attackDamage": 10,
+            "attackRange": 4.0,
+            "attackCooldown": 1.399999976158142,
+            "cost": 0,
+            "imageResourceId": "Piece_Rook",
+            "effectId": "",
+            "soundId": ""
+        },
+        {
+            "id": 10111,
+            "name": "pawn",
+            "type": "special",
+            "attackDamage": 1,
+            "attackRange": 2.0,
+            "attackCooldown": 1.5,
+            "cost": 0,
+            "imageResourceId": "Piece_Pawn",
+            "effectId": "",
+            "soundId": ""
+        },
+        {
+            "id": 10112,
+            "name": "queen",
+            "type": "special",
+            "attackDamage": 15,
+            "attackRange": 4.0,
+            "attackCooldown": 0.5,
+            "cost": 0,
+            "imageResourceId": "Piece_Queen",
+            "effectId": "",
+            "soundId": ""
+        },
+        {
+            "id": 10113,
+            "name": "king",
+            "type": "special",
+            "attackDamage": 1,
+            "attackRange": 4.5,
+            "attackCooldown": 2.0,
+            "cost": 0,
+            "imageResourceId": "Piece_King",
+            "effectId": "",
+            "soundId": ""
+        },
+        {
+            "id": 10212,
+            "name": "Pegasus",
+            "type": "promotion",
+            "attackDamage": 30,
+            "attackRange": 4.0,
+            "attackCooldown": 0.5,
+            "cost": 0,
+            "imageResourceId": "Piece_Pegasus",
+            "effectId": "",
+            "soundId": ""
+        },
+        {
+            "id": 10213,
+            "name": "Dragon",
+            "type": "promotion",
+            "attackDamage": 15,
+            "attackRange": 4.0,
+            "attackCooldown": 1.5,
+            "cost": 0,
+            "imageResourceId": "Piece_Dragon",
+            "effectId": "",
+            "soundId": ""
+        },
+        {
+            "id": 10214,
+            "name": "The Colossus",
+            "type": "promotion",
+            "attackDamage": 120,
+            "attackRange": 3.0,
+            "attackCooldown": 3.0,
+            "cost": 0,
+            "imageResourceId": "Piece_Checkmate",
+            "effectId": "",
+            "soundId": ""
+        },
+        {
+            "id": 10215,
+            "name": "Cannon",
+            "type": "promotion",
+            "attackDamage": 30,
+            "attackRange": 6.0,
+            "attackCooldown": 1.0,
+            "cost": 0,
+            "imageResourceId": "Piece_ShoutgunKing",
+            "effectId": "",
+            "soundId": ""
+        },
+        {
+            "id": 10216,
+            "name": "Astronomer",
+            "type": "promotion",
+            "attackDamage": 30,
+            "attackRange": 6.0,
+            "attackCooldown": 3.0,
+            "cost": 0,
+            "imageResourceId": "Piece_Mage",
+            "effectId": "",
+            "soundId": ""
+        },
+        {
+            "id": 10217,
+            "name": "Alchemist",
+            "type": "promotion",
+            "attackDamage": 26,
+            "attackRange": 5.0,
+            "attackCooldown": 1.0,
+            "cost": 0,
+            "imageResourceId": "Piece_Mage",
+            "effectId": "",
+            "soundId": ""
+        }
+    ]
+}

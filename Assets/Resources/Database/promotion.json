@@ -1,0 +1,34 @@
+{
+    "rows": [
+        {
+            "proId": 10211,
+            "turn": 4,
+            "chance": 10.0
+        },
+        {
+            "proId": 10212,
+            "turn": 4,
+            "chance": 10.0
+        },
+        {
+            "proId": 10213,
+            "turn": 4,
+            "chance": 10.0
+        },
+        {
+            "proId": 10214,
+            "turn": 4,
+            "chance": 5.0
+        },
+        {
+            "proId": 10215,
+            "turn": 4,
+            "chance": 10.0
+        },
+        {
+            "proId": 10216,
+            "turn": 4,
+            "chance": 10.0
+        }
+    ]
+}

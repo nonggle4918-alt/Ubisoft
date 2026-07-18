@@ -11,6 +11,11 @@ public class CombatManager : MonoBehaviour
     private Dictionary<Piece, RookLaser> activeLasers = new Dictionary<Piece, RookLaser>();
     private Dictionary<Piece, DragonBreathEffect> activeDragonBreaths = new Dictionary<Piece, DragonBreathEffect>();
 
+    private void PlayAttackSfx(Piece piece)
+    {
+        SFXManager.Instance?.PlayUnitAttack(piece.Data.attackType);
+    }
+
     public void RegisterPiece(Piece piece)
     {
         if (!allyPieces.Contains(piece))
@@ -82,6 +87,7 @@ public class CombatManager : MonoBehaviour
 
         piece.FaceTarget(target.transform.position);
         lastAttackTime[piece] = Time.time;
+        PlayAttackSfx(piece);
 
         float atk = piece.GetAttackDamage();
         float targetHpForBonus = piece.Data.bonusUsesTargetMaxHP ? target.MaxHP : target.CurrentHP;
@@ -99,6 +105,7 @@ public class CombatManager : MonoBehaviour
 
         piece.FaceTarget(target.transform.position);
         lastAttackTime[piece] = Time.time;
+        PlayAttackSfx(piece);
         FireProjectile(piece, target, piece.GetAttackDamage());
     }
 
@@ -110,6 +117,7 @@ public class CombatManager : MonoBehaviour
         piece.FaceTarget(target.transform.position);
         piece.PlayAttackPunch();
         lastAttackTime[piece] = Time.time;
+        PlayAttackSfx(piece);
         float maxDist = piece.Data.attackRange + piece.Data.extraRange;
 
         Vector3[] diagonals = {
@@ -159,6 +167,7 @@ public class CombatManager : MonoBehaviour
         laser.Initialize(piece, target, totalDamage, piece.Data.chargeDuration, range, rookLaserBeamTexture);
 
         activeLasers[piece] = laser;
+        PlayAttackSfx(piece);
     }
 
     private void TryHomingAttack(Piece piece)
@@ -169,6 +178,7 @@ public class CombatManager : MonoBehaviour
         piece.FaceTarget(target.transform.position);
         piece.PlayAttackPunch(piece.GetAttackCooldown());
         lastAttackTime[piece] = Time.time;
+        PlayAttackSfx(piece);
         float atk = piece.GetAttackDamage();
         GameObject proj = Instantiate(projectilePrefab, piece.transform.position, Quaternion.identity);
         Projectile projComp = proj.GetComponent<Projectile>();
@@ -191,6 +201,7 @@ public class CombatManager : MonoBehaviour
         piece.FaceTarget(target.transform.position);
         piece.PlayAttackPunch();
         lastAttackTime[piece] = Time.time;
+        PlayAttackSfx(piece);
         float atk = piece.GetAttackDamage();
 
         KingWaveEffect.Spawn(target.transform.position, piece.Data.splashRadius);
@@ -213,6 +224,7 @@ public class CombatManager : MonoBehaviour
         if (targets.Count == 0) return;
 
         lastAttackTime[piece] = Time.time;
+        PlayAttackSfx(piece);
         float attack = piece.GetAttackDamage();
         foreach (Enemy target in targets)
         {
@@ -234,6 +246,7 @@ public class CombatManager : MonoBehaviour
 
         piece.FaceTarget(target.transform.position);
         lastAttackTime[piece] = Time.time;
+        PlayAttackSfx(piece);
         var effect = new GameObject("Dragon Breath").AddComponent<DragonBreathEffect>();
         effect.Initialize(piece, (target.transform.position - piece.transform.position).normalized, piece.GetAttackDamage(), piece.Data.attackRange);
         activeDragonBreaths[piece] = effect;
@@ -247,6 +260,7 @@ public class CombatManager : MonoBehaviour
         piece.FaceTarget(target.transform.position);
         piece.PlayAttackPunch(piece.GetAttackCooldown());
         lastAttackTime[piece] = Time.time;
+        PlayAttackSfx(piece);
         CannonShell.Spawn(piece.transform.position, (target.transform.position - piece.transform.position).normalized, piece.GetAttackDamage(), piece.Data.projectileSpeed, piece.Data.attackRange, piece.Data.splashRadius);
     }
 
@@ -259,6 +273,7 @@ public class CombatManager : MonoBehaviour
         piece.FaceTarget(target.transform.position);
         piece.PlayAttackPunch(piece.GetAttackCooldown());
         lastAttackTime[piece] = Time.time;
+        PlayAttackSfx(piece);
         MeteorStrike.Spawn(target.transform.position, piece.GetAttackDamage() * 2.5f, piece.Data.splashRadius);
     }
 
@@ -270,6 +285,7 @@ public class CombatManager : MonoBehaviour
         piece.FaceTarget(target.transform.position);
         piece.PlayAttackPunch(piece.GetAttackCooldown());
         lastAttackTime[piece] = Time.time;
+        PlayAttackSfx(piece);
         PotionProjectile.Spawn(piece.transform.position, (target.transform.position - piece.transform.position).normalized, piece.GetAttackDamage(), piece.Data.projectileSpeed, piece.Data.attackRange, piece.Data.splashRadius);
     }
 
@@ -397,7 +413,12 @@ public class KingWaveEffect : MonoBehaviour
             };
         }
 
-        var wave = gameObject.AddComponent<LineRenderer>();
+        // Each ring needs its own GameObject: Unity allows only one LineRenderer per object,
+        // so adding both to this effect's root would make the second AddComponent return null.
+        var waveObject = new GameObject("Wave");
+        waveObject.transform.SetParent(transform, false);
+
+        var wave = waveObject.AddComponent<LineRenderer>();
         wave.useWorldSpace = true;
         wave.loop = true;
         wave.positionCount = Segments;

@@ -1,8 +1,9 @@
-﻿id,name,type,Hp,speed,drop_gold,img_res,efx,sf
+﻿아이디,이름,타입,체력,속도,드랍골드,이미지,이펙트,사운드
+id,name,type,Hp,speed,drop_gold,img_res,efx,sf
 int,string,enum,int,float,int,string,string,string
-20001,pawn,1,20,1.8,3,Enemy_Pawn,,
-20002,bishop,1,75,2.3,5,Enemy_Bishop,,
-20003,knight,1,120,4.5,10,Enemy_Knight,,
-20004,rook,1,300,3.2,15,Enemy_Rook,,
-20005,queen,1,600,4,50,Enemy_Queen,,
-20006,king,2,3000,2.8,200,Enemy_King,,
+20001,pawn,1,17,1.8,4,Enemy_Pawn,,
+20002,bishop,1,75,2.3,7,Enemy_Bishop,,
+20003,knight,1,120,5,12,Enemy_Knight,,
+20004,rook,1,250,3.5,20,Enemy_Rook,,
+20005,queen,1,500,4.2,50,Enemy_Queen,,
+20006,king,2,2000,3,200,Enemy_King,,

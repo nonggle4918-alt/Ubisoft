@@ -63,6 +63,7 @@ public class UpgradeUI : MonoBehaviour
             if (tmp != null)
             {
                 tmp.text = displayNames[type];
+                tmp.color = Color.white;
                 tmp.textWrappingMode = TextWrappingModes.NoWrap;
                 tmp.enableAutoSizing = true;
                 tmp.fontSizeMin = 10f;
@@ -128,6 +129,7 @@ public class UpgradeUI : MonoBehaviour
         {
             closeButton.onClick.RemoveAllListeners();
             closeButton.onClick.AddListener(ClosePopup);
+            SFXManager.Instance?.BindButtonClickSound(closeButton);
         }
 
         Transform closeLabel = closeGo.transform.Find("Text (TMP)");

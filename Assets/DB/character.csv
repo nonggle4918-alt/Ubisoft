@@ -2,8 +2,8 @@
 Piece_id,name,type,Attack_Damage,Attack_Range,Attack_Cooldown,Res_id,efx,sf
 int,string,enum,int,float,float,string,string,string
 10001,bishop,nomal,3,3,0.55,Piece_Bishop,,
-10002,knight,nomal,5,2,0.66,Piece_Knight,,
-10003,rook,nomal,4,4,2,Piece_Rook,,
+10002,knight,nomal,8,2,0.66,Piece_Knight,,
+10003,rook,nomal,12,4,1.4,Piece_Rook,,
 10111,pawn,special,1,2,1.5,Piece_Pawn,,
 10112,queen,special,15,4,0.5,Piece_Queen,,
 10113,king,special,1,4.5,2,Piece_King,,

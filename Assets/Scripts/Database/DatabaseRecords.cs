@@ -93,3 +93,21 @@ public class PieceUpgradeRecord
     public float rookAtk;
     public float rookCool;
 }
+
+// Gacha pull weight for a piece within a draw group (from DB/Draw.csv).
+[Serializable]
+public class DrawRecord
+{
+    public int pieceId;
+    public string groupId;
+    public float weight;
+}
+
+// Pawn promotion trigger/odds for a hero piece (from DB/Promotion.csv).
+[Serializable]
+public class PromotionRecord
+{
+    public int proId;
+    public int turn;
+    public float chance;
+}

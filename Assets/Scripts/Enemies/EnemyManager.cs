@@ -187,6 +187,7 @@ public class EnemyManager : MonoBehaviour
             enemy.SetData(unitData);
             enemy.SetWaypoints(waypoints);
         }
+        SFXManager.Instance?.PlayEnemySpawned();
     }
 
     private void OnEnemyRemoved()

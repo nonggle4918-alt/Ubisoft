@@ -1,19 +1,139 @@
 {
     "rows": [
-        { "id": 10001, "tier": 1, "attackDamage": 0, "attackRange": 0, "attackCooldown": 0, "cost": 50, "sell": 20 },
-        { "id": 10001, "tier": 2, "attackDamage": 4, "attackRange": 3, "attackCooldown": 0.5, "cost": 50, "sell": 25 },
-        { "id": 10001, "tier": 3, "attackDamage": 6, "attackRange": 3, "attackCooldown": 0.45, "cost": 50, "sell": 30 },
-        { "id": 10001, "tier": 4, "attackDamage": 12, "attackRange": 4, "attackCooldown": 0.4, "cost": 50, "sell": 0 },
-        { "id": 10001, "tier": 5, "attackDamage": 24, "attackRange": 5, "attackCooldown": 0.35, "cost": 50, "sell": 0 },
-        { "id": 10002, "tier": 1, "attackDamage": 0, "attackRange": 0, "attackCooldown": 0, "cost": 50, "sell": 20 },
-        { "id": 10002, "tier": 2, "attackDamage": 7, "attackRange": 2, "attackCooldown": 0.6, "cost": 50, "sell": 25 },
-        { "id": 10002, "tier": 3, "attackDamage": 9, "attackRange": 2, "attackCooldown": 0.52, "cost": 50, "sell": 30 },
-        { "id": 10002, "tier": 4, "attackDamage": 18, "attackRange": 3, "attackCooldown": 0.46, "cost": 50, "sell": 0 },
-        { "id": 10002, "tier": 5, "attackDamage": 36, "attackRange": 4, "attackCooldown": 0.4, "cost": 50, "sell": 0 },
-        { "id": 10003, "tier": 1, "attackDamage": 0, "attackRange": 0, "attackCooldown": 0, "cost": 50, "sell": 20 },
-        { "id": 10003, "tier": 2, "attackDamage": 5.5, "attackRange": 5, "attackCooldown": 1.8, "cost": 50, "sell": 25 },
-        { "id": 10003, "tier": 3, "attackDamage": 7, "attackRange": 6, "attackCooldown": 1.6, "cost": 50, "sell": 30 },
-        { "id": 10003, "tier": 4, "attackDamage": 14, "attackRange": 7, "attackCooldown": 1.4, "cost": 50, "sell": 0 },
-        { "id": 10003, "tier": 5, "attackDamage": 28, "attackRange": 8, "attackCooldown": 1.2, "cost": 50, "sell": 0 }
+        {
+            "id": 10001,
+            "tier": 1,
+            "attackDamage": 3.0,
+            "attackRange": 2.0,
+            "attackCooldown": 0.550000011920929,
+            "cost": 50,
+            "sell": 20
+        },
+        {
+            "id": 10001,
+            "tier": 2,
+            "attackDamage": 4.0,
+            "attackRange": 2.5,
+            "attackCooldown": 0.5,
+            "cost": 50,
+            "sell": 25
+        },
+        {
+            "id": 10001,
+            "tier": 3,
+            "attackDamage": 6.0,
+            "attackRange": 3.0,
+            "attackCooldown": 0.44999998807907107,
+            "cost": 50,
+            "sell": 30
+        },
+        {
+            "id": 10001,
+            "tier": 4,
+            "attackDamage": 10.0,
+            "attackRange": 4.0,
+            "attackCooldown": 0.4000000059604645,
+            "cost": 50,
+            "sell": 0
+        },
+        {
+            "id": 10001,
+            "tier": 5,
+            "attackDamage": 22.0,
+            "attackRange": 5.0,
+            "attackCooldown": 0.3499999940395355,
+            "cost": 50,
+            "sell": 0
+        },
+        {
+            "id": 10002,
+            "tier": 1,
+            "attackDamage": 5.0,
+            "attackRange": 1.5,
+            "attackCooldown": 0.6600000262260437,
+            "cost": 50,
+            "sell": 20
+        },
+        {
+            "id": 10002,
+            "tier": 2,
+            "attackDamage": 7.0,
+            "attackRange": 2.0,
+            "attackCooldown": 0.6000000238418579,
+            "cost": 50,
+            "sell": 25
+        },
+        {
+            "id": 10002,
+            "tier": 3,
+            "attackDamage": 9.0,
+            "attackRange": 2.5,
+            "attackCooldown": 0.5199999809265137,
+            "cost": 50,
+            "sell": 30
+        },
+        {
+            "id": 10002,
+            "tier": 4,
+            "attackDamage": 18.0,
+            "attackRange": 3.0,
+            "attackCooldown": 0.46000000834465029,
+            "cost": 50,
+            "sell": 0
+        },
+        {
+            "id": 10002,
+            "tier": 5,
+            "attackDamage": 36.0,
+            "attackRange": 4.0,
+            "attackCooldown": 0.4000000059604645,
+            "cost": 50,
+            "sell": 0
+        },
+        {
+            "id": 10003,
+            "tier": 1,
+            "attackDamage": 4.0,
+            "attackRange": 3.0,
+            "attackCooldown": 1.2999999523162842,
+            "cost": 50,
+            "sell": 20
+        },
+        {
+            "id": 10003,
+            "tier": 2,
+            "attackDamage": 5.5,
+            "attackRange": 4.0,
+            "attackCooldown": 1.2000000476837159,
+            "cost": 50,
+            "sell": 25
+        },
+        {
+            "id": 10003,
+            "tier": 3,
+            "attackDamage": 7.0,
+            "attackRange": 5.0,
+            "attackCooldown": 1.100000023841858,
+            "cost": 50,
+            "sell": 30
+        },
+        {
+            "id": 10003,
+            "tier": 4,
+            "attackDamage": 14.0,
+            "attackRange": 6.0,
+            "attackCooldown": 0.800000011920929,
+            "cost": 50,
+            "sell": 0
+        },
+        {
+            "id": 10003,
+            "tier": 5,
+            "attackDamage": 20.0,
+            "attackRange": 7.0,
+            "attackCooldown": 0.4000000059604645,
+            "cost": 50,
+            "sell": 0
+        }
     ]
 }

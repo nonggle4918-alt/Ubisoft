@@ -1,0 +1,34 @@
+{
+    "rows": [
+        {
+            "pieceId": 10001,
+            "groupId": "11",
+            "weight": 26.0
+        },
+        {
+            "pieceId": 10002,
+            "groupId": "11",
+            "weight": 26.0
+        },
+        {
+            "pieceId": 10003,
+            "groupId": "11",
+            "weight": 26.0
+        },
+        {
+            "pieceId": 10111,
+            "groupId": "11",
+            "weight": 7.0
+        },
+        {
+            "pieceId": 10112,
+            "groupId": "11",
+            "weight": 7.0
+        },
+        {
+            "pieceId": 10113,
+            "groupId": "11",
+            "weight": 7.0
+        }
+    ]
+}

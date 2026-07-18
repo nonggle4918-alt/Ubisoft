@@ -12,6 +12,10 @@ public class PieceManager : MonoBehaviour
 
     public event Action<PieceData> OnPiecePulled;
 
+    private static readonly HashSet<string> SpecialPieceNames =
+        new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "pawn", "queen", "king" };
+    private static readonly Color SpecialPieceEffectColor = new Color(1f, 0.85f, 0.3f);
+
     private List<PieceData> gachaPool = new List<PieceData>();
     private int totalWeight;
 
@@ -96,7 +100,23 @@ public class PieceManager : MonoBehaviour
         piece.CurrentCell = cell;
         cell.SetPiece(piece);
 
+        SFXManager.Instance?.PlayUnitPurchased();
+        SFXManager.Instance?.PlayTierReward(tier);
+        TrySpawnRarityEffect(runtimeData, piece.transform.position);
         OnPiecePulled?.Invoke(runtimeData);
+    }
+
+    // Lightning strike marking a piece's arrival. Fires for every pull so the feedback is
+    // always there, with the bolt tinted by what was pulled: gold for special pieces
+    // (pawn/queen/king) and the tier color for bishop/knight/rook. Hero pieces get their own
+    // strike from Piece's promotion routine instead.
+    private static void TrySpawnRarityEffect(PieceData data, Vector3 position)
+    {
+        if (data == null) return;
+
+        bool isSpecial = SpecialPieceNames.Contains(data.pieceName);
+        Color color = isSpecial ? SpecialPieceEffectColor : PieceData.TierColor(data.tier);
+        LightningStrikeEffect.Spawn(position, color);
     }
 
     private void ApplyTierToData(PieceData data, int tier)
@@ -138,8 +158,12 @@ public class PieceManager : MonoBehaviour
 
     private Sprite GetTierSprite(string pieceName, int tier)
     {
-        string resourceId = $"Char_{pieceName}_{tier}";
-        return GameManager.Instance.Database.GetSprite(resourceId);
+        Sprite databaseSprite = GameManager.Instance.Database.GetSprite($"Char_{pieceName}_{tier}");
+        if (databaseSprite != null) return databaseSprite;
+
+        // asset.csv only lists the base pieces, so tier art is resolved from its file naming
+        // convention: Resources/Sprites/White/Char_White_<Piece>_<tier>.
+        return Resources.Load<Sprite>($"Sprites/White/Char_White_{pieceName}_{tier}");
     }
 
     private void ApplyCharacterDatabase()
