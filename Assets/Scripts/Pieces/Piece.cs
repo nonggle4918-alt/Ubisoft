@@ -152,7 +152,8 @@ public class Piece : MonoBehaviour
 
         if (this == null || data == null) yield break;
         SetData(PromotionFactory.Create(data));
-        PromotionFireworksEffect.Spawn(transform.position);
+        LightningStrikeEffect.Spawn(transform.position, new Color(0.65f, 0.85f, 1f));
+        SFXManager.Instance?.PlayHero();
         promotionCoroutine = null;
     }
 
@@ -342,22 +343,29 @@ public static class PromotionFireworksEffect
 {
     private static Sprite sparkSprite;
 
-    public static void Spawn(Vector3 position)
+    private static readonly Color[] DefaultColors =
     {
-        Color[] colors =
-        {
-            new Color(1f, 0.75f, 0.2f),
-            new Color(1f, 0.35f, 0.65f),
-            new Color(0.3f, 0.85f, 1f),
-            Color.white
-        };
+        new Color(1f, 0.75f, 0.2f),
+        new Color(1f, 0.35f, 0.65f),
+        new Color(0.3f, 0.85f, 1f),
+        Color.white
+    };
 
-        for (int i = 0; i < 18; i++)
+    // tint: when supplied, the burst uses that color (blended toward white) instead of the
+    // default multi-color firework — used to match a pulled piece's tier color.
+    public static void Spawn(Vector3 position, Color? tint = null)
+    {
+        Color[] colors = tint.HasValue
+            ? new[] { tint.Value, Color.Lerp(tint.Value, Color.white, 0.55f), Color.white }
+            : DefaultColors;
+
+        const int sparkCount = 26;
+        for (int i = 0; i < sparkCount; i++)
         {
-            float angle = i * Mathf.PI * 2f / 18f + Random.Range(-0.12f, 0.12f);
-            Vector3 velocity = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0f) * Random.Range(1.3f, 2.7f);
+            float angle = i * Mathf.PI * 2f / sparkCount + Random.Range(-0.12f, 0.12f);
+            Vector3 velocity = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0f) * Random.Range(1.8f, 3.4f);
             var spark = new GameObject("Promotion Spark").AddComponent<PromotionSpark>();
-            spark.Initialize(position, velocity, colors[i % colors.Length], Random.Range(0.06f, 0.12f));
+            spark.Initialize(position, velocity, colors[i % colors.Length], Random.Range(0.22f, 0.38f));
         }
     }
 
@@ -408,7 +416,7 @@ public class PromotionSpark : MonoBehaviour
         spriteRenderer.sprite = PromotionFireworksEffect.SparkSprite;
         spriteRenderer.color = color;
         spriteRenderer.sortingOrder = 12000;
-        lifetime = Random.Range(0.35f, 0.6f);
+        lifetime = Random.Range(0.6f, 0.9f);
     }
 
     private void Update()

@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -123,38 +124,25 @@ public class UIManager : MonoBehaviour
     {
         if (gameOverPanel == null) return;
 
-        var restartButton = gameOverPanel.GetComponentInChildren<Button>(true);
+        Button restartButton = FindButtonByName(gameOverPanel, "Button_OK");
         if (restartButton == null) return;
 
+        // Content_Demo (the button container) ships inactive in the scene; the popup
+        // relies on it being switched on once its buttons are wired (see UpgradeUI's
+        // identical Content_Demo/Button_OK setup for the same convention).
+        restartButton.transform.parent.gameObject.SetActive(true);
         restartButton.onClick.AddListener(Restart);
 
-        var quitButton = FindQuitButton();
-        if (quitButton == null)
-        {
-            quitButton = Instantiate(restartButton, restartButton.transform.parent);
-            quitButton.name = "Button_Quit";
-
-            var restartTransform = restartButton.transform as RectTransform;
-            var quitTransform = quitButton.transform as RectTransform;
-            if (restartTransform != null && quitTransform != null)
-            {
-                quitTransform.anchoredPosition = restartTransform.anchoredPosition
-                    + Vector2.down * (restartTransform.rect.height + 20f);
-            }
-
-            var quitLabel = quitButton.GetComponentInChildren<TMP_Text>(true);
-            if (quitLabel != null)
-                quitLabel.text = "QUIT";
-        }
-
-        quitButton.onClick.AddListener(Quit);
+        Button returnTitleButton = FindButtonByName(gameOverPanel, "Button_ReturnTitle");
+        if (returnTitleButton != null)
+            returnTitleButton.onClick.AddListener(ReturnToTitle);
     }
 
-    private Button FindQuitButton()
+    private static Button FindButtonByName(GameObject root, string buttonName)
     {
-        foreach (var button in gameOverPanel.GetComponentsInChildren<Button>(true))
+        foreach (var button in root.GetComponentsInChildren<Button>(true))
         {
-            if (button.name == "Button_Quit")
+            if (button.name == buttonName)
                 return button;
         }
 
@@ -166,13 +154,10 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.Restart();
     }
 
-    public void Quit()
+    public void ReturnToTitle()
     {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-        Application.Quit();
-#endif
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("StandbyScenes");
     }
 
     private void Update()
@@ -195,14 +180,8 @@ public class UIManager : MonoBehaviour
 
     private void OnStateChanged(GameState state)
     {
-        if (state == GameState.GameOver)
-        {
-            if (gameOverPanel != null) gameOverPanel.SetActive(true);
-        }
-        else if (state == GameState.Victory)
-        {
-            if (victoryPanel != null) victoryPanel.SetActive(true);
-        }
+        if (gameOverPanel != null) gameOverPanel.SetActive(state == GameState.GameOver);
+        if (victoryPanel != null) victoryPanel.SetActive(state == GameState.Victory);
     }
 
     private void UpdateBuyButtonText()
@@ -313,6 +292,11 @@ public class UIManager : MonoBehaviour
     {
         if (statusSellButton != null || panelStatus == null || statusTextTitle == null) return;
 
+        // Borrow the panel's own sprite so the button matches the project's UI kit.
+        // Resources.GetBuiltinResource("UI/Skin/UISprite.psd") is not available in this Unity
+        // version — it logs an error and returns null, leaving the button without any art.
+        Sprite panelSprite = FindPanelSprite();
+
         var sellObject = new GameObject("StatusSellButton", typeof(RectTransform), typeof(Image), typeof(Button));
         sellObject.transform.SetParent(panelStatus.transform, false);
 
@@ -324,13 +308,17 @@ public class UIManager : MonoBehaviour
         sellRect.sizeDelta = new Vector2(230f, 44f);
 
         Image background = sellObject.GetComponent<Image>();
-        background.sprite = Resources.GetBuiltinResource<Sprite>("UI/Skin/UISprite.psd");
-        background.type = Image.Type.Sliced;
+        if (panelSprite != null)
+        {
+            background.sprite = panelSprite;
+            background.type = Image.Type.Sliced;
+        }
         background.color = new Color(0.65f, 0.2f, 0.18f, 0.95f);
 
         statusSellButton = sellObject.GetComponent<Button>();
         statusSellButton.targetGraphic = background;
         statusSellButton.onClick.AddListener(SellSelectedPiece);
+        SFXManager.Instance?.BindButtonClickSound(statusSellButton);
 
         statusSellText = Instantiate(statusTextTitle, sellObject.transform);
         statusSellText.name = "StatusSellText";
@@ -345,6 +333,17 @@ public class UIManager : MonoBehaviour
         textRect.pivot = new Vector2(0.5f, 0.5f);
         textRect.anchoredPosition = Vector2.zero;
         textRect.sizeDelta = Vector2.zero;
+    }
+
+    private Sprite FindPanelSprite()
+    {
+        foreach (Image image in panelStatus.GetComponentsInChildren<Image>(true))
+        {
+            if (image.sprite != null)
+                return image.sprite;
+        }
+
+        return null;
     }
 
     private void ToggleSelectedPieceInfo(Piece piece)

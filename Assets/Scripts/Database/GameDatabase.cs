@@ -13,6 +13,8 @@ public class GameDatabase
     public DatabaseTable<TierDrawRecord> TierDraw { get; private set; }
     public DatabaseTable<TierStatRecord> TierStats { get; private set; }
     public DatabaseTable<PieceUpgradeRecord> PieceUpgrades { get; private set; }
+    public DatabaseTable<DrawRecord> Draws { get; private set; }
+    public DatabaseTable<PromotionRecord> Promotions { get; private set; }
 
     private float totalTierWeight;
     private bool tierWeightCalculated;
@@ -28,7 +30,9 @@ public class GameDatabase
             Stages = LoadTable<StageRecord>("stage"),
             TierDraw = LoadTable<TierDrawRecord>("tierDraw"),
             TierStats = LoadTable<TierStatRecord>("tierStat"),
-            PieceUpgrades = LoadTable<PieceUpgradeRecord>("pieceUpgrade")
+            PieceUpgrades = LoadTable<PieceUpgradeRecord>("pieceUpgrade"),
+            Draws = LoadTable<DrawRecord>("draw"),
+            Promotions = LoadTable<PromotionRecord>("promotion")
         };
     }
 
@@ -70,6 +74,9 @@ public class GameDatabase
     }
 
     public int MaxUpgradeLevel => PieceUpgrades.rows.Count > 0 ? PieceUpgrades.rows.Max(row => row.level) : 0;
+
+    public DrawRecord[] GetDraws(string groupId) => Draws.rows.Where(row => row.groupId == groupId).ToArray();
+    public PromotionRecord GetPromotion(int proId) => Promotions.rows.FirstOrDefault(row => row.proId == proId);
 
     public Sprite GetSprite(string resourceId)
     {

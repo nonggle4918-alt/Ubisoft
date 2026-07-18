@@ -1,6 +1,6 @@
 ﻿id,name,type,Hp,speed,drop_gold,img_res,efx,sf
 int,string,enum,int,float,int,string,string,string
-20001,pawn,1,24,1.8,3,Enemy_Pawn,,
+20001,pawn,1,15,1.8,3,Enemy_Pawn,,
 20002,bishop,1,75,2.3,5,Enemy_Bishop,,
 20003,knight,1,120,5.5,10,Enemy_Knight,,
 20004,rook,1,300,3.5,15,Enemy_Rook,,

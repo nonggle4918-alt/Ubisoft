@@ -2,23 +2,23 @@
     "rows": [
         {
             "tier": 1,
-            "weight": 55
+            "weight": 55.0
         },
         {
             "tier": 2,
-            "weight": 33
+            "weight": 33.0
         },
         {
             "tier": 3,
-            "weight": 11
+            "weight": 11.0
         },
         {
             "tier": 4,
-            "weight": 0.95
+            "weight": 0.949999988079071
         },
         {
             "tier": 5,
-            "weight": 0.05
+            "weight": 0.05000000074505806
         }
     ]
 }

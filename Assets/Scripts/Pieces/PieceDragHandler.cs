@@ -177,6 +177,7 @@ public class PieceDragHandler : MonoBehaviour
         transform.position = new Vector3(targetCell.transform.position.x, targetCell.transform.position.y, 0);
         targetCell.SetPiece(piece);
         piece.CurrentCell = targetCell;
+        SFXManager.Instance?.PlayUnitMoved();
         MoveRangeToPiece();
     }
 

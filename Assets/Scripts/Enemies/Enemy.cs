@@ -41,6 +41,7 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         ApplyData();
+        EnemyHealthBar.Attach(this);
     }
 
     private void Update()
@@ -120,6 +121,7 @@ public class Enemy : MonoBehaviour
             return;
         }
 
+        SFXManager.Instance?.PlayEnemyHit();
         PlayHitFlash();
     }
 
@@ -179,6 +181,7 @@ public class Enemy : MonoBehaviour
         int goldReward = data != null ? data.goldReward : 10;
         GameManager.Instance.AddGold(goldReward);
         OnAnyEnemyRemoved?.Invoke();
+        SFXManager.Instance?.PlayEnemyDestroyed();
         SpawnDeathFragments();
         Destroy(gameObject);
     }

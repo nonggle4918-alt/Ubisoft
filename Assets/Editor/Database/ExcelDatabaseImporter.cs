@@ -29,9 +29,13 @@ public static class ExcelDatabaseImporter
         ImportSpawns();
         ImportStages();
         ImportPieceUpgrades();
+        ImportTierStats();
+        ImportTierDraw();
+        ImportGachaDraws();
+        ImportPromotions();
 
         AssetDatabase.Refresh();
-        Debug.Log("Excel database import completed. Gacha data was skipped.");
+        Debug.Log("Excel database import completed.");
     }
 
     private static void ImportAssets()
@@ -51,19 +55,27 @@ public static class ExcelDatabaseImporter
 
     private static void ImportCharacters()
     {
+        // Piece.csv is the updated source (adds the promotion-hero rows) but dropped the
+        // Cost column, so cost is filled in from the legacy character sheet where available.
+        Dictionary<int, int> legacyCostById = ReadTable("character.xlsx", "id")
+            .ToDictionary(row => row.GetInt("id"), row => row.GetInt("Cost"));
+
         var output = new DatabaseTable<CharacterRecord>();
-        foreach (ExcelRow row in ReadTable("character.xlsx", "id"))
+        foreach (ExcelRow row in ReadTable("Piece.xlsx", "Piece_id"))
         {
+            int id = row.GetInt("Piece_id");
+            legacyCostById.TryGetValue(id, out int cost);
+
             output.rows.Add(new CharacterRecord
             {
-                id = row.GetInt("id"),
+                id = id,
                 name = row.GetString("name"),
                 type = row.GetString("type"),
                 attackDamage = row.GetInt("Attack_Damage"),
                 attackRange = row.GetFloat("Attack_Range"),
                 attackCooldown = row.GetFloat("Attack_Cooldown"),
-                cost = row.GetInt("Cost"),
-                imageResourceId = row.GetString("img_res"),
+                cost = cost,
+                imageResourceId = row.GetString("Res_id"),
                 effectId = row.GetString("efx"),
                 soundId = row.GetString("sf")
             });
@@ -142,6 +154,74 @@ public static class ExcelDatabaseImporter
             });
         }
         WriteJson("pieceUpgrade", output);
+    }
+
+    // Per-tier stats are authored as one sheet per piece (TierStatDB_<Piece>.csv); merge them
+    // into the single combined table the runtime expects.
+    private static void ImportTierStats()
+    {
+        var output = new DatabaseTable<TierStatRecord>();
+        foreach (string pieceName in new[] { "Bishop", "Knight", "Rook" })
+        {
+            foreach (ExcelRow row in ReadTable($"TierStatDB_{pieceName}.xlsx", "id"))
+            {
+                output.rows.Add(new TierStatRecord
+                {
+                    id = row.GetInt("id"),
+                    tier = row.GetInt("tier"),
+                    attackDamage = row.GetFloat("Attack_Damage"),
+                    attackRange = row.GetFloat("Attack_Range"),
+                    attackCooldown = row.GetFloat("Attack_Cooldown"),
+                    cost = row.GetInt("cost"),
+                    sell = row.GetInt("sell")
+                });
+            }
+        }
+        WriteJson("tierStat", output);
+    }
+
+    private static void ImportTierDraw()
+    {
+        var output = new DatabaseTable<TierDrawRecord>();
+        foreach (ExcelRow row in ReadTable("TierDrawDB.xlsx", "Tier"))
+        {
+            output.rows.Add(new TierDrawRecord
+            {
+                tier = row.GetInt("Tier"),
+                weight = row.GetFloat("Weight")
+            });
+        }
+        WriteJson("tierDraw", output);
+    }
+
+    private static void ImportGachaDraws()
+    {
+        var output = new DatabaseTable<DrawRecord>();
+        foreach (ExcelRow row in ReadTable("Draw.xlsx", "piece_ID"))
+        {
+            output.rows.Add(new DrawRecord
+            {
+                pieceId = row.GetInt("piece_ID"),
+                groupId = row.GetString("group_id"),
+                weight = row.GetFloat("DrawDB")
+            });
+        }
+        WriteJson("draw", output);
+    }
+
+    private static void ImportPromotions()
+    {
+        var output = new DatabaseTable<PromotionRecord>();
+        foreach (ExcelRow row in ReadTable("Promotion.xlsx", "pro_id"))
+        {
+            output.rows.Add(new PromotionRecord
+            {
+                proId = row.GetInt("pro_id"),
+                turn = row.GetInt("turn"),
+                chance = row.GetFloat("chance")
+            });
+        }
+        WriteJson("promotion", output);
     }
 
     private static void WriteJson<T>(string fileName, DatabaseTable<T> table)
