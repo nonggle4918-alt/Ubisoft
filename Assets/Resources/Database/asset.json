@@ -1,32 +1,92 @@
 {
     "rows": [
         {
-            "resourceId": "Char_Bishop",
+            "resourceId": "Piece_Bishop",
             "type": "img",
             "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Bishop"
         },
         {
-            "resourceId": "Char_Knight",
+            "resourceId": "Piece_Bishop_2",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Bishop_2"
+        },
+        {
+            "resourceId": "Piece_Bishop_3",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Bishop_3"
+        },
+        {
+            "resourceId": "Piece_Bishop_4",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Bishop_4"
+        },
+        {
+            "resourceId": "Piece_Bishop_5",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Bishop_5"
+        },
+        {
+            "resourceId": "Piece_Knight",
             "type": "img",
             "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Knight"
         },
         {
-            "resourceId": "Char_Rook",
+            "resourceId": "Piece_Knight_2",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Knight_2"
+        },
+        {
+            "resourceId": "Piece_Knight_3",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Knight_3"
+        },
+        {
+            "resourceId": "Piece_Knight_4",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Knight_4"
+        },
+        {
+            "resourceId": "Piece_Knight_5",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Knight_5"
+        },
+        {
+            "resourceId": "Piece_Rook",
             "type": "img",
             "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Rook"
         },
         {
-            "resourceId": "Char_Pawn",
+            "resourceId": "Piece_Rook_2",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Rook_2"
+        },
+        {
+            "resourceId": "Piece_Rook_3",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Rook_3"
+        },
+        {
+            "resourceId": "Piece_Rook_4",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Rook_4"
+        },
+        {
+            "resourceId": "Piece_Rook_5",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Rook_5"
+        },
+        {
+            "resourceId": "Piece_Pawn",
             "type": "img",
             "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Pawn"
         },
         {
-            "resourceId": "Char_Queen",
+            "resourceId": "Piece_Queen",
             "type": "img",
             "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Queen"
         },
         {
-            "resourceId": "Char_King",
+            "resourceId": "Piece_King",
             "type": "img",
             "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_King"
         },
@@ -61,64 +121,34 @@
             "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\Black\\Char_Black_King"
         },
         {
-            "resourceId": "Char_Bishop_2",
+            "resourceId": "Piece_Unicorn",
             "type": "img",
-            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Bishop_2"
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\Black\\Char_White_Unicorn"
         },
         {
-            "resourceId": "Char_Bishop_3",
+            "resourceId": "Piece_Pegasus",
             "type": "img",
-            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Bishop_3"
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\Black\\Char_White_Pegasus"
         },
         {
-            "resourceId": "Char_Bishop_4",
+            "resourceId": "Piece_Dragon",
             "type": "img",
-            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Bishop_4"
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\Black\\Char_White_Dragon"
         },
         {
-            "resourceId": "Char_Bishop_5",
+            "resourceId": "Piece_Checkmate",
             "type": "img",
-            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Bishop_5"
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\Black\\Char_White_Checkmate"
         },
         {
-            "resourceId": "Char_Knight_2",
+            "resourceId": "Piece_ShoutgunKing",
             "type": "img",
-            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Knight_2"
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\Black\\Char_White_ShotgunKing"
         },
         {
-            "resourceId": "Char_Knight_3",
+            "resourceId": "Piece_Mage",
             "type": "img",
-            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Knight_3"
-        },
-        {
-            "resourceId": "Char_Knight_4",
-            "type": "img",
-            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Knight_4"
-        },
-        {
-            "resourceId": "Char_Knight_5",
-            "type": "img",
-            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Knight_5"
-        },
-        {
-            "resourceId": "Char_Rook_2",
-            "type": "img",
-            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Rook_2"
-        },
-        {
-            "resourceId": "Char_Rook_3",
-            "type": "img",
-            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Rook_3"
-        },
-        {
-            "resourceId": "Char_Rook_4",
-            "type": "img",
-            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Rook_4"
-        },
-        {
-            "resourceId": "Char_Rook_5",
-            "type": "img",
-            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\White\\Char_White_Rook_5"
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\Black\\Char_Black_King"
         }
     ]
 }
