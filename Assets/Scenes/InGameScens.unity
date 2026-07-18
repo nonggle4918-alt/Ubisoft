@@ -2569,23 +2569,23 @@ MonoBehaviour:
   enemyDestroyedClip: {fileID: 8300000, guid: 56bf003af69058e4ab6ba3b3f1ccd57e, type: 3}
   enemySpawnedClip: {fileID: 8300000, guid: 59f33961595914d05ad08d20d14a8ef1, type: 3}
   unitPurchasedClip: {fileID: 8300000, guid: 31fb8bed0db703c4297102592d110504, type: 3}
-  unitMovedClip: {fileID: 8300000, guid: 59f33961595914d05ad08d20d14a8ef1, type: 3}
+  unitMovedClip: {fileID: 8300000, guid: 27999f1915ee74a39bad0a2aecc8e31c, type: 3}
   tier4Clip: {fileID: 8300000, guid: 4dc7e7202a011489388ddec83b4ce6a9, type: 3}
-  tier5Clip: {fileID: 8300000, guid: 2e42add3f79a2bf4a9de02428ea08310, type: 3}
-  heroClip: {fileID: 8300000, guid: 0fafbfb720add46a4aeb5683f05c2257, type: 3}
-  buttonClickClip: {fileID: 8300000, guid: 4900f31c14fb040a083671c67a0de32e, type: 3}
+  tier5Clip: {fileID: 8300000, guid: 4d3d990f9e9b62d49a2eb253985a671e, type: 3}
+  heroClip: {fileID: 8300000, guid: 00417b6cb1835d9449c5def5cd355b1a, type: 3}
+  buttonClickClip: {fileID: 8300000, guid: e7650a2f8d04a104c90a53fbcbb88edc, type: 3}
   attackDirectClip: {fileID: 8300000, guid: db04da981f14b1c48958ec93a90aad62, type: 3}
-  attackProjectileClip: {fileID: 0}
-  attackDiagonalProjectileClip: {fileID: 0}
-  attackLaserClip: {fileID: 0}
-  attackHomingClip: {fileID: 0}
-  attackSplashClip: {fileID: 0}
-  attackPegasusClip: {fileID: 0}
-  attackDragonClip: {fileID: 0}
-  attackCannonClip: {fileID: 0}
-  attackMeteorClip: {fileID: 0}
-  attackAlchemyClip: {fileID: 0}
-  volume: 0.4
+  attackProjectileClip: {fileID: 8300000, guid: d0e54e67fd0a27243af1e20dac0d24a0, type: 3}
+  attackDiagonalProjectileClip: {fileID: 8300000, guid: d0e54e67fd0a27243af1e20dac0d24a0, type: 3}
+  attackLaserClip: {fileID: 8300000, guid: 7ae447072fdf73d48a28151f673912ea, type: 3}
+  attackHomingClip: {fileID: 8300000, guid: 09c91bbbc5cdf7c48aeb48df0eb43120, type: 3}
+  attackSplashClip: {fileID: 8300000, guid: 6b3530e3ed930624d8ec1ba0eab547a2, type: 3}
+  attackPegasusClip: {fileID: 8300000, guid: 1fe1855c82f68d64d9364534dcd857ea, type: 3}
+  attackDragonClip: {fileID: 8300000, guid: 3d46d5eb02eb00e4c964455b38831ff0, type: 3}
+  attackCannonClip: {fileID: 8300000, guid: 491fa2fff7f4c1d43aa2d0e24270879e, type: 3}
+  attackMeteorClip: {fileID: 8300000, guid: 74f392b043a5f974c86a626369809204, type: 3}
+  attackAlchemyClip: {fileID: 8300000, guid: 01c425456796e4446b7004d537b8419e, type: 3}
+  volume: 0.35
 --- !u!4 &1080712093
 Transform:
   m_ObjectHideFlags: 0
