@@ -7,6 +7,18 @@ public class Enemy : MonoBehaviour
 {
     private const int DeathFragmentCount = 10;
 
+    // Sustained damage sources (rook laser, dragon breath) tick many times per second,
+    // so the hit sound needs its own cooldown or every tick queues another voice.
+    private const float HitSfxCooldown = 0.15f;
+
+    // Enemies circle the board instead of stopping at the end of the path. A regular
+    // enemy that survives this many laps leaks and costs the player a life; a boss that
+    // survives its own (larger) allowance ends the run outright.
+    private const int NormalEnemyLapLimit = 2;
+    private const int BossLapLimit = 3;
+
+    public static event Action OnBossEscaped;
+
     public static event Action OnAnyEnemyRemoved;
 
     [SerializeField] private PieceData data;
@@ -22,6 +34,11 @@ public class Enemy : MonoBehaviour
     private float slowTimer;
     private float slowMultiplier = 1f;
     private bool isDying;
+    private float nextHitSfxTime;
+    private int lapsCompleted;
+
+    public bool IsBoss => data != null && data.isBoss;
+    public int LapsCompleted => lapsCompleted;
 
     private static readonly Dictionary<Sprite, Sprite[]> fragmentSpriteCache = new();
     private static readonly Color HitFlashColor = new Color(1f, 0.3f, 0.25f);
@@ -64,7 +81,7 @@ public class Enemy : MonoBehaviour
         {
             currentWaypointIndex++;
             if (currentWaypointIndex >= waypoints.Count)
-                ReachEnd();
+                CompleteLap();
         }
     }
 
@@ -108,7 +125,9 @@ public class Enemy : MonoBehaviour
         spriteRenderer.flipX = moveDirection.x < 0f;
     }
 
-    public void TakeDamage(float damage)
+    // 'source' is the ally piece responsible for the damage, used to credit the kill.
+    // Left null by effects that have no single owner.
+    public void TakeDamage(float damage, Piece source = null)
     {
         if (isDying) return;
 
@@ -117,11 +136,18 @@ public class Enemy : MonoBehaviour
 
         if (CurrentHP <= 0)
         {
+            if (source != null)
+                source.RegisterKill();
             Die();
             return;
         }
 
-        SFXManager.Instance?.PlayEnemyHit();
+        if (Time.time >= nextHitSfxTime)
+        {
+            nextHitSfxTime = Time.time + HitSfxCooldown;
+            SFXManager.Instance?.PlayEnemyHit();
+        }
+
         PlayHitFlash();
     }
 
@@ -245,8 +271,27 @@ public class Enemy : MonoBehaviour
         return quadrants;
     }
 
-    private void ReachEnd()
+    private void CompleteLap()
     {
+        lapsCompleted++;
+
+        int limit = IsBoss ? BossLapLimit : NormalEnemyLapLimit;
+        if (lapsCompleted < limit)
+        {
+            // Another lap around the board; the player gets more chances to kill it.
+            currentWaypointIndex = 0;
+            return;
+        }
+
+        if (IsBoss)
+        {
+            // A boss that cannot be brought down in its allowance ends the run.
+            OnBossEscaped?.Invoke();
+            OnAnyEnemyRemoved?.Invoke();
+            Destroy(gameObject);
+            return;
+        }
+
         GameManager.Instance.LoseLife(1);
         OnAnyEnemyRemoved?.Invoke();
         Destroy(gameObject);

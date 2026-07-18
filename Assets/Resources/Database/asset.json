@@ -121,6 +121,61 @@
             "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\Black\\Char_Black_King"
         },
         {
+            "resourceId": "Enemy_ShieldPawn",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\Black\\Char_Black_ShieldPawn"
+        },
+        {
+            "resourceId": "Enemy_BombPawn",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\Black\\Char_Black_BombPawn"
+        },
+        {
+            "resourceId": "Enemy_RavenBishop",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\Black\\Char_Black_RavenBishop"
+        },
+        {
+            "resourceId": "Enemy_BerserkerKnight",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\Black\\Char_Black_BerserkerKnight"
+        },
+        {
+            "resourceId": "Enemy_DarkMage",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\Black\\Char_Black_DarkMage"
+        },
+        {
+            "resourceId": "Enemy_HeavyRook",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\Black\\Char_Black_HeavyRook"
+        },
+        {
+            "resourceId": "Enemy_MimicRook",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\Black\\Char_Black_MimicRook"
+        },
+        {
+            "resourceId": "Enemy_BossHaetae",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\Black\\Char_Black_BossHaetae"
+        },
+        {
+            "resourceId": "Enemy_BossDragon",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\Black\\Char_Black_BossDragon"
+        },
+        {
+            "resourceId": "Enemy_BossChimera",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\Black\\Char_Black_BossChimera"
+        },
+        {
+            "resourceId": "Enemy_BossColossus",
+            "type": "img",
+            "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\Black\\Char_Black_BossColossus"
+        },
+        {
             "resourceId": "Piece_Unicorn",
             "type": "img",
             "path": "C:\\Project\\Ubisoft\\Assets\\Resources\\Sprites\\Black\\Char_White_Unicorn"

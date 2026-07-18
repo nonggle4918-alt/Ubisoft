@@ -59,6 +59,396 @@
             "nextId": 111,
             "stageNumber": 10,
             "spawnGroupId": "Stg_Spawn_10"
+        },
+        {
+            "id": 111,
+            "nextId": 112,
+            "stageNumber": 11,
+            "spawnGroupId": "Stg_Spawn_11"
+        },
+        {
+            "id": 112,
+            "nextId": 113,
+            "stageNumber": 12,
+            "spawnGroupId": "Stg_Spawn_12"
+        },
+        {
+            "id": 113,
+            "nextId": 114,
+            "stageNumber": 13,
+            "spawnGroupId": "Stg_Spawn_13"
+        },
+        {
+            "id": 114,
+            "nextId": 115,
+            "stageNumber": 14,
+            "spawnGroupId": "Stg_Spawn_14"
+        },
+        {
+            "id": 115,
+            "nextId": 116,
+            "stageNumber": 15,
+            "spawnGroupId": "Stg_Spawn_15"
+        },
+        {
+            "id": 116,
+            "nextId": 117,
+            "stageNumber": 16,
+            "spawnGroupId": "Stg_Spawn_16"
+        },
+        {
+            "id": 117,
+            "nextId": 118,
+            "stageNumber": 17,
+            "spawnGroupId": "Stg_Spawn_17"
+        },
+        {
+            "id": 118,
+            "nextId": 119,
+            "stageNumber": 18,
+            "spawnGroupId": "Stg_Spawn_18"
+        },
+        {
+            "id": 119,
+            "nextId": 120,
+            "stageNumber": 19,
+            "spawnGroupId": "Stg_Spawn_19"
+        },
+        {
+            "id": 120,
+            "nextId": 121,
+            "stageNumber": 20,
+            "spawnGroupId": "Stg_Spawn_20"
+        },
+        {
+            "id": 121,
+            "nextId": 122,
+            "stageNumber": 21,
+            "spawnGroupId": "Stg_Spawn_21"
+        },
+        {
+            "id": 122,
+            "nextId": 123,
+            "stageNumber": 22,
+            "spawnGroupId": "Stg_Spawn_22"
+        },
+        {
+            "id": 123,
+            "nextId": 124,
+            "stageNumber": 23,
+            "spawnGroupId": "Stg_Spawn_23"
+        },
+        {
+            "id": 124,
+            "nextId": 125,
+            "stageNumber": 24,
+            "spawnGroupId": "Stg_Spawn_24"
+        },
+        {
+            "id": 125,
+            "nextId": 126,
+            "stageNumber": 25,
+            "spawnGroupId": "Stg_Spawn_25"
+        },
+        {
+            "id": 126,
+            "nextId": 127,
+            "stageNumber": 26,
+            "spawnGroupId": "Stg_Spawn_26"
+        },
+        {
+            "id": 127,
+            "nextId": 128,
+            "stageNumber": 27,
+            "spawnGroupId": "Stg_Spawn_27"
+        },
+        {
+            "id": 128,
+            "nextId": 129,
+            "stageNumber": 28,
+            "spawnGroupId": "Stg_Spawn_28"
+        },
+        {
+            "id": 129,
+            "nextId": 130,
+            "stageNumber": 29,
+            "spawnGroupId": "Stg_Spawn_29"
+        },
+        {
+            "id": 130,
+            "nextId": 131,
+            "stageNumber": 30,
+            "spawnGroupId": "Stg_Spawn_30"
+        },
+        {
+            "id": 131,
+            "nextId": 132,
+            "stageNumber": 31,
+            "spawnGroupId": "Stg_Spawn_31"
+        },
+        {
+            "id": 132,
+            "nextId": 133,
+            "stageNumber": 32,
+            "spawnGroupId": "Stg_Spawn_32"
+        },
+        {
+            "id": 133,
+            "nextId": 134,
+            "stageNumber": 33,
+            "spawnGroupId": "Stg_Spawn_33"
+        },
+        {
+            "id": 134,
+            "nextId": 135,
+            "stageNumber": 34,
+            "spawnGroupId": "Stg_Spawn_34"
+        },
+        {
+            "id": 135,
+            "nextId": 136,
+            "stageNumber": 35,
+            "spawnGroupId": "Stg_Spawn_35"
+        },
+        {
+            "id": 136,
+            "nextId": 137,
+            "stageNumber": 36,
+            "spawnGroupId": "Stg_Spawn_36"
+        },
+        {
+            "id": 137,
+            "nextId": 138,
+            "stageNumber": 37,
+            "spawnGroupId": "Stg_Spawn_37"
+        },
+        {
+            "id": 138,
+            "nextId": 139,
+            "stageNumber": 38,
+            "spawnGroupId": "Stg_Spawn_38"
+        },
+        {
+            "id": 139,
+            "nextId": 140,
+            "stageNumber": 39,
+            "spawnGroupId": "Stg_Spawn_39"
+        },
+        {
+            "id": 140,
+            "nextId": 141,
+            "stageNumber": 40,
+            "spawnGroupId": "Stg_Spawn_40"
+        },
+        {
+            "id": 141,
+            "nextId": 142,
+            "stageNumber": 41,
+            "spawnGroupId": "Stg_Spawn_41"
+        },
+        {
+            "id": 142,
+            "nextId": 143,
+            "stageNumber": 42,
+            "spawnGroupId": "Stg_Spawn_42"
+        },
+        {
+            "id": 143,
+            "nextId": 144,
+            "stageNumber": 43,
+            "spawnGroupId": "Stg_Spawn_43"
+        },
+        {
+            "id": 144,
+            "nextId": 145,
+            "stageNumber": 44,
+            "spawnGroupId": "Stg_Spawn_44"
+        },
+        {
+            "id": 145,
+            "nextId": 146,
+            "stageNumber": 45,
+            "spawnGroupId": "Stg_Spawn_45"
+        },
+        {
+            "id": 146,
+            "nextId": 147,
+            "stageNumber": 46,
+            "spawnGroupId": "Stg_Spawn_46"
+        },
+        {
+            "id": 147,
+            "nextId": 148,
+            "stageNumber": 47,
+            "spawnGroupId": "Stg_Spawn_47"
+        },
+        {
+            "id": 148,
+            "nextId": 149,
+            "stageNumber": 48,
+            "spawnGroupId": "Stg_Spawn_48"
+        },
+        {
+            "id": 149,
+            "nextId": 150,
+            "stageNumber": 49,
+            "spawnGroupId": "Stg_Spawn_49"
+        },
+        {
+            "id": 150,
+            "nextId": 151,
+            "stageNumber": 50,
+            "spawnGroupId": "Stg_Spawn_50"
+        },
+        {
+            "id": 151,
+            "nextId": 152,
+            "stageNumber": 51,
+            "spawnGroupId": "Stg_Spawn_51"
+        },
+        {
+            "id": 152,
+            "nextId": 153,
+            "stageNumber": 52,
+            "spawnGroupId": "Stg_Spawn_52"
+        },
+        {
+            "id": 153,
+            "nextId": 154,
+            "stageNumber": 53,
+            "spawnGroupId": "Stg_Spawn_53"
+        },
+        {
+            "id": 154,
+            "nextId": 155,
+            "stageNumber": 54,
+            "spawnGroupId": "Stg_Spawn_54"
+        },
+        {
+            "id": 155,
+            "nextId": 156,
+            "stageNumber": 55,
+            "spawnGroupId": "Stg_Spawn_55"
+        },
+        {
+            "id": 156,
+            "nextId": 157,
+            "stageNumber": 56,
+            "spawnGroupId": "Stg_Spawn_56"
+        },
+        {
+            "id": 157,
+            "nextId": 158,
+            "stageNumber": 57,
+            "spawnGroupId": "Stg_Spawn_57"
+        },
+        {
+            "id": 158,
+            "nextId": 159,
+            "stageNumber": 58,
+            "spawnGroupId": "Stg_Spawn_58"
+        },
+        {
+            "id": 159,
+            "nextId": 160,
+            "stageNumber": 59,
+            "spawnGroupId": "Stg_Spawn_59"
+        },
+        {
+            "id": 160,
+            "nextId": 161,
+            "stageNumber": 60,
+            "spawnGroupId": "Stg_Spawn_60"
+        },
+        {
+            "id": 161,
+            "nextId": 162,
+            "stageNumber": 61,
+            "spawnGroupId": "Stg_Spawn_61"
+        },
+        {
+            "id": 162,
+            "nextId": 163,
+            "stageNumber": 62,
+            "spawnGroupId": "Stg_Spawn_62"
+        },
+        {
+            "id": 163,
+            "nextId": 164,
+            "stageNumber": 63,
+            "spawnGroupId": "Stg_Spawn_63"
+        },
+        {
+            "id": 164,
+            "nextId": 165,
+            "stageNumber": 64,
+            "spawnGroupId": "Stg_Spawn_64"
+        },
+        {
+            "id": 165,
+            "nextId": 166,
+            "stageNumber": 65,
+            "spawnGroupId": "Stg_Spawn_65"
+        },
+        {
+            "id": 166,
+            "nextId": 167,
+            "stageNumber": 66,
+            "spawnGroupId": "Stg_Spawn_66"
+        },
+        {
+            "id": 167,
+            "nextId": 168,
+            "stageNumber": 67,
+            "spawnGroupId": "Stg_Spawn_67"
+        },
+        {
+            "id": 168,
+            "nextId": 169,
+            "stageNumber": 68,
+            "spawnGroupId": "Stg_Spawn_68"
+        },
+        {
+            "id": 169,
+            "nextId": 170,
+            "stageNumber": 69,
+            "spawnGroupId": "Stg_Spawn_69"
+        },
+        {
+            "id": 170,
+            "nextId": 171,
+            "stageNumber": 70,
+            "spawnGroupId": "Stg_Spawn_70"
+        },
+        {
+            "id": 171,
+            "nextId": 172,
+            "stageNumber": 71,
+            "spawnGroupId": "Stg_Spawn_71"
+        },
+        {
+            "id": 172,
+            "nextId": 173,
+            "stageNumber": 72,
+            "spawnGroupId": "Stg_Spawn_72"
+        },
+        {
+            "id": 173,
+            "nextId": 174,
+            "stageNumber": 73,
+            "spawnGroupId": "Stg_Spawn_73"
+        },
+        {
+            "id": 174,
+            "nextId": 175,
+            "stageNumber": 74,
+            "spawnGroupId": "Stg_Spawn_74"
+        },
+        {
+            "id": 175,
+            "nextId": 0,
+            "stageNumber": 75,
+            "spawnGroupId": "Stg_Spawn_75"
         }
     ]
 }

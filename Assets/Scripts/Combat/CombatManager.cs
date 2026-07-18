@@ -136,6 +136,7 @@ public class CombatManager : MonoBehaviour
             Projectile projComp = proj.GetComponent<Projectile>();
             if (projComp != null)
             {
+                projComp.SetOwner(piece);
                 projComp.InitializeLine(dir, atk, piece.Data.projectileSpeed, maxDist);
                 projComp.SetColor(tierColor);
                 projComp.SetSortingOrder(11000);
@@ -184,6 +185,7 @@ public class CombatManager : MonoBehaviour
         Projectile projComp = proj.GetComponent<Projectile>();
         if (projComp != null)
         {
+            projComp.SetOwner(piece);
             projComp.InitializeHoming(target, atk, piece.Data.projectileSpeed, piece.Data.homingDuration);
             projComp.ConfigureAsQueenMainOrb();
         }
@@ -212,7 +214,7 @@ public class CombatManager : MonoBehaviour
             if (enemy == null || enemy.IsDead) continue;
             if (Vector3.Distance(enemy.transform.position, target.transform.position) <= piece.Data.splashRadius)
             {
-                enemy.TakeDamage(atk);
+                enemy.TakeDamage(atk, piece);
                 enemy.ApplySlow(piece.Data.slowPercent / 100f, 2f);
             }
         }
@@ -261,7 +263,7 @@ public class CombatManager : MonoBehaviour
         piece.PlayAttackPunch(piece.GetAttackCooldown());
         lastAttackTime[piece] = Time.time;
         PlayAttackSfx(piece);
-        CannonShell.Spawn(piece.transform.position, (target.transform.position - piece.transform.position).normalized, piece.GetAttackDamage(), piece.Data.projectileSpeed, piece.Data.attackRange, piece.Data.splashRadius);
+        CannonShell.Spawn(piece, piece.transform.position, (target.transform.position - piece.transform.position).normalized, piece.GetAttackDamage(), piece.Data.projectileSpeed, piece.Data.attackRange, piece.Data.splashRadius);
     }
 
     private void TryMeteorAttack(Piece piece)
@@ -274,7 +276,7 @@ public class CombatManager : MonoBehaviour
         piece.PlayAttackPunch(piece.GetAttackCooldown());
         lastAttackTime[piece] = Time.time;
         PlayAttackSfx(piece);
-        MeteorStrike.Spawn(target.transform.position, piece.GetAttackDamage() * 2.5f, piece.Data.splashRadius);
+        MeteorStrike.Spawn(piece, target.transform.position, piece.GetAttackDamage() * 2.5f, piece.Data.splashRadius);
     }
 
     private void TryAlchemyAttack(Piece piece)
@@ -286,7 +288,7 @@ public class CombatManager : MonoBehaviour
         piece.PlayAttackPunch(piece.GetAttackCooldown());
         lastAttackTime[piece] = Time.time;
         PlayAttackSfx(piece);
-        PotionProjectile.Spawn(piece.transform.position, (target.transform.position - piece.transform.position).normalized, piece.GetAttackDamage(), piece.Data.projectileSpeed, piece.Data.attackRange, piece.Data.splashRadius);
+        PotionProjectile.Spawn(piece, piece.transform.position, (target.transform.position - piece.transform.position).normalized, piece.GetAttackDamage(), piece.Data.projectileSpeed, piece.Data.attackRange, piece.Data.splashRadius);
     }
 
     private void ApplyKingBuffs()
@@ -349,7 +351,10 @@ public class CombatManager : MonoBehaviour
         GameObject proj = Instantiate(projectilePrefab, piece.transform.position, Quaternion.identity);
         Projectile projComp = proj.GetComponent<Projectile>();
         if (projComp != null)
+        {
+            projComp.SetOwner(piece);
             projComp.Initialize(target, damage, piece.Data.projectileSpeed);
+        }
     }
 
     private void FireQueenSupportProjectile(Piece piece, Vector3 mainDirection, float angleOffset, float damage)
@@ -596,6 +601,7 @@ public static class HeroBurstEffect
 
 public class MultiLungeEffect : MonoBehaviour
 {
+    private Piece owner;
     private Enemy target;
     private Vector3 origin;
     private Vector3 impact;
@@ -617,6 +623,7 @@ public class MultiLungeEffect : MonoBehaviour
         renderer.color = new Color(1f, 1f, 1f, 0.9f);
         renderer.flipX = source.flipX;
         renderer.sortingOrder = source.sortingOrder + 10;
+        effect.owner = owner;
         effect.target = target;
         effect.origin = owner.transform.position;
         Vector3 delta = target.transform.position - effect.origin;
@@ -633,7 +640,7 @@ public class MultiLungeEffect : MonoBehaviour
         {
             applied = true;
             if (target != null && !target.IsDead)
-                target.TakeDamage(damage);
+                target.TakeDamage(damage, owner);
         }
         if (progress >= 1f)
             Destroy(gameObject);
@@ -711,7 +718,7 @@ public class DragonBreathEffect : MonoBehaviour
             float damage = Mathf.Min(damageThisTick, maximumDamage - dealt);
             if (damage <= 0f) continue;
 
-            enemy.TakeDamage(damage);
+            enemy.TakeDamage(damage, owner);
             damageByEnemy[enemy] = dealt + damage;
         }
     }
@@ -736,6 +743,7 @@ public class DragonBreathEffect : MonoBehaviour
 
 public class CannonShell : MonoBehaviour
 {
+    private Piece owner;
     private Vector3 direction;
     private Vector3 origin;
     private float damage;
@@ -743,9 +751,10 @@ public class CannonShell : MonoBehaviour
     private float range;
     private float explosionRadius;
 
-    public static void Spawn(Vector3 position, Vector3 fireDirection, float attack, float moveSpeed, float maxRange, float radius)
+    public static void Spawn(Piece owner, Vector3 position, Vector3 fireDirection, float attack, float moveSpeed, float maxRange, float radius)
     {
         var shell = new GameObject("Cannon Shell").AddComponent<CannonShell>();
+        shell.owner = owner;
         shell.transform.position = position + Vector3.back * 0.2f;
         shell.direction = fireDirection.sqrMagnitude > 0.001f ? fireDirection.normalized : Vector3.right;
         shell.origin = position;
@@ -786,7 +795,7 @@ public class CannonShell : MonoBehaviour
         foreach (Enemy enemy in FindObjectsByType<Enemy>(FindObjectsSortMode.None))
         {
             if (enemy != null && !enemy.IsDead && Vector3.Distance(transform.position, enemy.transform.position) <= explosionRadius)
-                enemy.TakeDamage(damage);
+                enemy.TakeDamage(damage, owner);
         }
         Destroy(gameObject);
     }
@@ -794,14 +803,16 @@ public class CannonShell : MonoBehaviour
 
 public class MeteorStrike : MonoBehaviour
 {
+    private Piece owner;
     private Vector3 targetPosition;
     private float damage;
     private float radius;
     private float elapsed;
 
-    public static void Spawn(Vector3 target, float attackDamage, float explosionRadius)
+    public static void Spawn(Piece owner, Vector3 target, float attackDamage, float explosionRadius)
     {
         var meteor = new GameObject("Astronomer Meteor").AddComponent<MeteorStrike>();
+        meteor.owner = owner;
         meteor.targetPosition = target;
         meteor.transform.position = target + Vector3.up * 3.5f + Vector3.back * 0.2f;
         meteor.damage = attackDamage;
@@ -824,7 +835,7 @@ public class MeteorStrike : MonoBehaviour
         foreach (Enemy enemy in FindObjectsByType<Enemy>(FindObjectsSortMode.None))
         {
             if (enemy != null && !enemy.IsDead && Vector3.Distance(targetPosition, enemy.transform.position) <= radius)
-                enemy.TakeDamage(damage);
+                enemy.TakeDamage(damage, owner);
         }
         Destroy(gameObject);
     }
@@ -832,6 +843,7 @@ public class MeteorStrike : MonoBehaviour
 
 public class PotionProjectile : MonoBehaviour
 {
+    private Piece owner;
     private Vector3 direction;
     private Vector3 origin;
     private float damage;
@@ -839,9 +851,10 @@ public class PotionProjectile : MonoBehaviour
     private float range;
     private float zoneRadius;
 
-    public static void Spawn(Vector3 position, Vector3 throwDirection, float attack, float moveSpeed, float maxRange, float stickyRadius)
+    public static void Spawn(Piece owner, Vector3 position, Vector3 throwDirection, float attack, float moveSpeed, float maxRange, float stickyRadius)
     {
         var potion = new GameObject("Alchemist Potion").AddComponent<PotionProjectile>();
+        potion.owner = owner;
         potion.transform.position = position + Vector3.back * 0.2f;
         potion.direction = throwDirection.sqrMagnitude > 0.001f ? throwDirection.normalized : Vector3.right;
         potion.origin = position;
@@ -872,7 +885,7 @@ public class PotionProjectile : MonoBehaviour
             if (enemy == null || enemy.IsDead) continue;
             if (Vector3.Distance(transform.position, enemy.transform.position) <= 0.38f)
             {
-                enemy.TakeDamage(damage);
+                enemy.TakeDamage(damage, owner);
                 StickyZone.Spawn(transform.position, zoneRadius);
                 Destroy(gameObject);
                 return;

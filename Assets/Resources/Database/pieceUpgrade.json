@@ -2,7 +2,7 @@
     "rows": [
         {
             "level": 1,
-            "cost": 25,
+            "cost": 100,
             "bishopAtk": 1.0,
             "bishopCool": 0.5,
             "knightAtk": 1.5,
@@ -12,7 +12,7 @@
         },
         {
             "level": 2,
-            "cost": 30,
+            "cost": 120,
             "bishopAtk": 1.5,
             "bishopCool": 1.0,
             "knightAtk": 2.0,
@@ -22,7 +22,7 @@
         },
         {
             "level": 3,
-            "cost": 35,
+            "cost": 140,
             "bishopAtk": 2.0,
             "bishopCool": 1.5,
             "knightAtk": 2.5,
@@ -32,7 +32,7 @@
         },
         {
             "level": 4,
-            "cost": 40,
+            "cost": 160,
             "bishopAtk": 2.5,
             "bishopCool": 2.0,
             "knightAtk": 3.0,
@@ -42,7 +42,7 @@
         },
         {
             "level": 5,
-            "cost": 45,
+            "cost": 180,
             "bishopAtk": 3.0,
             "bishopCool": 2.5,
             "knightAtk": 3.5,
@@ -52,7 +52,7 @@
         },
         {
             "level": 6,
-            "cost": 50,
+            "cost": 200,
             "bishopAtk": 3.5,
             "bishopCool": 3.0,
             "knightAtk": 4.0,
@@ -62,7 +62,7 @@
         },
         {
             "level": 7,
-            "cost": 50,
+            "cost": 200,
             "bishopAtk": 4.0,
             "bishopCool": 3.5,
             "knightAtk": 4.5,
@@ -72,7 +72,7 @@
         },
         {
             "level": 8,
-            "cost": 50,
+            "cost": 200,
             "bishopAtk": 4.5,
             "bishopCool": 4.0,
             "knightAtk": 5.0,
@@ -82,7 +82,7 @@
         },
         {
             "level": 9,
-            "cost": 50,
+            "cost": 200,
             "bishopAtk": 5.0,
             "bishopCool": 4.5,
             "knightAtk": 5.5,
@@ -92,7 +92,7 @@
         },
         {
             "level": 10,
-            "cost": 55,
+            "cost": 220,
             "bishopAtk": 7.5,
             "bishopCool": 6.0,
             "knightAtk": 10.0,
@@ -102,7 +102,7 @@
         },
         {
             "level": 11,
-            "cost": 60,
+            "cost": 240,
             "bishopAtk": 8.5,
             "bishopCool": 7.0,
             "knightAtk": 11.0,
@@ -112,7 +112,7 @@
         },
         {
             "level": 12,
-            "cost": 65,
+            "cost": 260,
             "bishopAtk": 9.5,
             "bishopCool": 8.0,
             "knightAtk": 12.0,
@@ -122,7 +122,7 @@
         },
         {
             "level": 13,
-            "cost": 70,
+            "cost": 280,
             "bishopAtk": 10.5,
             "bishopCool": 9.0,
             "knightAtk": 13.0,
@@ -132,7 +132,7 @@
         },
         {
             "level": 14,
-            "cost": 75,
+            "cost": 300,
             "bishopAtk": 11.5,
             "bishopCool": 10.0,
             "knightAtk": 14.0,
@@ -142,7 +142,7 @@
         },
         {
             "level": 15,
-            "cost": 75,
+            "cost": 300,
             "bishopAtk": 12.5,
             "bishopCool": 11.0,
             "knightAtk": 15.0,
@@ -152,7 +152,7 @@
         },
         {
             "level": 16,
-            "cost": 75,
+            "cost": 300,
             "bishopAtk": 13.5,
             "bishopCool": 12.0,
             "knightAtk": 16.0,
@@ -162,7 +162,7 @@
         },
         {
             "level": 17,
-            "cost": 75,
+            "cost": 300,
             "bishopAtk": 14.5,
             "bishopCool": 13.0,
             "knightAtk": 17.0,
@@ -172,7 +172,7 @@
         },
         {
             "level": 18,
-            "cost": 75,
+            "cost": 300,
             "bishopAtk": 15.5,
             "bishopCool": 14.0,
             "knightAtk": 18.0,
@@ -182,7 +182,7 @@
         },
         {
             "level": 19,
-            "cost": 75,
+            "cost": 300,
             "bishopAtk": 16.5,
             "bishopCool": 15.0,
             "knightAtk": 19.0,
@@ -192,7 +192,7 @@
         },
         {
             "level": 20,
-            "cost": 75,
+            "cost": 300,
             "bishopAtk": 17.5,
             "bishopCool": 16.0,
             "knightAtk": 20.0,
@@ -202,7 +202,7 @@
         },
         {
             "level": 21,
-            "cost": 80,
+            "cost": 320,
             "bishopAtk": 20.0,
             "bishopCool": 18.0,
             "knightAtk": 22.0,
@@ -212,7 +212,7 @@
         },
         {
             "level": 22,
-            "cost": 85,
+            "cost": 340,
             "bishopAtk": 21.0,
             "bishopCool": 19.0,
             "knightAtk": 24.0,
@@ -222,7 +222,7 @@
         },
         {
             "level": 23,
-            "cost": 90,
+            "cost": 360,
             "bishopAtk": 22.0,
             "bishopCool": 20.0,
             "knightAtk": 26.0,
@@ -232,7 +232,7 @@
         },
         {
             "level": 24,
-            "cost": 95,
+            "cost": 380,
             "bishopAtk": 23.0,
             "bishopCool": 21.0,
             "knightAtk": 28.0,
@@ -242,7 +242,7 @@
         },
         {
             "level": 25,
-            "cost": 100,
+            "cost": 400,
             "bishopAtk": 24.0,
             "bishopCool": 22.0,
             "knightAtk": 30.0,
@@ -252,7 +252,7 @@
         },
         {
             "level": 26,
-            "cost": 100,
+            "cost": 400,
             "bishopAtk": 25.0,
             "bishopCool": 23.0,
             "knightAtk": 32.0,
@@ -262,7 +262,7 @@
         },
         {
             "level": 27,
-            "cost": 100,
+            "cost": 400,
             "bishopAtk": 26.0,
             "bishopCool": 24.0,
             "knightAtk": 34.0,
@@ -272,7 +272,7 @@
         },
         {
             "level": 28,
-            "cost": 100,
+            "cost": 400,
             "bishopAtk": 27.0,
             "bishopCool": 25.0,
             "knightAtk": 36.0,
@@ -282,7 +282,7 @@
         },
         {
             "level": 29,
-            "cost": 100,
+            "cost": 400,
             "bishopAtk": 28.0,
             "bishopCool": 26.0,
             "knightAtk": 38.0,
@@ -292,7 +292,7 @@
         },
         {
             "level": 30,
-            "cost": 100,
+            "cost": 400,
             "bishopAtk": 29.0,
             "bishopCool": 27.0,
             "knightAtk": 40.0,
@@ -302,7 +302,7 @@
         },
         {
             "level": 31,
-            "cost": 100,
+            "cost": 400,
             "bishopAtk": 30.0,
             "bishopCool": 28.0,
             "knightAtk": 42.0,
@@ -312,7 +312,7 @@
         },
         {
             "level": 32,
-            "cost": 100,
+            "cost": 400,
             "bishopAtk": 31.0,
             "bishopCool": 29.0,
             "knightAtk": 44.0,
@@ -322,7 +322,7 @@
         },
         {
             "level": 33,
-            "cost": 100,
+            "cost": 400,
             "bishopAtk": 32.0,
             "bishopCool": 30.0,
             "knightAtk": 46.0,
@@ -332,7 +332,7 @@
         },
         {
             "level": 34,
-            "cost": 100,
+            "cost": 400,
             "bishopAtk": 33.0,
             "bishopCool": 31.0,
             "knightAtk": 48.0,
@@ -342,7 +342,7 @@
         },
         {
             "level": 35,
-            "cost": 100,
+            "cost": 400,
             "bishopAtk": 34.0,
             "bishopCool": 32.0,
             "knightAtk": 50.0,
@@ -352,7 +352,7 @@
         },
         {
             "level": 36,
-            "cost": 100,
+            "cost": 400,
             "bishopAtk": 35.0,
             "bishopCool": 33.0,
             "knightAtk": 52.0,
@@ -362,7 +362,7 @@
         },
         {
             "level": 37,
-            "cost": 100,
+            "cost": 400,
             "bishopAtk": 36.0,
             "bishopCool": 34.0,
             "knightAtk": 54.0,
@@ -372,7 +372,7 @@
         },
         {
             "level": 38,
-            "cost": 100,
+            "cost": 400,
             "bishopAtk": 37.0,
             "bishopCool": 35.0,
             "knightAtk": 56.0,
@@ -382,7 +382,7 @@
         },
         {
             "level": 39,
-            "cost": 100,
+            "cost": 400,
             "bishopAtk": 38.0,
             "bishopCool": 36.0,
             "knightAtk": 58.0,
@@ -392,7 +392,7 @@
         },
         {
             "level": 40,
-            "cost": 100,
+            "cost": 400,
             "bishopAtk": 39.0,
             "bishopCool": 37.0,
             "knightAtk": 60.0,
@@ -402,7 +402,7 @@
         },
         {
             "level": 41,
-            "cost": 120,
+            "cost": 480,
             "bishopAtk": 45.0,
             "bishopCool": 40.0,
             "knightAtk": 65.0,
@@ -412,7 +412,7 @@
         },
         {
             "level": 42,
-            "cost": 140,
+            "cost": 560,
             "bishopAtk": 48.0,
             "bishopCool": 42.0,
             "knightAtk": 70.0,
@@ -422,7 +422,7 @@
         },
         {
             "level": 43,
-            "cost": 160,
+            "cost": 640,
             "bishopAtk": 51.0,
             "bishopCool": 44.0,
             "knightAtk": 75.0,
@@ -432,7 +432,7 @@
         },
         {
             "level": 44,
-            "cost": 180,
+            "cost": 720,
             "bishopAtk": 54.0,
             "bishopCool": 46.0,
             "knightAtk": 80.0,
@@ -442,7 +442,7 @@
         },
         {
             "level": 45,
-            "cost": 200,
+            "cost": 800,
             "bishopAtk": 57.0,
             "bishopCool": 48.0,
             "knightAtk": 85.0,
@@ -452,7 +452,7 @@
         },
         {
             "level": 46,
-            "cost": 250,
+            "cost": 1000,
             "bishopAtk": 60.0,
             "bishopCool": 50.0,
             "knightAtk": 90.0,
@@ -462,7 +462,7 @@
         },
         {
             "level": 47,
-            "cost": 300,
+            "cost": 1200,
             "bishopAtk": 63.0,
             "bishopCool": 52.0,
             "knightAtk": 95.0,
@@ -472,7 +472,7 @@
         },
         {
             "level": 48,
-            "cost": 350,
+            "cost": 1400,
             "bishopAtk": 66.0,
             "bishopCool": 54.0,
             "knightAtk": 100.0,
@@ -482,7 +482,7 @@
         },
         {
             "level": 49,
-            "cost": 400,
+            "cost": 1600,
             "bishopAtk": 69.0,
             "bishopCool": 56.0,
             "knightAtk": 110.0,
@@ -492,7 +492,7 @@
         },
         {
             "level": 50,
-            "cost": 450,
+            "cost": 1800,
             "bishopAtk": 75.0,
             "bishopCool": 60.0,
             "knightAtk": 120.0,

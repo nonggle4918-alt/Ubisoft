@@ -119,7 +119,7 @@ public class RookLaser : MonoBehaviour
             {
                 int tickDamage = Mathf.FloorToInt(accumulated);
                 accumulated -= tickDamage;
-                enemy.TakeDamage(tickDamage);
+                enemy.TakeDamage(tickDamage, owner);
             }
             pendingDamage[enemy] = accumulated;
         }

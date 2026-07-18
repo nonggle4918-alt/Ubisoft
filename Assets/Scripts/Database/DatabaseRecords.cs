@@ -33,6 +33,9 @@ public class CharacterRecord
 [Serializable]
 public class EnemyRecord
 {
+    // enemy.csv 'type' column: "1" is a regular enemy, "2" is a stage boss.
+    public const string BossType = "2";
+
     public int id;
     public string name;
     public string type;
@@ -42,6 +45,8 @@ public class EnemyRecord
     public string imageResourceId;
     public string effectId;
     public string soundId;
+
+    public bool IsBoss => type == BossType;
 }
 
 [Serializable]

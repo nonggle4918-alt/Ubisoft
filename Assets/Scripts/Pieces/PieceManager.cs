@@ -8,6 +8,7 @@ public class PieceManager : MonoBehaviour
     [SerializeField] private GridManager gridManager;
     [SerializeField] private Piece piecePrefab;
     [SerializeField] private int pullCost = 50;
+    [SerializeField] private int pullCostPerBoss = 25;
     [SerializeField] private List<PieceData> allyPiecePool = new List<PieceData>();
 
     public event Action<PieceData> OnPiecePulled;
@@ -18,6 +19,45 @@ public class PieceManager : MonoBehaviour
 
     private List<PieceData> gachaPool = new List<PieceData>();
     private int totalWeight;
+    private int[] bossStages;
+
+    // Every boss left behind makes the next piece more expensive.
+    public int CurrentPullCost => pullCost + pullCostPerBoss * ClearedBossCount();
+
+    private int ClearedBossCount()
+    {
+        if (bossStages == null || GameManager.Instance == null) return 0;
+
+        int wave = GameManager.Instance.CurrentWave;
+        int count = 0;
+        foreach (int stage in bossStages)
+        {
+            if (stage < wave) count++;
+        }
+        return count;
+    }
+
+    // Derived from the database rather than hard-coded so it tracks stage.csv/spawn.csv.
+    private void CacheBossStages()
+    {
+        GameDatabase database = GameManager.Instance?.Database;
+        if (database == null) { bossStages = new int[0]; return; }
+
+        var stages = new List<int>();
+        foreach (StageRecord stage in database.Stages.rows)
+        {
+            foreach (SpawnRecord spawn in database.GetSpawns(stage.spawnGroupId))
+            {
+                EnemyRecord enemy = database.GetEnemy(spawn.enemyId);
+                if (enemy != null && enemy.IsBoss)
+                {
+                    stages.Add(stage.stageNumber);
+                    break;
+                }
+            }
+        }
+        bossStages = stages.ToArray();
+    }
 
     private void Update()
     {
@@ -28,6 +68,7 @@ public class PieceManager : MonoBehaviour
     private void Start()
     {
         ApplyCharacterDatabase();
+        CacheBossStages();
 
         foreach (var pd in allyPiecePool)
         {
@@ -43,7 +84,10 @@ public class PieceManager : MonoBehaviour
     {
         if (GameManager.Instance == null) return;
 
-        if (!GameManager.Instance.SpendGold(pullCost))
+        // Snapshot the price so a refund cannot differ from what was charged.
+        int cost = CurrentPullCost;
+
+        if (!GameManager.Instance.SpendGold(cost))
         {
             Debug.Log("골드가 부족합니다.");
             return;
@@ -52,7 +96,7 @@ public class PieceManager : MonoBehaviour
         PieceData selected = WeightedRandom();
         if (selected == null)
         {
-            GameManager.Instance.AddGold(pullCost);
+            GameManager.Instance.AddGold(cost);
             return;
         }
 
@@ -60,7 +104,7 @@ public class PieceManager : MonoBehaviour
         if (cell == null)
         {
             Debug.Log("빈 칸이 없습니다.");
-            GameManager.Instance.AddGold(pullCost);
+            GameManager.Instance.AddGold(cost);
             return;
         }
 

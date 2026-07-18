@@ -40,12 +40,29 @@ public class SFXManager : MonoBehaviour
     [SerializeField] private AudioClip attackMeteorClip;
     [SerializeField] private AudioClip attackAlchemyClip;
 
+    // Base mix level tuned in the Inspector. The options slider scales this rather than
+    // replacing it, so raising the slider to 100% never exceeds the intended mix.
     [Range(0f, 1f)]
     [SerializeField] private float volume = 1f;
+
+    public const string EffectsVolumeKey = "EffectsVolume";
+
+    private float userVolume = 1f;
+
+    // PlayOneShot layers voices and overlapping copies sum their amplitude, so an area
+    // attack that damages every enemy in range within a single frame would otherwise
+    // spike far above a single hit and then drop out once Unity's real-voice budget
+    // (32, see ProjectSettings/AudioManager) is exhausted. These limits keep the
+    // perceived loudness steady regardless of how many events land at once.
+    private const float SameClipCooldown = 0.06f;
+    private const float VoiceWindow = 0.12f;
+    private const int MaxConcurrentVoices = 8;
 
     private AudioSource source;
     private Dictionary<AttackType, AudioClip> attackClips;
     private readonly HashSet<Button> boundButtons = new HashSet<Button>();
+    private readonly Dictionary<AudioClip, float> lastPlayTimes = new Dictionary<AudioClip, float>();
+    private readonly Queue<float> recentPlayTimes = new Queue<float>();
 
     private void Awake()
     {
@@ -60,6 +77,10 @@ public class SFXManager : MonoBehaviour
 
         source = gameObject.AddComponent<AudioSource>();
         source.playOnAwake = false;
+
+        // The options slider lives in UIManager, which only runs once its scene is loaded;
+        // read the saved level here so sounds before that already use the chosen volume.
+        userVolume = Mathf.Clamp01(PlayerPrefs.GetFloat(EffectsVolumeKey, 1f));
 
         FillMissingClipsWithPlaceholders();
         BuildAttackClipMap();
@@ -116,10 +137,33 @@ public class SFXManager : MonoBehaviour
         else if (tier == 4) PlayTier4();
     }
 
+    public float Volume => userVolume;
+
+    public void SetVolume(float value) => userVolume = Mathf.Clamp01(value);
+
     private void Play(AudioClip clip)
     {
         if (clip == null || source == null) return;
-        source.PlayOneShot(clip, volume);
+
+        // Time.unscaledTime so throttling still advances while the game is paused.
+        float now = Time.unscaledTime;
+
+        // Copies of one clip started together are sample-aligned, so they sum into a single
+        // much louder sound rather than a discernible second hit. Collapse the burst.
+        if (lastPlayTimes.TryGetValue(clip, out float lastTime) && now - lastTime < SameClipCooldown)
+            return;
+
+        while (recentPlayTimes.Count > 0 && now - recentPlayTimes.Peek() > VoiceWindow)
+            recentPlayTimes.Dequeue();
+
+        if (recentPlayTimes.Count >= MaxConcurrentVoices) return;
+
+        lastPlayTimes[clip] = now;
+        recentPlayTimes.Enqueue(now);
+
+        // n overlapping voices sum to roughly sqrt(n) times the power of one, so scale the
+        // new voice down by that factor to hold the mix at a stable level.
+        source.PlayOneShot(clip, volume * userVolume / Mathf.Sqrt(recentPlayTimes.Count));
     }
 
     // Buttons created at runtime (after this manager's scene scan already ran) should

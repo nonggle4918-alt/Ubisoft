@@ -58,11 +58,132 @@
         {
             "id": 20006,
             "name": "king",
-            "type": "2",
+            "type": "1",
             "hp": 2000,
             "speed": 3.0,
             "dropGold": 200,
             "imageResourceId": "Enemy_King",
+            "effectId": "",
+            "soundId": ""
+        },
+        {
+            "id": 20007,
+            "name": "shieldpawn",
+            "type": "1",
+            "hp": 220,
+            "speed": 1.600000023841858,
+            "dropGold": 10,
+            "imageResourceId": "Enemy_ShieldPawn",
+            "effectId": "",
+            "soundId": ""
+        },
+        {
+            "id": 20008,
+            "name": "bombpawn",
+            "type": "1",
+            "hp": 90,
+            "speed": 3.200000047683716,
+            "dropGold": 9,
+            "imageResourceId": "Enemy_BombPawn",
+            "effectId": "",
+            "soundId": ""
+        },
+        {
+            "id": 20009,
+            "name": "ravenbishop",
+            "type": "1",
+            "hp": 300,
+            "speed": 3.5999999046325685,
+            "dropGold": 18,
+            "imageResourceId": "Enemy_RavenBishop",
+            "effectId": "",
+            "soundId": ""
+        },
+        {
+            "id": 20010,
+            "name": "berserkerknight",
+            "type": "1",
+            "hp": 520,
+            "speed": 5.5,
+            "dropGold": 28,
+            "imageResourceId": "Enemy_BerserkerKnight",
+            "effectId": "",
+            "soundId": ""
+        },
+        {
+            "id": 20011,
+            "name": "darkmage",
+            "type": "1",
+            "hp": 850,
+            "speed": 2.799999952316284,
+            "dropGold": 40,
+            "imageResourceId": "Enemy_DarkMage",
+            "effectId": "",
+            "soundId": ""
+        },
+        {
+            "id": 20012,
+            "name": "heavyrook",
+            "type": "1",
+            "hp": 1600,
+            "speed": 2.4000000953674318,
+            "dropGold": 60,
+            "imageResourceId": "Enemy_HeavyRook",
+            "effectId": "",
+            "soundId": ""
+        },
+        {
+            "id": 20013,
+            "name": "mimicrook",
+            "type": "1",
+            "hp": 2600,
+            "speed": 3.0,
+            "dropGold": 90,
+            "imageResourceId": "Enemy_MimicRook",
+            "effectId": "",
+            "soundId": ""
+        },
+        {
+            "id": 20014,
+            "name": "boss_haetae",
+            "type": "2",
+            "hp": 17300,
+            "speed": 0.8999999761581421,
+            "dropGold": 600,
+            "imageResourceId": "Enemy_BossHaetae",
+            "effectId": "",
+            "soundId": ""
+        },
+        {
+            "id": 20015,
+            "name": "boss_dragon",
+            "type": "2",
+            "hp": 30400,
+            "speed": 0.8500000238418579,
+            "dropGold": 1200,
+            "imageResourceId": "Enemy_BossDragon",
+            "effectId": "",
+            "soundId": ""
+        },
+        {
+            "id": 20016,
+            "name": "boss_chimera",
+            "type": "2",
+            "hp": 75300,
+            "speed": 0.800000011920929,
+            "dropGold": 2500,
+            "imageResourceId": "Enemy_BossChimera",
+            "effectId": "",
+            "soundId": ""
+        },
+        {
+            "id": 20017,
+            "name": "boss_colossus",
+            "type": "2",
+            "hp": 229500,
+            "speed": 0.699999988079071,
+            "dropGold": 6000,
+            "imageResourceId": "Enemy_BossColossus",
             "effectId": "",
             "soundId": ""
         }

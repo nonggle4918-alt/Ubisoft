@@ -15,6 +15,19 @@ public class EnemyManager : MonoBehaviour
 
     public int RemainingEnemies => Mathf.Max(0, enemiesAlive);
 
+    // Boss stages must not advance on the stage timer alone — see TimerManager.
+    public bool StageHasBoss { get; private set; }
+
+    public bool IsBossAlive()
+    {
+        foreach (Enemy enemy in FindObjectsByType<Enemy>(FindObjectsSortMode.None))
+        {
+            if (enemy != null && !enemy.IsDead && enemy.IsBoss)
+                return true;
+        }
+        return false;
+    }
+
     private void Start()
     {
         GenerateWaypoints();
@@ -95,6 +108,8 @@ public class EnemyManager : MonoBehaviour
         int wave = GameManager.Instance.CurrentWave;
         var units = GenerateWaveUnits(wave);
         enemiesAlive = units.Count;
+        // The boss is listed first in its stage's spawn group, so it enters ahead of the escorts.
+        StageHasBoss = units.Exists(unit => unit != null && unit.isBoss);
         float interval = GetSpawnInterval(units.Count);
 
         foreach (var unitData in units)
@@ -172,6 +187,7 @@ public class EnemyManager : MonoBehaviour
         data.maxHP = record.hp;
         data.movementSpeed = record.speed;
         data.goldReward = record.dropGold;
+        data.isBoss = record.IsBoss;
         data.sprite = database.GetSprite(record.imageResourceId);
 
         databaseEnemyData[enemyId] = data;

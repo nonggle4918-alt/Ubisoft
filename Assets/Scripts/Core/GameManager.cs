@@ -43,6 +43,9 @@ public class GameManager : MonoBehaviour
         Lives = startLives;
     }
 
+    private void OnEnable() => Enemy.OnBossEscaped += TriggerBossEscapeGameOver;
+    private void OnDisable() => Enemy.OnBossEscaped -= TriggerBossEscapeGameOver;
+
     public void StartWave()
     {
         if (State != GameState.Ready) return;
@@ -71,11 +74,29 @@ public class GameManager : MonoBehaviour
             SetState(GameState.GameOver);
     }
 
+    // Clearing this stage finishes the run.
+    public const int FinalStage = 75;
+
+    public bool IsFinalStage => CurrentWave >= FinalStage;
+
     public void EndWave()
     {
+        if (IsFinalStage)
+        {
+            SetState(GameState.Victory);
+            return;
+        }
+
         CurrentWave++;
         OnWaveChanged?.Invoke(CurrentWave);
         SetState(GameState.Ready);
+    }
+
+    // A boss that survives its lap allowance ends the run regardless of remaining lives.
+    public void TriggerBossEscapeGameOver()
+    {
+        if (State == GameState.GameOver || State == GameState.Victory) return;
+        SetState(GameState.GameOver);
     }
 
     public void Restart()

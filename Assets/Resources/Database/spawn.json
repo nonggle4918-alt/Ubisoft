@@ -4,169 +4,2815 @@
             "spawnId": 201,
             "groupId": "Stg_Spawn_01",
             "enemyId": 20001,
-            "enemyCount": 34
+            "enemyCount": 18
         },
         {
             "spawnId": 202,
             "groupId": "Stg_Spawn_02",
             "enemyId": 20001,
-            "enemyCount": 30
+            "enemyCount": 13
         },
         {
             "spawnId": 203,
             "groupId": "Stg_Spawn_02",
             "enemyId": 20002,
-            "enemyCount": 10
+            "enemyCount": 11
         },
         {
             "spawnId": 204,
             "groupId": "Stg_Spawn_03",
             "enemyId": 20001,
-            "enemyCount": 20
+            "enemyCount": 16
         },
         {
             "spawnId": 205,
             "groupId": "Stg_Spawn_03",
             "enemyId": 20002,
-            "enemyCount": 20
+            "enemyCount": 12
         },
         {
             "spawnId": 206,
             "groupId": "Stg_Spawn_04",
             "enemyId": 20001,
-            "enemyCount": 10
+            "enemyCount": 18
         },
         {
             "spawnId": 207,
             "groupId": "Stg_Spawn_04",
             "enemyId": 20002,
-            "enemyCount": 30
+            "enemyCount": 14
         },
         {
             "spawnId": 208,
             "groupId": "Stg_Spawn_05",
-            "enemyId": 20003,
-            "enemyCount": 5
+            "enemyId": 20001,
+            "enemyCount": 24
         },
         {
             "spawnId": 209,
             "groupId": "Stg_Spawn_05",
-            "enemyId": 20001,
-            "enemyCount": 5
+            "enemyId": 20002,
+            "enemyCount": 20
         },
         {
             "spawnId": 210,
-            "groupId": "Stg_Spawn_05",
-            "enemyId": 20002,
-            "enemyCount": 25
+            "groupId": "Stg_Spawn_06",
+            "enemyId": 20001,
+            "enemyCount": 18
         },
         {
             "spawnId": 211,
-            "groupId": "Stg_Spawn_05",
-            "enemyId": 20003,
-            "enemyCount": 15
+            "groupId": "Stg_Spawn_06",
+            "enemyId": 20002,
+            "enemyCount": 14
         },
         {
             "spawnId": 212,
             "groupId": "Stg_Spawn_06",
-            "enemyId": 20002,
-            "enemyCount": 15
+            "enemyId": 20003,
+            "enemyCount": 12
         },
         {
             "spawnId": 213,
-            "groupId": "Stg_Spawn_06",
-            "enemyId": 20003,
-            "enemyCount": 35
+            "groupId": "Stg_Spawn_07",
+            "enemyId": 20001,
+            "enemyCount": 18
         },
         {
             "spawnId": 214,
             "groupId": "Stg_Spawn_07",
             "enemyId": 20002,
-            "enemyCount": 20
+            "enemyCount": 14
         },
         {
             "spawnId": 215,
             "groupId": "Stg_Spawn_07",
             "enemyId": 20003,
-            "enemyCount": 25
+            "enemyCount": 13
         },
         {
             "spawnId": 216,
-            "groupId": "Stg_Spawn_07",
-            "enemyId": 20004,
-            "enemyCount": 20
+            "groupId": "Stg_Spawn_08",
+            "enemyId": 20001,
+            "enemyCount": 18
         },
         {
             "spawnId": 217,
             "groupId": "Stg_Spawn_08",
-            "enemyId": 20003,
-            "enemyCount": 25
+            "enemyId": 20002,
+            "enemyCount": 14
         },
         {
             "spawnId": 218,
             "groupId": "Stg_Spawn_08",
-            "enemyId": 20004,
-            "enemyCount": 30
+            "enemyId": 20003,
+            "enemyCount": 13
         },
         {
             "spawnId": 219,
             "groupId": "Stg_Spawn_09",
-            "enemyId": 20002,
-            "enemyCount": 25
+            "enemyId": 20001,
+            "enemyCount": 18
         },
         {
             "spawnId": 220,
             "groupId": "Stg_Spawn_09",
-            "enemyId": 20003,
+            "enemyId": 20002,
             "enemyCount": 15
         },
         {
             "spawnId": 221,
             "groupId": "Stg_Spawn_09",
-            "enemyId": 20004,
-            "enemyCount": 25
+            "enemyId": 20003,
+            "enemyCount": 13
         },
         {
             "spawnId": 222,
-            "groupId": "Stg_Spawn_09",
-            "enemyId": 20005,
-            "enemyCount": 3
+            "groupId": "Stg_Spawn_10",
+            "enemyId": 20001,
+            "enemyCount": 18
         },
         {
             "spawnId": 223,
-            "groupId": "Stg_Spawn_10",
-            "enemyId": 20001,
-            "enemyCount": 10
-        },
-        {
-            "spawnId": 224,
             "groupId": "Stg_Spawn_10",
             "enemyId": 20002,
             "enemyCount": 15
         },
         {
-            "spawnId": 225,
+            "spawnId": 224,
             "groupId": "Stg_Spawn_10",
             "enemyId": 20003,
-            "enemyCount": 25
+            "enemyCount": 13
+        },
+        {
+            "spawnId": 225,
+            "groupId": "Stg_Spawn_11",
+            "enemyId": 20001,
+            "enemyCount": 19
         },
         {
             "spawnId": 226,
-            "groupId": "Stg_Spawn_10",
-            "enemyId": 20004,
+            "groupId": "Stg_Spawn_11",
+            "enemyId": 20002,
             "enemyCount": 15
         },
         {
             "spawnId": 227,
-            "groupId": "Stg_Spawn_10",
+            "groupId": "Stg_Spawn_11",
+            "enemyId": 20003,
+            "enemyCount": 13
+        },
+        {
+            "spawnId": 228,
+            "groupId": "Stg_Spawn_12",
+            "enemyId": 20001,
+            "enemyCount": 15
+        },
+        {
+            "spawnId": 229,
+            "groupId": "Stg_Spawn_12",
+            "enemyId": 20002,
+            "enemyCount": 12
+        },
+        {
+            "spawnId": 230,
+            "groupId": "Stg_Spawn_12",
+            "enemyId": 20003,
+            "enemyCount": 11
+        },
+        {
+            "spawnId": 231,
+            "groupId": "Stg_Spawn_12",
+            "enemyId": 20007,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 232,
+            "groupId": "Stg_Spawn_13",
+            "enemyId": 20001,
+            "enemyCount": 15
+        },
+        {
+            "spawnId": 233,
+            "groupId": "Stg_Spawn_13",
+            "enemyId": 20002,
+            "enemyCount": 12
+        },
+        {
+            "spawnId": 234,
+            "groupId": "Stg_Spawn_13",
+            "enemyId": 20003,
+            "enemyCount": 11
+        },
+        {
+            "spawnId": 235,
+            "groupId": "Stg_Spawn_13",
+            "enemyId": 20007,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 236,
+            "groupId": "Stg_Spawn_14",
+            "enemyId": 20001,
+            "enemyCount": 15
+        },
+        {
+            "spawnId": 237,
+            "groupId": "Stg_Spawn_14",
+            "enemyId": 20002,
+            "enemyCount": 12
+        },
+        {
+            "spawnId": 238,
+            "groupId": "Stg_Spawn_14",
+            "enemyId": 20003,
+            "enemyCount": 11
+        },
+        {
+            "spawnId": 239,
+            "groupId": "Stg_Spawn_14",
+            "enemyId": 20007,
+            "enemyCount": 10
+        },
+        {
+            "spawnId": 240,
+            "groupId": "Stg_Spawn_15",
+            "enemyId": 20001,
+            "enemyCount": 15
+        },
+        {
+            "spawnId": 241,
+            "groupId": "Stg_Spawn_15",
+            "enemyId": 20002,
+            "enemyCount": 12
+        },
+        {
+            "spawnId": 242,
+            "groupId": "Stg_Spawn_15",
+            "enemyId": 20003,
+            "enemyCount": 11
+        },
+        {
+            "spawnId": 243,
+            "groupId": "Stg_Spawn_15",
+            "enemyId": 20007,
+            "enemyCount": 10
+        },
+        {
+            "spawnId": 244,
+            "groupId": "Stg_Spawn_16",
+            "enemyId": 20001,
+            "enemyCount": 13
+        },
+        {
+            "spawnId": 245,
+            "groupId": "Stg_Spawn_16",
+            "enemyId": 20002,
+            "enemyCount": 11
+        },
+        {
+            "spawnId": 246,
+            "groupId": "Stg_Spawn_16",
+            "enemyId": 20003,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 247,
+            "groupId": "Stg_Spawn_16",
+            "enemyId": 20007,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 248,
+            "groupId": "Stg_Spawn_16",
+            "enemyId": 20008,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 249,
+            "groupId": "Stg_Spawn_17",
+            "enemyId": 20001,
+            "enemyCount": 13
+        },
+        {
+            "spawnId": 250,
+            "groupId": "Stg_Spawn_17",
+            "enemyId": 20002,
+            "enemyCount": 11
+        },
+        {
+            "spawnId": 251,
+            "groupId": "Stg_Spawn_17",
+            "enemyId": 20003,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 252,
+            "groupId": "Stg_Spawn_17",
+            "enemyId": 20007,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 253,
+            "groupId": "Stg_Spawn_17",
+            "enemyId": 20008,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 254,
+            "groupId": "Stg_Spawn_18",
+            "enemyId": 20001,
+            "enemyCount": 11
+        },
+        {
+            "spawnId": 255,
+            "groupId": "Stg_Spawn_18",
+            "enemyId": 20002,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 256,
+            "groupId": "Stg_Spawn_18",
+            "enemyId": 20003,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 257,
+            "groupId": "Stg_Spawn_18",
+            "enemyId": 20007,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 258,
+            "groupId": "Stg_Spawn_18",
+            "enemyId": 20008,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 259,
+            "groupId": "Stg_Spawn_18",
+            "enemyId": 20004,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 260,
+            "groupId": "Stg_Spawn_19",
+            "enemyId": 20001,
+            "enemyCount": 12
+        },
+        {
+            "spawnId": 261,
+            "groupId": "Stg_Spawn_19",
+            "enemyId": 20002,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 262,
+            "groupId": "Stg_Spawn_19",
+            "enemyId": 20003,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 263,
+            "groupId": "Stg_Spawn_19",
+            "enemyId": 20007,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 264,
+            "groupId": "Stg_Spawn_19",
+            "enemyId": 20008,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 265,
+            "groupId": "Stg_Spawn_19",
+            "enemyId": 20004,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 266,
+            "groupId": "Stg_Spawn_20",
+            "enemyId": 20014,
+            "enemyCount": 1
+        },
+        {
+            "spawnId": 267,
+            "groupId": "Stg_Spawn_20",
+            "enemyId": 20007,
+            "enemyCount": 3
+        },
+        {
+            "spawnId": 268,
+            "groupId": "Stg_Spawn_20",
+            "enemyId": 20008,
+            "enemyCount": 3
+        },
+        {
+            "spawnId": 269,
+            "groupId": "Stg_Spawn_20",
+            "enemyId": 20004,
+            "enemyCount": 4
+        },
+        {
+            "spawnId": 270,
+            "groupId": "Stg_Spawn_21",
+            "enemyId": 20001,
+            "enemyCount": 10
+        },
+        {
+            "spawnId": 271,
+            "groupId": "Stg_Spawn_21",
+            "enemyId": 20002,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 272,
+            "groupId": "Stg_Spawn_21",
+            "enemyId": 20003,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 273,
+            "groupId": "Stg_Spawn_21",
+            "enemyId": 20007,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 274,
+            "groupId": "Stg_Spawn_21",
+            "enemyId": 20008,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 275,
+            "groupId": "Stg_Spawn_21",
+            "enemyId": 20004,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 276,
+            "groupId": "Stg_Spawn_21",
+            "enemyId": 20009,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 277,
+            "groupId": "Stg_Spawn_22",
+            "enemyId": 20001,
+            "enemyCount": 10
+        },
+        {
+            "spawnId": 278,
+            "groupId": "Stg_Spawn_22",
+            "enemyId": 20002,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 279,
+            "groupId": "Stg_Spawn_22",
+            "enemyId": 20003,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 280,
+            "groupId": "Stg_Spawn_22",
+            "enemyId": 20007,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 281,
+            "groupId": "Stg_Spawn_22",
+            "enemyId": 20008,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 282,
+            "groupId": "Stg_Spawn_22",
+            "enemyId": 20004,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 283,
+            "groupId": "Stg_Spawn_22",
+            "enemyId": 20009,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 284,
+            "groupId": "Stg_Spawn_23",
+            "enemyId": 20001,
+            "enemyCount": 11
+        },
+        {
+            "spawnId": 285,
+            "groupId": "Stg_Spawn_23",
+            "enemyId": 20002,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 286,
+            "groupId": "Stg_Spawn_23",
+            "enemyId": 20003,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 287,
+            "groupId": "Stg_Spawn_23",
+            "enemyId": 20007,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 288,
+            "groupId": "Stg_Spawn_23",
+            "enemyId": 20008,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 289,
+            "groupId": "Stg_Spawn_23",
+            "enemyId": 20004,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 290,
+            "groupId": "Stg_Spawn_23",
+            "enemyId": 20009,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 291,
+            "groupId": "Stg_Spawn_24",
+            "enemyId": 20001,
+            "enemyCount": 11
+        },
+        {
+            "spawnId": 292,
+            "groupId": "Stg_Spawn_24",
+            "enemyId": 20002,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 293,
+            "groupId": "Stg_Spawn_24",
+            "enemyId": 20003,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 294,
+            "groupId": "Stg_Spawn_24",
+            "enemyId": 20007,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 295,
+            "groupId": "Stg_Spawn_24",
+            "enemyId": 20008,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 296,
+            "groupId": "Stg_Spawn_24",
+            "enemyId": 20004,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 297,
+            "groupId": "Stg_Spawn_24",
+            "enemyId": 20009,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 298,
+            "groupId": "Stg_Spawn_25",
+            "enemyId": 20001,
+            "enemyCount": 11
+        },
+        {
+            "spawnId": 299,
+            "groupId": "Stg_Spawn_25",
+            "enemyId": 20002,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 300,
+            "groupId": "Stg_Spawn_25",
+            "enemyId": 20003,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 301,
+            "groupId": "Stg_Spawn_25",
+            "enemyId": 20007,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 302,
+            "groupId": "Stg_Spawn_25",
+            "enemyId": 20008,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 303,
+            "groupId": "Stg_Spawn_25",
+            "enemyId": 20004,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 304,
+            "groupId": "Stg_Spawn_25",
+            "enemyId": 20009,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 305,
+            "groupId": "Stg_Spawn_26",
+            "enemyId": 20001,
+            "enemyCount": 11
+        },
+        {
+            "spawnId": 306,
+            "groupId": "Stg_Spawn_26",
+            "enemyId": 20002,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 307,
+            "groupId": "Stg_Spawn_26",
+            "enemyId": 20003,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 308,
+            "groupId": "Stg_Spawn_26",
+            "enemyId": 20007,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 309,
+            "groupId": "Stg_Spawn_26",
+            "enemyId": 20008,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 310,
+            "groupId": "Stg_Spawn_26",
+            "enemyId": 20004,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 311,
+            "groupId": "Stg_Spawn_26",
+            "enemyId": 20009,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 312,
+            "groupId": "Stg_Spawn_27",
+            "enemyId": 20001,
+            "enemyCount": 11
+        },
+        {
+            "spawnId": 313,
+            "groupId": "Stg_Spawn_27",
+            "enemyId": 20002,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 314,
+            "groupId": "Stg_Spawn_27",
+            "enemyId": 20003,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 315,
+            "groupId": "Stg_Spawn_27",
+            "enemyId": 20007,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 316,
+            "groupId": "Stg_Spawn_27",
+            "enemyId": 20008,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 317,
+            "groupId": "Stg_Spawn_27",
+            "enemyId": 20004,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 318,
+            "groupId": "Stg_Spawn_27",
+            "enemyId": 20009,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 319,
+            "groupId": "Stg_Spawn_28",
+            "enemyId": 20001,
+            "enemyCount": 10
+        },
+        {
+            "spawnId": 320,
+            "groupId": "Stg_Spawn_28",
+            "enemyId": 20002,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 321,
+            "groupId": "Stg_Spawn_28",
+            "enemyId": 20003,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 322,
+            "groupId": "Stg_Spawn_28",
+            "enemyId": 20007,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 323,
+            "groupId": "Stg_Spawn_28",
+            "enemyId": 20008,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 324,
+            "groupId": "Stg_Spawn_28",
+            "enemyId": 20004,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 325,
+            "groupId": "Stg_Spawn_28",
+            "enemyId": 20009,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 326,
+            "groupId": "Stg_Spawn_28",
+            "enemyId": 20010,
+            "enemyCount": 5
+        },
+        {
+            "spawnId": 327,
+            "groupId": "Stg_Spawn_29",
+            "enemyId": 20001,
+            "enemyCount": 10
+        },
+        {
+            "spawnId": 328,
+            "groupId": "Stg_Spawn_29",
+            "enemyId": 20002,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 329,
+            "groupId": "Stg_Spawn_29",
+            "enemyId": 20003,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 330,
+            "groupId": "Stg_Spawn_29",
+            "enemyId": 20007,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 331,
+            "groupId": "Stg_Spawn_29",
+            "enemyId": 20008,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 332,
+            "groupId": "Stg_Spawn_29",
+            "enemyId": 20004,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 333,
+            "groupId": "Stg_Spawn_29",
+            "enemyId": 20009,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 334,
+            "groupId": "Stg_Spawn_29",
+            "enemyId": 20010,
+            "enemyCount": 5
+        },
+        {
+            "spawnId": 335,
+            "groupId": "Stg_Spawn_30",
+            "enemyId": 20001,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 336,
+            "groupId": "Stg_Spawn_30",
+            "enemyId": 20002,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 337,
+            "groupId": "Stg_Spawn_30",
+            "enemyId": 20003,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 338,
+            "groupId": "Stg_Spawn_30",
+            "enemyId": 20007,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 339,
+            "groupId": "Stg_Spawn_30",
+            "enemyId": 20008,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 340,
+            "groupId": "Stg_Spawn_30",
+            "enemyId": 20004,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 341,
+            "groupId": "Stg_Spawn_30",
+            "enemyId": 20009,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 342,
+            "groupId": "Stg_Spawn_30",
+            "enemyId": 20010,
+            "enemyCount": 5
+        },
+        {
+            "spawnId": 343,
+            "groupId": "Stg_Spawn_30",
             "enemyId": 20005,
             "enemyCount": 2
         },
         {
-            "spawnId": 228,
-            "groupId": "Stg_Spawn_10",
-            "enemyId": 20006,
+            "spawnId": 344,
+            "groupId": "Stg_Spawn_31",
+            "enemyId": 20002,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 345,
+            "groupId": "Stg_Spawn_31",
+            "enemyId": 20003,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 346,
+            "groupId": "Stg_Spawn_31",
+            "enemyId": 20007,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 347,
+            "groupId": "Stg_Spawn_31",
+            "enemyId": 20008,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 348,
+            "groupId": "Stg_Spawn_31",
+            "enemyId": 20004,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 349,
+            "groupId": "Stg_Spawn_31",
+            "enemyId": 20009,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 350,
+            "groupId": "Stg_Spawn_31",
+            "enemyId": 20010,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 351,
+            "groupId": "Stg_Spawn_31",
+            "enemyId": 20005,
+            "enemyCount": 4
+        },
+        {
+            "spawnId": 352,
+            "groupId": "Stg_Spawn_32",
+            "enemyId": 20002,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 353,
+            "groupId": "Stg_Spawn_32",
+            "enemyId": 20003,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 354,
+            "groupId": "Stg_Spawn_32",
+            "enemyId": 20007,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 355,
+            "groupId": "Stg_Spawn_32",
+            "enemyId": 20008,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 356,
+            "groupId": "Stg_Spawn_32",
+            "enemyId": 20004,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 357,
+            "groupId": "Stg_Spawn_32",
+            "enemyId": 20009,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 358,
+            "groupId": "Stg_Spawn_32",
+            "enemyId": 20010,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 359,
+            "groupId": "Stg_Spawn_32",
+            "enemyId": 20005,
+            "enemyCount": 4
+        },
+        {
+            "spawnId": 360,
+            "groupId": "Stg_Spawn_33",
+            "enemyId": 20002,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 361,
+            "groupId": "Stg_Spawn_33",
+            "enemyId": 20003,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 362,
+            "groupId": "Stg_Spawn_33",
+            "enemyId": 20007,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 363,
+            "groupId": "Stg_Spawn_33",
+            "enemyId": 20008,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 364,
+            "groupId": "Stg_Spawn_33",
+            "enemyId": 20004,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 365,
+            "groupId": "Stg_Spawn_33",
+            "enemyId": 20009,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 366,
+            "groupId": "Stg_Spawn_33",
+            "enemyId": 20010,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 367,
+            "groupId": "Stg_Spawn_33",
+            "enemyId": 20005,
+            "enemyCount": 5
+        },
+        {
+            "spawnId": 368,
+            "groupId": "Stg_Spawn_34",
+            "enemyId": 20002,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 369,
+            "groupId": "Stg_Spawn_34",
+            "enemyId": 20003,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 370,
+            "groupId": "Stg_Spawn_34",
+            "enemyId": 20007,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 371,
+            "groupId": "Stg_Spawn_34",
+            "enemyId": 20008,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 372,
+            "groupId": "Stg_Spawn_34",
+            "enemyId": 20004,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 373,
+            "groupId": "Stg_Spawn_34",
+            "enemyId": 20009,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 374,
+            "groupId": "Stg_Spawn_34",
+            "enemyId": 20010,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 375,
+            "groupId": "Stg_Spawn_34",
+            "enemyId": 20005,
+            "enemyCount": 5
+        },
+        {
+            "spawnId": 376,
+            "groupId": "Stg_Spawn_35",
+            "enemyId": 20015,
             "enemyCount": 1
+        },
+        {
+            "spawnId": 377,
+            "groupId": "Stg_Spawn_35",
+            "enemyId": 20009,
+            "enemyCount": 4
+        },
+        {
+            "spawnId": 378,
+            "groupId": "Stg_Spawn_35",
+            "enemyId": 20010,
+            "enemyCount": 3
+        },
+        {
+            "spawnId": 379,
+            "groupId": "Stg_Spawn_35",
+            "enemyId": 20005,
+            "enemyCount": 3
+        },
+        {
+            "spawnId": 380,
+            "groupId": "Stg_Spawn_36",
+            "enemyId": 20002,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 381,
+            "groupId": "Stg_Spawn_36",
+            "enemyId": 20003,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 382,
+            "groupId": "Stg_Spawn_36",
+            "enemyId": 20007,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 383,
+            "groupId": "Stg_Spawn_36",
+            "enemyId": 20008,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 384,
+            "groupId": "Stg_Spawn_36",
+            "enemyId": 20004,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 385,
+            "groupId": "Stg_Spawn_36",
+            "enemyId": 20009,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 386,
+            "groupId": "Stg_Spawn_36",
+            "enemyId": 20010,
+            "enemyCount": 5
+        },
+        {
+            "spawnId": 387,
+            "groupId": "Stg_Spawn_36",
+            "enemyId": 20005,
+            "enemyCount": 4
+        },
+        {
+            "spawnId": 388,
+            "groupId": "Stg_Spawn_36",
+            "enemyId": 20011,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 389,
+            "groupId": "Stg_Spawn_37",
+            "enemyId": 20002,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 390,
+            "groupId": "Stg_Spawn_37",
+            "enemyId": 20003,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 391,
+            "groupId": "Stg_Spawn_37",
+            "enemyId": 20007,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 392,
+            "groupId": "Stg_Spawn_37",
+            "enemyId": 20008,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 393,
+            "groupId": "Stg_Spawn_37",
+            "enemyId": 20004,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 394,
+            "groupId": "Stg_Spawn_37",
+            "enemyId": 20009,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 395,
+            "groupId": "Stg_Spawn_37",
+            "enemyId": 20010,
+            "enemyCount": 5
+        },
+        {
+            "spawnId": 396,
+            "groupId": "Stg_Spawn_37",
+            "enemyId": 20005,
+            "enemyCount": 4
+        },
+        {
+            "spawnId": 397,
+            "groupId": "Stg_Spawn_37",
+            "enemyId": 20011,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 398,
+            "groupId": "Stg_Spawn_38",
+            "enemyId": 20002,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 399,
+            "groupId": "Stg_Spawn_38",
+            "enemyId": 20003,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 400,
+            "groupId": "Stg_Spawn_38",
+            "enemyId": 20007,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 401,
+            "groupId": "Stg_Spawn_38",
+            "enemyId": 20008,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 402,
+            "groupId": "Stg_Spawn_38",
+            "enemyId": 20004,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 403,
+            "groupId": "Stg_Spawn_38",
+            "enemyId": 20009,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 404,
+            "groupId": "Stg_Spawn_38",
+            "enemyId": 20010,
+            "enemyCount": 5
+        },
+        {
+            "spawnId": 405,
+            "groupId": "Stg_Spawn_38",
+            "enemyId": 20005,
+            "enemyCount": 4
+        },
+        {
+            "spawnId": 406,
+            "groupId": "Stg_Spawn_38",
+            "enemyId": 20011,
+            "enemyCount": 4
+        },
+        {
+            "spawnId": 407,
+            "groupId": "Stg_Spawn_39",
+            "enemyId": 20002,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 408,
+            "groupId": "Stg_Spawn_39",
+            "enemyId": 20003,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 409,
+            "groupId": "Stg_Spawn_39",
+            "enemyId": 20007,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 410,
+            "groupId": "Stg_Spawn_39",
+            "enemyId": 20008,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 411,
+            "groupId": "Stg_Spawn_39",
+            "enemyId": 20004,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 412,
+            "groupId": "Stg_Spawn_39",
+            "enemyId": 20009,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 413,
+            "groupId": "Stg_Spawn_39",
+            "enemyId": 20010,
+            "enemyCount": 5
+        },
+        {
+            "spawnId": 414,
+            "groupId": "Stg_Spawn_39",
+            "enemyId": 20005,
+            "enemyCount": 4
+        },
+        {
+            "spawnId": 415,
+            "groupId": "Stg_Spawn_39",
+            "enemyId": 20011,
+            "enemyCount": 4
+        },
+        {
+            "spawnId": 416,
+            "groupId": "Stg_Spawn_40",
+            "enemyId": 20002,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 417,
+            "groupId": "Stg_Spawn_40",
+            "enemyId": 20003,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 418,
+            "groupId": "Stg_Spawn_40",
+            "enemyId": 20007,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 419,
+            "groupId": "Stg_Spawn_40",
+            "enemyId": 20008,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 420,
+            "groupId": "Stg_Spawn_40",
+            "enemyId": 20004,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 421,
+            "groupId": "Stg_Spawn_40",
+            "enemyId": 20009,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 422,
+            "groupId": "Stg_Spawn_40",
+            "enemyId": 20010,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 423,
+            "groupId": "Stg_Spawn_40",
+            "enemyId": 20005,
+            "enemyCount": 4
+        },
+        {
+            "spawnId": 424,
+            "groupId": "Stg_Spawn_40",
+            "enemyId": 20011,
+            "enemyCount": 4
+        },
+        {
+            "spawnId": 425,
+            "groupId": "Stg_Spawn_41",
+            "enemyId": 20003,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 426,
+            "groupId": "Stg_Spawn_41",
+            "enemyId": 20007,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 427,
+            "groupId": "Stg_Spawn_41",
+            "enemyId": 20008,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 428,
+            "groupId": "Stg_Spawn_41",
+            "enemyId": 20004,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 429,
+            "groupId": "Stg_Spawn_41",
+            "enemyId": 20009,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 430,
+            "groupId": "Stg_Spawn_41",
+            "enemyId": 20010,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 431,
+            "groupId": "Stg_Spawn_41",
+            "enemyId": 20005,
+            "enemyCount": 5
+        },
+        {
+            "spawnId": 432,
+            "groupId": "Stg_Spawn_41",
+            "enemyId": 20011,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 433,
+            "groupId": "Stg_Spawn_42",
+            "enemyId": 20003,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 434,
+            "groupId": "Stg_Spawn_42",
+            "enemyId": 20007,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 435,
+            "groupId": "Stg_Spawn_42",
+            "enemyId": 20008,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 436,
+            "groupId": "Stg_Spawn_42",
+            "enemyId": 20004,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 437,
+            "groupId": "Stg_Spawn_42",
+            "enemyId": 20009,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 438,
+            "groupId": "Stg_Spawn_42",
+            "enemyId": 20010,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 439,
+            "groupId": "Stg_Spawn_42",
+            "enemyId": 20005,
+            "enemyCount": 5
+        },
+        {
+            "spawnId": 440,
+            "groupId": "Stg_Spawn_42",
+            "enemyId": 20011,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 441,
+            "groupId": "Stg_Spawn_43",
+            "enemyId": 20003,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 442,
+            "groupId": "Stg_Spawn_43",
+            "enemyId": 20007,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 443,
+            "groupId": "Stg_Spawn_43",
+            "enemyId": 20008,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 444,
+            "groupId": "Stg_Spawn_43",
+            "enemyId": 20004,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 445,
+            "groupId": "Stg_Spawn_43",
+            "enemyId": 20009,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 446,
+            "groupId": "Stg_Spawn_43",
+            "enemyId": 20010,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 447,
+            "groupId": "Stg_Spawn_43",
+            "enemyId": 20005,
+            "enemyCount": 5
+        },
+        {
+            "spawnId": 448,
+            "groupId": "Stg_Spawn_43",
+            "enemyId": 20011,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 449,
+            "groupId": "Stg_Spawn_44",
+            "enemyId": 20003,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 450,
+            "groupId": "Stg_Spawn_44",
+            "enemyId": 20007,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 451,
+            "groupId": "Stg_Spawn_44",
+            "enemyId": 20008,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 452,
+            "groupId": "Stg_Spawn_44",
+            "enemyId": 20004,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 453,
+            "groupId": "Stg_Spawn_44",
+            "enemyId": 20009,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 454,
+            "groupId": "Stg_Spawn_44",
+            "enemyId": 20010,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 455,
+            "groupId": "Stg_Spawn_44",
+            "enemyId": 20005,
+            "enemyCount": 5
+        },
+        {
+            "spawnId": 456,
+            "groupId": "Stg_Spawn_44",
+            "enemyId": 20011,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 457,
+            "groupId": "Stg_Spawn_45",
+            "enemyId": 20003,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 458,
+            "groupId": "Stg_Spawn_45",
+            "enemyId": 20007,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 459,
+            "groupId": "Stg_Spawn_45",
+            "enemyId": 20008,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 460,
+            "groupId": "Stg_Spawn_45",
+            "enemyId": 20004,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 461,
+            "groupId": "Stg_Spawn_45",
+            "enemyId": 20009,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 462,
+            "groupId": "Stg_Spawn_45",
+            "enemyId": 20010,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 463,
+            "groupId": "Stg_Spawn_45",
+            "enemyId": 20005,
+            "enemyCount": 5
+        },
+        {
+            "spawnId": 464,
+            "groupId": "Stg_Spawn_45",
+            "enemyId": 20011,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 465,
+            "groupId": "Stg_Spawn_46",
+            "enemyId": 20003,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 466,
+            "groupId": "Stg_Spawn_46",
+            "enemyId": 20007,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 467,
+            "groupId": "Stg_Spawn_46",
+            "enemyId": 20008,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 468,
+            "groupId": "Stg_Spawn_46",
+            "enemyId": 20004,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 469,
+            "groupId": "Stg_Spawn_46",
+            "enemyId": 20009,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 470,
+            "groupId": "Stg_Spawn_46",
+            "enemyId": 20010,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 471,
+            "groupId": "Stg_Spawn_46",
+            "enemyId": 20005,
+            "enemyCount": 5
+        },
+        {
+            "spawnId": 472,
+            "groupId": "Stg_Spawn_46",
+            "enemyId": 20011,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 473,
+            "groupId": "Stg_Spawn_46",
+            "enemyId": 20012,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 474,
+            "groupId": "Stg_Spawn_47",
+            "enemyId": 20003,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 475,
+            "groupId": "Stg_Spawn_47",
+            "enemyId": 20007,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 476,
+            "groupId": "Stg_Spawn_47",
+            "enemyId": 20008,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 477,
+            "groupId": "Stg_Spawn_47",
+            "enemyId": 20004,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 478,
+            "groupId": "Stg_Spawn_47",
+            "enemyId": 20009,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 479,
+            "groupId": "Stg_Spawn_47",
+            "enemyId": 20010,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 480,
+            "groupId": "Stg_Spawn_47",
+            "enemyId": 20005,
+            "enemyCount": 5
+        },
+        {
+            "spawnId": 481,
+            "groupId": "Stg_Spawn_47",
+            "enemyId": 20011,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 482,
+            "groupId": "Stg_Spawn_47",
+            "enemyId": 20012,
+            "enemyCount": 4
+        },
+        {
+            "spawnId": 483,
+            "groupId": "Stg_Spawn_48",
+            "enemyId": 20003,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 484,
+            "groupId": "Stg_Spawn_48",
+            "enemyId": 20007,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 485,
+            "groupId": "Stg_Spawn_48",
+            "enemyId": 20008,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 486,
+            "groupId": "Stg_Spawn_48",
+            "enemyId": 20004,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 487,
+            "groupId": "Stg_Spawn_48",
+            "enemyId": 20009,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 488,
+            "groupId": "Stg_Spawn_48",
+            "enemyId": 20010,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 489,
+            "groupId": "Stg_Spawn_48",
+            "enemyId": 20005,
+            "enemyCount": 5
+        },
+        {
+            "spawnId": 490,
+            "groupId": "Stg_Spawn_48",
+            "enemyId": 20011,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 491,
+            "groupId": "Stg_Spawn_48",
+            "enemyId": 20012,
+            "enemyCount": 4
+        },
+        {
+            "spawnId": 492,
+            "groupId": "Stg_Spawn_49",
+            "enemyId": 20007,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 493,
+            "groupId": "Stg_Spawn_49",
+            "enemyId": 20008,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 494,
+            "groupId": "Stg_Spawn_49",
+            "enemyId": 20004,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 495,
+            "groupId": "Stg_Spawn_49",
+            "enemyId": 20009,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 496,
+            "groupId": "Stg_Spawn_49",
+            "enemyId": 20010,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 497,
+            "groupId": "Stg_Spawn_49",
+            "enemyId": 20005,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 498,
+            "groupId": "Stg_Spawn_49",
+            "enemyId": 20011,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 499,
+            "groupId": "Stg_Spawn_49",
+            "enemyId": 20012,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 500,
+            "groupId": "Stg_Spawn_50",
+            "enemyId": 20016,
+            "enemyCount": 1
+        },
+        {
+            "spawnId": 501,
+            "groupId": "Stg_Spawn_50",
+            "enemyId": 20005,
+            "enemyCount": 3
+        },
+        {
+            "spawnId": 502,
+            "groupId": "Stg_Spawn_50",
+            "enemyId": 20011,
+            "enemyCount": 4
+        },
+        {
+            "spawnId": 503,
+            "groupId": "Stg_Spawn_50",
+            "enemyId": 20012,
+            "enemyCount": 3
+        },
+        {
+            "spawnId": 504,
+            "groupId": "Stg_Spawn_51",
+            "enemyId": 20007,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 505,
+            "groupId": "Stg_Spawn_51",
+            "enemyId": 20008,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 506,
+            "groupId": "Stg_Spawn_51",
+            "enemyId": 20004,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 507,
+            "groupId": "Stg_Spawn_51",
+            "enemyId": 20009,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 508,
+            "groupId": "Stg_Spawn_51",
+            "enemyId": 20010,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 509,
+            "groupId": "Stg_Spawn_51",
+            "enemyId": 20005,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 510,
+            "groupId": "Stg_Spawn_51",
+            "enemyId": 20011,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 511,
+            "groupId": "Stg_Spawn_51",
+            "enemyId": 20012,
+            "enemyCount": 5
+        },
+        {
+            "spawnId": 512,
+            "groupId": "Stg_Spawn_52",
+            "enemyId": 20007,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 513,
+            "groupId": "Stg_Spawn_52",
+            "enemyId": 20008,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 514,
+            "groupId": "Stg_Spawn_52",
+            "enemyId": 20004,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 515,
+            "groupId": "Stg_Spawn_52",
+            "enemyId": 20009,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 516,
+            "groupId": "Stg_Spawn_52",
+            "enemyId": 20010,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 517,
+            "groupId": "Stg_Spawn_52",
+            "enemyId": 20005,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 518,
+            "groupId": "Stg_Spawn_52",
+            "enemyId": 20011,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 519,
+            "groupId": "Stg_Spawn_52",
+            "enemyId": 20012,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 520,
+            "groupId": "Stg_Spawn_53",
+            "enemyId": 20007,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 521,
+            "groupId": "Stg_Spawn_53",
+            "enemyId": 20008,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 522,
+            "groupId": "Stg_Spawn_53",
+            "enemyId": 20004,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 523,
+            "groupId": "Stg_Spawn_53",
+            "enemyId": 20009,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 524,
+            "groupId": "Stg_Spawn_53",
+            "enemyId": 20010,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 525,
+            "groupId": "Stg_Spawn_53",
+            "enemyId": 20005,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 526,
+            "groupId": "Stg_Spawn_53",
+            "enemyId": 20011,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 527,
+            "groupId": "Stg_Spawn_53",
+            "enemyId": 20012,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 528,
+            "groupId": "Stg_Spawn_54",
+            "enemyId": 20007,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 529,
+            "groupId": "Stg_Spawn_54",
+            "enemyId": 20008,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 530,
+            "groupId": "Stg_Spawn_54",
+            "enemyId": 20004,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 531,
+            "groupId": "Stg_Spawn_54",
+            "enemyId": 20009,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 532,
+            "groupId": "Stg_Spawn_54",
+            "enemyId": 20010,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 533,
+            "groupId": "Stg_Spawn_54",
+            "enemyId": 20005,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 534,
+            "groupId": "Stg_Spawn_54",
+            "enemyId": 20011,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 535,
+            "groupId": "Stg_Spawn_54",
+            "enemyId": 20012,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 536,
+            "groupId": "Stg_Spawn_55",
+            "enemyId": 20007,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 537,
+            "groupId": "Stg_Spawn_55",
+            "enemyId": 20008,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 538,
+            "groupId": "Stg_Spawn_55",
+            "enemyId": 20004,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 539,
+            "groupId": "Stg_Spawn_55",
+            "enemyId": 20009,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 540,
+            "groupId": "Stg_Spawn_55",
+            "enemyId": 20010,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 541,
+            "groupId": "Stg_Spawn_55",
+            "enemyId": 20005,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 542,
+            "groupId": "Stg_Spawn_55",
+            "enemyId": 20011,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 543,
+            "groupId": "Stg_Spawn_55",
+            "enemyId": 20012,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 544,
+            "groupId": "Stg_Spawn_56",
+            "enemyId": 20008,
+            "enemyCount": 11
+        },
+        {
+            "spawnId": 545,
+            "groupId": "Stg_Spawn_56",
+            "enemyId": 20004,
+            "enemyCount": 11
+        },
+        {
+            "spawnId": 546,
+            "groupId": "Stg_Spawn_56",
+            "enemyId": 20009,
+            "enemyCount": 11
+        },
+        {
+            "spawnId": 547,
+            "groupId": "Stg_Spawn_56",
+            "enemyId": 20010,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 548,
+            "groupId": "Stg_Spawn_56",
+            "enemyId": 20005,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 549,
+            "groupId": "Stg_Spawn_56",
+            "enemyId": 20011,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 550,
+            "groupId": "Stg_Spawn_56",
+            "enemyId": 20012,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 551,
+            "groupId": "Stg_Spawn_57",
+            "enemyId": 20008,
+            "enemyCount": 11
+        },
+        {
+            "spawnId": 552,
+            "groupId": "Stg_Spawn_57",
+            "enemyId": 20004,
+            "enemyCount": 11
+        },
+        {
+            "spawnId": 553,
+            "groupId": "Stg_Spawn_57",
+            "enemyId": 20009,
+            "enemyCount": 11
+        },
+        {
+            "spawnId": 554,
+            "groupId": "Stg_Spawn_57",
+            "enemyId": 20010,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 555,
+            "groupId": "Stg_Spawn_57",
+            "enemyId": 20005,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 556,
+            "groupId": "Stg_Spawn_57",
+            "enemyId": 20011,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 557,
+            "groupId": "Stg_Spawn_57",
+            "enemyId": 20012,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 558,
+            "groupId": "Stg_Spawn_58",
+            "enemyId": 20008,
+            "enemyCount": 10
+        },
+        {
+            "spawnId": 559,
+            "groupId": "Stg_Spawn_58",
+            "enemyId": 20004,
+            "enemyCount": 10
+        },
+        {
+            "spawnId": 560,
+            "groupId": "Stg_Spawn_58",
+            "enemyId": 20009,
+            "enemyCount": 10
+        },
+        {
+            "spawnId": 561,
+            "groupId": "Stg_Spawn_58",
+            "enemyId": 20010,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 562,
+            "groupId": "Stg_Spawn_58",
+            "enemyId": 20005,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 563,
+            "groupId": "Stg_Spawn_58",
+            "enemyId": 20011,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 564,
+            "groupId": "Stg_Spawn_58",
+            "enemyId": 20012,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 565,
+            "groupId": "Stg_Spawn_58",
+            "enemyId": 20013,
+            "enemyCount": 6
+        },
+        {
+            "spawnId": 566,
+            "groupId": "Stg_Spawn_59",
+            "enemyId": 20004,
+            "enemyCount": 12
+        },
+        {
+            "spawnId": 567,
+            "groupId": "Stg_Spawn_59",
+            "enemyId": 20009,
+            "enemyCount": 12
+        },
+        {
+            "spawnId": 568,
+            "groupId": "Stg_Spawn_59",
+            "enemyId": 20010,
+            "enemyCount": 10
+        },
+        {
+            "spawnId": 569,
+            "groupId": "Stg_Spawn_59",
+            "enemyId": 20005,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 570,
+            "groupId": "Stg_Spawn_59",
+            "enemyId": 20011,
+            "enemyCount": 10
+        },
+        {
+            "spawnId": 571,
+            "groupId": "Stg_Spawn_59",
+            "enemyId": 20012,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 572,
+            "groupId": "Stg_Spawn_59",
+            "enemyId": 20013,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 573,
+            "groupId": "Stg_Spawn_60",
+            "enemyId": 20004,
+            "enemyCount": 12
+        },
+        {
+            "spawnId": 574,
+            "groupId": "Stg_Spawn_60",
+            "enemyId": 20009,
+            "enemyCount": 12
+        },
+        {
+            "spawnId": 575,
+            "groupId": "Stg_Spawn_60",
+            "enemyId": 20010,
+            "enemyCount": 10
+        },
+        {
+            "spawnId": 576,
+            "groupId": "Stg_Spawn_60",
+            "enemyId": 20005,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 577,
+            "groupId": "Stg_Spawn_60",
+            "enemyId": 20011,
+            "enemyCount": 10
+        },
+        {
+            "spawnId": 578,
+            "groupId": "Stg_Spawn_60",
+            "enemyId": 20012,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 579,
+            "groupId": "Stg_Spawn_60",
+            "enemyId": 20013,
+            "enemyCount": 7
+        },
+        {
+            "spawnId": 580,
+            "groupId": "Stg_Spawn_61",
+            "enemyId": 20004,
+            "enemyCount": 11
+        },
+        {
+            "spawnId": 581,
+            "groupId": "Stg_Spawn_61",
+            "enemyId": 20009,
+            "enemyCount": 11
+        },
+        {
+            "spawnId": 582,
+            "groupId": "Stg_Spawn_61",
+            "enemyId": 20010,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 583,
+            "groupId": "Stg_Spawn_61",
+            "enemyId": 20005,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 584,
+            "groupId": "Stg_Spawn_61",
+            "enemyId": 20011,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 585,
+            "groupId": "Stg_Spawn_61",
+            "enemyId": 20012,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 586,
+            "groupId": "Stg_Spawn_61",
+            "enemyId": 20013,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 587,
+            "groupId": "Stg_Spawn_61",
+            "enemyId": 20006,
+            "enemyCount": 4
+        },
+        {
+            "spawnId": 588,
+            "groupId": "Stg_Spawn_62",
+            "enemyId": 20004,
+            "enemyCount": 11
+        },
+        {
+            "spawnId": 589,
+            "groupId": "Stg_Spawn_62",
+            "enemyId": 20009,
+            "enemyCount": 11
+        },
+        {
+            "spawnId": 590,
+            "groupId": "Stg_Spawn_62",
+            "enemyId": 20010,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 591,
+            "groupId": "Stg_Spawn_62",
+            "enemyId": 20005,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 592,
+            "groupId": "Stg_Spawn_62",
+            "enemyId": 20011,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 593,
+            "groupId": "Stg_Spawn_62",
+            "enemyId": 20012,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 594,
+            "groupId": "Stg_Spawn_62",
+            "enemyId": 20013,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 595,
+            "groupId": "Stg_Spawn_62",
+            "enemyId": 20006,
+            "enemyCount": 4
+        },
+        {
+            "spawnId": 596,
+            "groupId": "Stg_Spawn_63",
+            "enemyId": 20009,
+            "enemyCount": 14
+        },
+        {
+            "spawnId": 597,
+            "groupId": "Stg_Spawn_63",
+            "enemyId": 20010,
+            "enemyCount": 11
+        },
+        {
+            "spawnId": 598,
+            "groupId": "Stg_Spawn_63",
+            "enemyId": 20005,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 599,
+            "groupId": "Stg_Spawn_63",
+            "enemyId": 20011,
+            "enemyCount": 11
+        },
+        {
+            "spawnId": 600,
+            "groupId": "Stg_Spawn_63",
+            "enemyId": 20012,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 601,
+            "groupId": "Stg_Spawn_63",
+            "enemyId": 20013,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 602,
+            "groupId": "Stg_Spawn_63",
+            "enemyId": 20006,
+            "enemyCount": 5
+        },
+        {
+            "spawnId": 603,
+            "groupId": "Stg_Spawn_64",
+            "enemyId": 20009,
+            "enemyCount": 14
+        },
+        {
+            "spawnId": 604,
+            "groupId": "Stg_Spawn_64",
+            "enemyId": 20010,
+            "enemyCount": 12
+        },
+        {
+            "spawnId": 605,
+            "groupId": "Stg_Spawn_64",
+            "enemyId": 20005,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 606,
+            "groupId": "Stg_Spawn_64",
+            "enemyId": 20011,
+            "enemyCount": 12
+        },
+        {
+            "spawnId": 607,
+            "groupId": "Stg_Spawn_64",
+            "enemyId": 20012,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 608,
+            "groupId": "Stg_Spawn_64",
+            "enemyId": 20013,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 609,
+            "groupId": "Stg_Spawn_64",
+            "enemyId": 20006,
+            "enemyCount": 4
+        },
+        {
+            "spawnId": 610,
+            "groupId": "Stg_Spawn_65",
+            "enemyId": 20009,
+            "enemyCount": 14
+        },
+        {
+            "spawnId": 611,
+            "groupId": "Stg_Spawn_65",
+            "enemyId": 20010,
+            "enemyCount": 12
+        },
+        {
+            "spawnId": 612,
+            "groupId": "Stg_Spawn_65",
+            "enemyId": 20005,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 613,
+            "groupId": "Stg_Spawn_65",
+            "enemyId": 20011,
+            "enemyCount": 12
+        },
+        {
+            "spawnId": 614,
+            "groupId": "Stg_Spawn_65",
+            "enemyId": 20012,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 615,
+            "groupId": "Stg_Spawn_65",
+            "enemyId": 20013,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 616,
+            "groupId": "Stg_Spawn_65",
+            "enemyId": 20006,
+            "enemyCount": 4
+        },
+        {
+            "spawnId": 617,
+            "groupId": "Stg_Spawn_66",
+            "enemyId": 20009,
+            "enemyCount": 14
+        },
+        {
+            "spawnId": 618,
+            "groupId": "Stg_Spawn_66",
+            "enemyId": 20010,
+            "enemyCount": 12
+        },
+        {
+            "spawnId": 619,
+            "groupId": "Stg_Spawn_66",
+            "enemyId": 20005,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 620,
+            "groupId": "Stg_Spawn_66",
+            "enemyId": 20011,
+            "enemyCount": 12
+        },
+        {
+            "spawnId": 621,
+            "groupId": "Stg_Spawn_66",
+            "enemyId": 20012,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 622,
+            "groupId": "Stg_Spawn_66",
+            "enemyId": 20013,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 623,
+            "groupId": "Stg_Spawn_66",
+            "enemyId": 20006,
+            "enemyCount": 5
+        },
+        {
+            "spawnId": 624,
+            "groupId": "Stg_Spawn_67",
+            "enemyId": 20010,
+            "enemyCount": 15
+        },
+        {
+            "spawnId": 625,
+            "groupId": "Stg_Spawn_67",
+            "enemyId": 20005,
+            "enemyCount": 12
+        },
+        {
+            "spawnId": 626,
+            "groupId": "Stg_Spawn_67",
+            "enemyId": 20011,
+            "enemyCount": 15
+        },
+        {
+            "spawnId": 627,
+            "groupId": "Stg_Spawn_67",
+            "enemyId": 20012,
+            "enemyCount": 12
+        },
+        {
+            "spawnId": 628,
+            "groupId": "Stg_Spawn_67",
+            "enemyId": 20013,
+            "enemyCount": 12
+        },
+        {
+            "spawnId": 629,
+            "groupId": "Stg_Spawn_67",
+            "enemyId": 20006,
+            "enemyCount": 4
+        },
+        {
+            "spawnId": 630,
+            "groupId": "Stg_Spawn_68",
+            "enemyId": 20010,
+            "enemyCount": 15
+        },
+        {
+            "spawnId": 631,
+            "groupId": "Stg_Spawn_68",
+            "enemyId": 20005,
+            "enemyCount": 12
+        },
+        {
+            "spawnId": 632,
+            "groupId": "Stg_Spawn_68",
+            "enemyId": 20011,
+            "enemyCount": 15
+        },
+        {
+            "spawnId": 633,
+            "groupId": "Stg_Spawn_68",
+            "enemyId": 20012,
+            "enemyCount": 12
+        },
+        {
+            "spawnId": 634,
+            "groupId": "Stg_Spawn_68",
+            "enemyId": 20013,
+            "enemyCount": 12
+        },
+        {
+            "spawnId": 635,
+            "groupId": "Stg_Spawn_68",
+            "enemyId": 20006,
+            "enemyCount": 4
+        },
+        {
+            "spawnId": 636,
+            "groupId": "Stg_Spawn_69",
+            "enemyId": 20010,
+            "enemyCount": 15
+        },
+        {
+            "spawnId": 637,
+            "groupId": "Stg_Spawn_69",
+            "enemyId": 20005,
+            "enemyCount": 12
+        },
+        {
+            "spawnId": 638,
+            "groupId": "Stg_Spawn_69",
+            "enemyId": 20011,
+            "enemyCount": 15
+        },
+        {
+            "spawnId": 639,
+            "groupId": "Stg_Spawn_69",
+            "enemyId": 20012,
+            "enemyCount": 12
+        },
+        {
+            "spawnId": 640,
+            "groupId": "Stg_Spawn_69",
+            "enemyId": 20013,
+            "enemyCount": 12
+        },
+        {
+            "spawnId": 641,
+            "groupId": "Stg_Spawn_69",
+            "enemyId": 20006,
+            "enemyCount": 5
+        },
+        {
+            "spawnId": 642,
+            "groupId": "Stg_Spawn_70",
+            "enemyId": 20010,
+            "enemyCount": 15
+        },
+        {
+            "spawnId": 643,
+            "groupId": "Stg_Spawn_70",
+            "enemyId": 20005,
+            "enemyCount": 12
+        },
+        {
+            "spawnId": 644,
+            "groupId": "Stg_Spawn_70",
+            "enemyId": 20011,
+            "enemyCount": 15
+        },
+        {
+            "spawnId": 645,
+            "groupId": "Stg_Spawn_70",
+            "enemyId": 20012,
+            "enemyCount": 12
+        },
+        {
+            "spawnId": 646,
+            "groupId": "Stg_Spawn_70",
+            "enemyId": 20013,
+            "enemyCount": 12
+        },
+        {
+            "spawnId": 647,
+            "groupId": "Stg_Spawn_70",
+            "enemyId": 20006,
+            "enemyCount": 5
+        },
+        {
+            "spawnId": 648,
+            "groupId": "Stg_Spawn_71",
+            "enemyId": 20005,
+            "enemyCount": 15
+        },
+        {
+            "spawnId": 649,
+            "groupId": "Stg_Spawn_71",
+            "enemyId": 20011,
+            "enemyCount": 19
+        },
+        {
+            "spawnId": 650,
+            "groupId": "Stg_Spawn_71",
+            "enemyId": 20012,
+            "enemyCount": 15
+        },
+        {
+            "spawnId": 651,
+            "groupId": "Stg_Spawn_71",
+            "enemyId": 20013,
+            "enemyCount": 15
+        },
+        {
+            "spawnId": 652,
+            "groupId": "Stg_Spawn_71",
+            "enemyId": 20006,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 653,
+            "groupId": "Stg_Spawn_72",
+            "enemyId": 20005,
+            "enemyCount": 15
+        },
+        {
+            "spawnId": 654,
+            "groupId": "Stg_Spawn_72",
+            "enemyId": 20011,
+            "enemyCount": 19
+        },
+        {
+            "spawnId": 655,
+            "groupId": "Stg_Spawn_72",
+            "enemyId": 20012,
+            "enemyCount": 15
+        },
+        {
+            "spawnId": 656,
+            "groupId": "Stg_Spawn_72",
+            "enemyId": 20013,
+            "enemyCount": 15
+        },
+        {
+            "spawnId": 657,
+            "groupId": "Stg_Spawn_72",
+            "enemyId": 20006,
+            "enemyCount": 8
+        },
+        {
+            "spawnId": 658,
+            "groupId": "Stg_Spawn_73",
+            "enemyId": 20005,
+            "enemyCount": 15
+        },
+        {
+            "spawnId": 659,
+            "groupId": "Stg_Spawn_73",
+            "enemyId": 20011,
+            "enemyCount": 19
+        },
+        {
+            "spawnId": 660,
+            "groupId": "Stg_Spawn_73",
+            "enemyId": 20012,
+            "enemyCount": 15
+        },
+        {
+            "spawnId": 661,
+            "groupId": "Stg_Spawn_73",
+            "enemyId": 20013,
+            "enemyCount": 15
+        },
+        {
+            "spawnId": 662,
+            "groupId": "Stg_Spawn_73",
+            "enemyId": 20006,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 663,
+            "groupId": "Stg_Spawn_74",
+            "enemyId": 20005,
+            "enemyCount": 15
+        },
+        {
+            "spawnId": 664,
+            "groupId": "Stg_Spawn_74",
+            "enemyId": 20011,
+            "enemyCount": 19
+        },
+        {
+            "spawnId": 665,
+            "groupId": "Stg_Spawn_74",
+            "enemyId": 20012,
+            "enemyCount": 15
+        },
+        {
+            "spawnId": 666,
+            "groupId": "Stg_Spawn_74",
+            "enemyId": 20013,
+            "enemyCount": 15
+        },
+        {
+            "spawnId": 667,
+            "groupId": "Stg_Spawn_74",
+            "enemyId": 20006,
+            "enemyCount": 9
+        },
+        {
+            "spawnId": 668,
+            "groupId": "Stg_Spawn_75",
+            "enemyId": 20017,
+            "enemyCount": 1
+        },
+        {
+            "spawnId": 669,
+            "groupId": "Stg_Spawn_75",
+            "enemyId": 20001,
+            "enemyCount": 10
         }
     ]
 }

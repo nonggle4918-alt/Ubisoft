@@ -11,11 +11,15 @@ public class Piece : MonoBehaviour
     public bool IsDead => CurrentHP <= 0;
     public float AttackBuff { get; private set; } = 1f;
     public GridCell CurrentCell { get; set; }
+    public int Kills { get; private set; }
+
+    public void RegisterKill() => Kills++;
 
     private SpriteRenderer spriteRenderer;
     private Vector3 baseScale;
     private Vector3 visualScale;
     private Coroutine lungeCoroutine;
+    private Transform lungeVisual;
     private Coroutine attackPunchCoroutine;
     private Coroutine promotionCoroutine;
     private float spawnedAt;
@@ -215,10 +219,18 @@ public class Piece : MonoBehaviour
     public void PlayLungeAttack(Enemy target, float damage)
     {
         if (lungeCoroutine != null)
+        {
             StopCoroutine(lungeCoroutine);
+            EndLunge();
+        }
         lungeCoroutine = StartCoroutine(LungeRoutine(target, damage));
     }
 
+    // The piece keeps sitting on its grid cell for the whole strike — only a throwaway
+    // copy of its sprite travels to the target. Moving the piece itself would take its
+    // transform (and with it the collider used for click hit-testing, and the position
+    // every drag/spawn check reads) off the cell it still owns, which let another piece
+    // be placed on top of it mid-attack. Mirrors how MultiLungeEffect animates Pegasus.
     private IEnumerator LungeRoutine(Enemy target, float damage)
     {
         const float outDuration = 0.09f;
@@ -227,42 +239,75 @@ public class Piece : MonoBehaviour
         const float impactSquash = 1.18f;
 
         Vector3 origin = transform.position;
-        Vector3 restScale = transform.localScale;
-        Vector3 squashScale = new Vector3(restScale.x * impactSquash, restScale.y / impactSquash, restScale.z);
-
         Vector3 toTarget = target != null ? target.transform.position - origin : Vector3.zero;
         float distance = toTarget.magnitude;
         Vector3 lungePosition = distance > 0.001f
             ? origin + toTarget.normalized * Mathf.Min(distance * lungeFraction, Mathf.Max(distance - 0.1f, 0f))
             : origin;
 
+        Transform visual = CreateLungeVisual();
+        Vector3 restScale = visual.localScale;
+        Vector3 squashScale = new Vector3(restScale.x * impactSquash, restScale.y / impactSquash, restScale.z);
+
         float elapsed = 0f;
         while (elapsed < outDuration)
         {
             elapsed += Time.deltaTime;
             float t = EaseOutQuad(Mathf.Clamp01(elapsed / outDuration));
-            transform.position = Vector3.Lerp(origin, lungePosition, t);
+            visual.position = Vector3.Lerp(origin, lungePosition, t);
             yield return null;
         }
-        transform.position = lungePosition;
+        visual.position = lungePosition;
 
         if (target != null && !target.IsDead)
-            target.TakeDamage(damage);
+            target.TakeDamage(damage, this);
 
-        transform.localScale = squashScale;
+        visual.localScale = squashScale;
 
         elapsed = 0f;
         while (elapsed < backDuration)
         {
             elapsed += Time.deltaTime;
             float t = EaseOutQuad(Mathf.Clamp01(elapsed / backDuration));
-            transform.position = Vector3.Lerp(lungePosition, origin, t);
-            transform.localScale = Vector3.Lerp(squashScale, restScale, t);
+            visual.position = Vector3.Lerp(lungePosition, origin, t);
+            visual.localScale = Vector3.Lerp(squashScale, restScale, t);
             yield return null;
         }
 
-        transform.position = origin;
-        transform.localScale = restScale;
+        EndLunge();
+    }
+
+    // Parented to the piece so it is cleaned up automatically if the piece dies mid-strike.
+    private Transform CreateLungeVisual()
+    {
+        var holder = new GameObject("Lunge Visual");
+        holder.transform.SetParent(transform, false);
+
+        var renderer = holder.AddComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+        {
+            renderer.sprite = spriteRenderer.sprite;
+            renderer.color = spriteRenderer.color;
+            renderer.flipX = spriteRenderer.flipX;
+            renderer.sharedMaterial = spriteRenderer.sharedMaterial;
+            renderer.sortingLayerID = spriteRenderer.sortingLayerID;
+            renderer.sortingOrder = spriteRenderer.sortingOrder + 10;
+            spriteRenderer.enabled = false;
+        }
+
+        lungeVisual = holder.transform;
+        return lungeVisual;
+    }
+
+    private void EndLunge()
+    {
+        if (lungeVisual != null)
+            Destroy(lungeVisual.gameObject);
+        lungeVisual = null;
+
+        if (spriteRenderer != null)
+            spriteRenderer.enabled = true;
+
         lungeCoroutine = null;
     }
 

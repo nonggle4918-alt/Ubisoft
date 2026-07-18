@@ -25,6 +25,17 @@ Enemy_Rook,img,C:\Project\Ubisoft\Assets\Resources\Sprites\Black\Char_Black_Rook
 Enemy_Pawn,img,C:\Project\Ubisoft\Assets\Resources\Sprites\Black\Char_Black_Pawn
 Enemy_Queen,img,C:\Project\Ubisoft\Assets\Resources\Sprites\Black\Char_Black_Queen
 Enemy_King,img,C:\Project\Ubisoft\Assets\Resources\Sprites\Black\Char_Black_King
+Enemy_ShieldPawn,img,C:\Project\Ubisoft\Assets\Resources\Sprites\Black\Char_Black_ShieldPawn
+Enemy_BombPawn,img,C:\Project\Ubisoft\Assets\Resources\Sprites\Black\Char_Black_BombPawn
+Enemy_RavenBishop,img,C:\Project\Ubisoft\Assets\Resources\Sprites\Black\Char_Black_RavenBishop
+Enemy_BerserkerKnight,img,C:\Project\Ubisoft\Assets\Resources\Sprites\Black\Char_Black_BerserkerKnight
+Enemy_DarkMage,img,C:\Project\Ubisoft\Assets\Resources\Sprites\Black\Char_Black_DarkMage
+Enemy_HeavyRook,img,C:\Project\Ubisoft\Assets\Resources\Sprites\Black\Char_Black_HeavyRook
+Enemy_MimicRook,img,C:\Project\Ubisoft\Assets\Resources\Sprites\Black\Char_Black_MimicRook
+Enemy_BossHaetae,img,C:\Project\Ubisoft\Assets\Resources\Sprites\Black\Char_Black_BossHaetae
+Enemy_BossDragon,img,C:\Project\Ubisoft\Assets\Resources\Sprites\Black\Char_Black_BossDragon
+Enemy_BossChimera,img,C:\Project\Ubisoft\Assets\Resources\Sprites\Black\Char_Black_BossChimera
+Enemy_BossColossus,img,C:\Project\Ubisoft\Assets\Resources\Sprites\Black\Char_Black_BossColossus
 Piece_Unicorn,img,C:\Project\Ubisoft\Assets\Resources\Sprites\Black\Char_White_Unicorn
 Piece_Pegasus,img,C:\Project\Ubisoft\Assets\Resources\Sprites\Black\Char_White_Pegasus
 Piece_Dragon,img,C:\Project\Ubisoft\Assets\Resources\Sprites\Black\Char_White_Dragon

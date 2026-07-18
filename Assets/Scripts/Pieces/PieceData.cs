@@ -43,6 +43,7 @@ public class PieceData : ScriptableObject
     public int goldReward = 10;
     public int tier = 1;
     public UpgradeFamily upgradeFamily;
+    public bool isBoss;
 
     [Header("Knight")]
     public float bonusMaxHpPercent = 5f;

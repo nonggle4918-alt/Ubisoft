@@ -4,6 +4,7 @@ public enum ProjectileMode { Standard, Line, Homing }
 
 public class Projectile : MonoBehaviour
 {
+    private Piece owner;
     private Enemy target;
     private float damage;
     private float speed;
@@ -18,6 +19,9 @@ public class Projectile : MonoBehaviour
     private Transform orbParticles;
     private ParticleSystem orbParticleSystem;
     private float orbRotationSpeed;
+
+    // Set by whoever fired it so a killing blow can be credited back to that piece.
+    public void SetOwner(Piece piece) => owner = piece;
 
     public void Initialize(Enemy targetEnemy, float attackDamage, float moveSpeed)
     {
@@ -74,7 +78,7 @@ public class Projectile : MonoBehaviour
 
         if (Vector3.Distance(transform.position, target.transform.position) < 0.2f)
         {
-            target.TakeDamage(damage);
+            target.TakeDamage(damage, owner);
             DestroyProjectile();
         }
     }
@@ -95,7 +99,7 @@ public class Projectile : MonoBehaviour
             if (enemy == null || enemy.IsDead) continue;
             if (Vector3.Distance(transform.position, enemy.transform.position) < 0.4f)
             {
-                enemy.TakeDamage(damage);
+                enemy.TakeDamage(damage, owner);
                 DestroyProjectile();
                 return;
             }
@@ -162,7 +166,7 @@ public class Projectile : MonoBehaviour
 
         if (Vector3.Distance(transform.position, target.transform.position) < 0.2f)
         {
-            target.TakeDamage(damage);
+            target.TakeDamage(damage, owner);
             DestroyProjectile();
         }
     }
