@@ -42,6 +42,7 @@ public class UIManager : MonoBehaviour
     // Chosen play speed. Kept separate from Time.timeScale because opening the options
     // window parks the scale at 0, and closing it has to restore this rather than 1x.
     private float gameSpeed = 1f;
+    private TextMeshProUGUI statusCategoryText;
     private TextMeshProUGUI statusTierText;
     private Button statusSellButton;
     private TextMeshProUGUI statusSellText;
@@ -363,11 +364,32 @@ public class UIManager : MonoBehaviour
 
     private void InitializeSelectedPieceStatus()
     {
+        CreateStatusCategoryText();
         CreateStatusTierText();
         CreateStatusSellButton();
 
         if (panelStatus != null)
             panelStatus.SetActive(false);
+    }
+
+    private void CreateStatusCategoryText()
+    {
+        if (statusCategoryText != null || panelStatus == null || statusTextTitle == null) return;
+
+        statusCategoryText = Instantiate(statusTextTitle, statusTextTitle.transform.parent);
+        statusCategoryText.name = "StatusCategoryText";
+        statusCategoryText.alignment = TextAlignmentOptions.TopLeft;
+        statusCategoryText.fontSize = statusTextTitle.fontSize;
+        statusCategoryText.raycastTarget = false;
+
+        var titleTransform = statusTextTitle.rectTransform;
+        var categoryTransform = statusCategoryText.rectTransform;
+        categoryTransform.anchorMin = new Vector2(0f, titleTransform.anchorMin.y);
+        categoryTransform.anchorMax = new Vector2(0f, titleTransform.anchorMax.y);
+        categoryTransform.pivot = new Vector2(0f, titleTransform.pivot.y);
+        categoryTransform.anchoredPosition = new Vector2(24f, titleTransform.anchoredPosition.y);
+        categoryTransform.sizeDelta = new Vector2(180f, titleTransform.sizeDelta.y);
+        categoryTransform.SetAsLastSibling();
     }
 
     private void CreateStatusTierText()
@@ -607,6 +629,7 @@ public class UIManager : MonoBehaviour
 
         PieceData data = selectedPiece.Data;
         statusTextTitle.text = data.pieceName;
+        UpdateStatusCategory(data);
         UpdateStatusTier(data);
         statusText.text =
             $"공격력: {selectedPiece.GetAttackDamage():0.0}\n" +
@@ -672,6 +695,33 @@ public class UIManager : MonoBehaviour
 
         if (UpgradeManager.TryGetType(selectedPiece.Data.pieceName, out PieceUpgradeType selectedType) && selectedType == type)
             RefreshSelectedPieceInfo();
+    }
+
+    private void UpdateStatusCategory(PieceData data)
+    {
+        if (statusCategoryText == null || data == null) return;
+
+        statusCategoryText.text = GetPieceCategory(data);
+        statusCategoryText.color = statusTextTitle.color;
+    }
+
+    private static string GetPieceCategory(PieceData data)
+    {
+        if (data == null || string.IsNullOrEmpty(data.pieceName))
+            return string.Empty;
+
+        if (UpgradeManager.TryGetType(data.pieceName, out _))
+            return "일반기물";
+
+        switch (data.pieceName.ToLowerInvariant())
+        {
+            case "pawn":
+            case "queen":
+            case "king":
+                return "특수기물";
+            default:
+                return "영웅기물";
+        }
     }
 
     private void UpdateStatusTier(PieceData data)

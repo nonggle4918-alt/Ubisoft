@@ -22,10 +22,11 @@ public class Piece : MonoBehaviour
     private Transform lungeVisual;
     private Coroutine attackPunchCoroutine;
     private Coroutine promotionCoroutine;
-    private float spawnedAt;
+    private int spawnedWave;
     private bool promotionStarted;
 
-    private const float DebugPromotionDelay = 10f;
+    private const int PromotionKillRequirement = 5;
+    private const int PromotionWaveRequirement = 5;
 
     private void Awake()
     {
@@ -37,14 +38,17 @@ public class Piece : MonoBehaviour
     private void Start()
     {
         ApplyData();
-        spawnedAt = Time.time;
+        spawnedWave = GameManager.Instance != null ? GameManager.Instance.CurrentWave : 1;
         RegisterToCombat();
     }
 
     private void Update()
     {
         if (promotionStarted || data == null || !string.Equals(data.pieceName, "Pawn", System.StringComparison.OrdinalIgnoreCase)) return;
-        if (Time.time - spawnedAt < DebugPromotionDelay) return;
+
+        int currentWave = GameManager.Instance != null ? GameManager.Instance.CurrentWave : spawnedWave;
+        int wavesPassed = Mathf.Max(0, currentWave - spawnedWave);
+        if (Kills < PromotionKillRequirement && wavesPassed < PromotionWaveRequirement) return;
 
         promotionStarted = true;
         promotionCoroutine = StartCoroutine(PromotionRoutine());
