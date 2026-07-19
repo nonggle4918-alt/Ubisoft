@@ -589,7 +589,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 5dde62fbf4d304742bb1495cddea1343, type: 3}
+  m_Resource: {fileID: 8300000, guid: f1966f59841fe47e1a508b33216f72bd, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -2545,7 +2545,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef99dc00f4fa38045939d8da11831788, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SFXManager
-  enemyHitClip: {fileID: 8300000, guid: 1458023761113ce4881c66c80f2f1562, type: 3}
+  enemyHitClip: {fileID: 8300000, guid: 07c71cfd6dc46cc4f8657c273401f59f, type: 3}
   enemyDestroyedClip: {fileID: 8300000, guid: 56bf003af69058e4ab6ba3b3f1ccd57e, type: 3}
   enemySpawnedClip: {fileID: 8300000, guid: 59f33961595914d05ad08d20d14a8ef1, type: 3}
   unitPurchasedClip: {fileID: 8300000, guid: 31fb8bed0db703c4297102592d110504, type: 3}
@@ -2555,7 +2555,7 @@ MonoBehaviour:
   heroClip: {fileID: 8300000, guid: 00417b6cb1835d9449c5def5cd355b1a, type: 3}
   buttonClickClip: {fileID: 8300000, guid: e7650a2f8d04a104c90a53fbcbb88edc, type: 3}
   attackDirectClip: {fileID: 8300000, guid: db04da981f14b1c48958ec93a90aad62, type: 3}
-  attackProjectileClip: {fileID: 8300000, guid: d0e54e67fd0a27243af1e20dac0d24a0, type: 3}
+  attackProjectileClip: {fileID: 8300000, guid: 7367334b4519e4b0e87ea6d643a7300b, type: 3}
   attackDiagonalProjectileClip: {fileID: 8300000, guid: d0e54e67fd0a27243af1e20dac0d24a0, type: 3}
   attackLaserClip: {fileID: 8300000, guid: 7ae447072fdf73d48a28151f673912ea, type: 3}
   attackHomingClip: {fileID: 8300000, guid: 09c91bbbc5cdf7c48aeb48df0eb43120, type: 3}
@@ -2565,7 +2565,7 @@ MonoBehaviour:
   attackCannonClip: {fileID: 8300000, guid: 491fa2fff7f4c1d43aa2d0e24270879e, type: 3}
   attackMeteorClip: {fileID: 8300000, guid: 74f392b043a5f974c86a626369809204, type: 3}
   attackAlchemyClip: {fileID: 8300000, guid: 01c425456796e4446b7004d537b8419e, type: 3}
-  volume: 0.35
+  volume: 0.385
 --- !u!4 &1080712093
 Transform:
   m_ObjectHideFlags: 0
