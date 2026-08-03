@@ -126,6 +126,7 @@ public class Piece : MonoBehaviour
     private float GetUpgradeAtkMultiplier()
     {
         if (UpgradeManager.Instance == null || data == null) return 1f;
+        if (data.isSpecialPiece) return UpgradeManager.Instance.GetSpecialAtkMultiplier();
         if (TryGetUpgradeType(out PieceUpgradeType type))
             return UpgradeManager.Instance.GetAtkMultiplier(type);
         return 1f;
@@ -134,6 +135,7 @@ public class Piece : MonoBehaviour
     private float GetUpgradeCoolMultiplier()
     {
         if (UpgradeManager.Instance == null || data == null) return 1f;
+        if (data.isSpecialPiece) return UpgradeManager.Instance.GetSpecialCoolMultiplier();
         if (TryGetUpgradeType(out PieceUpgradeType type))
             return UpgradeManager.Instance.GetCoolMultiplier(type);
         return 1f;

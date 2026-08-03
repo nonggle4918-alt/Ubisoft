@@ -70,6 +70,20 @@ public class UpgradeManager : MonoBehaviour
 
     public float GetCoolMultiplier(PieceUpgradeType type) => Mathf.Max(0.05f, 1f - GetCoolPercent(type) / 100f);
 
+    // Gacha specials (Pawn/Queen/King) aren't part of any single upgrade family, so they
+    // scale with the average of all three rather than picking one.
+    public float GetSpecialAtkMultiplier()
+    {
+        float avg = (GetAtkPercent(PieceUpgradeType.Bishop) + GetAtkPercent(PieceUpgradeType.Knight) + GetAtkPercent(PieceUpgradeType.Rook)) / 3f;
+        return 1f + avg / 100f;
+    }
+
+    public float GetSpecialCoolMultiplier()
+    {
+        float avg = (GetCoolPercent(PieceUpgradeType.Bishop) + GetCoolPercent(PieceUpgradeType.Knight) + GetCoolPercent(PieceUpgradeType.Rook)) / 3f;
+        return Mathf.Max(0.05f, 1f - avg / 100f);
+    }
+
     public bool TryUpgrade(PieceUpgradeType type)
     {
         if (Database == null || IsMaxed(type)) return false;

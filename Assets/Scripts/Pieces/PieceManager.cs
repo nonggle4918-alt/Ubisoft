@@ -135,6 +135,7 @@ public class PieceManager : MonoBehaviour
         runtimeData.goldReward = selected.goldReward;
         runtimeData.projectileCount = selected.projectileCount;
         runtimeData.sprite = selected.sprite;
+        runtimeData.isSpecialPiece = selected.isSpecialPiece;
 
         runtimeData.tier = tier;
         ApplyTierToData(runtimeData, tier);

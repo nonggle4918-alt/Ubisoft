@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -46,11 +47,30 @@ public class UIManager : MonoBehaviour
     private TextMeshProUGUI statusTierText;
     private Button statusSellButton;
     private TextMeshProUGUI statusSellText;
+    private Button infiniteContinueButton;
     private bool subscribed;
     private bool upgradeSubscribed;
 
+    private Button windowModeButton;
+    private TextMeshProUGUI windowModeButtonText;
+    private Button aspectRatioButton;
+    private TextMeshProUGUI aspectRatioButtonText;
+    private Button resolutionButton;
+    private TextMeshProUGUI resolutionButtonText;
+    private readonly List<(int width, int height)> aspectRatios = new List<(int width, int height)>();
+    private readonly List<Resolution> filteredResolutions = new List<Resolution>();
+    private int currentAspectIndex;
+    private int currentResolutionIndex;
+
+    private readonly List<Piece> boxSelectedPieces = new List<Piece>();
+
     private const string EffectsVolumeKey = SFXManager.EffectsVolumeKey;
     private const string BackgroundVolumeKey = "BackgroundVolume";
+    private const string ResolutionWidthKey = "ResolutionWidth";
+    private const string ResolutionHeightKey = "ResolutionHeight";
+    private const string FullScreenModeKey = "FullScreenMode";
+    private const string AspectRatioWidthKey = "AspectRatioWidth";
+    private const string AspectRatioHeightKey = "AspectRatioHeight";
 
     private void OnEnable()
     {
@@ -98,6 +118,10 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
+        // Applied before anything else so the resolution switch (if any) happens before
+        // the rest of the UI lays itself out against the screen size.
+        ApplyDisplaySettingsFromPrefs();
+
         TrySubscribe();
         pieceManager = FindFirstObjectByType<PieceManager>();
         UpdateGold(GameManager.Instance.Gold);
@@ -112,6 +136,7 @@ public class UIManager : MonoBehaviour
         CreateSpeedToggleButton();
         CreateShortcutHelp();
         InitializeSoundControls();
+        InitializeDisplayControls();
         InitializeSelectedPieceStatus();
 
         if (pieceManager != null)
@@ -171,6 +196,38 @@ public class UIManager : MonoBehaviour
         var label = exitButton.GetComponentInChildren<TextMeshProUGUI>(true);
         if (label != null)
             label.text = "나가기";
+
+        CreateInfiniteContinueButton(exitButton);
+    }
+
+    // Clones the exit button so clearing the final stage offers a way to keep playing
+    // (infinite mode) instead of only leaving.
+    private void CreateInfiniteContinueButton(Button exitButton)
+    {
+        if (infiniteContinueButton != null) return;
+
+        GameObject continueObject = Instantiate(exitButton.gameObject, exitButton.transform.parent);
+        continueObject.name = "Button_ContinueInfinite";
+
+        infiniteContinueButton = continueObject.GetComponent<Button>();
+        infiniteContinueButton.onClick.RemoveAllListeners();
+        infiniteContinueButton.onClick.AddListener(ContinueInfiniteMode);
+        SFXManager.Instance?.BindButtonClickSound(infiniteContinueButton);
+
+        var continueLabel = infiniteContinueButton.GetComponentInChildren<TextMeshProUGUI>(true);
+        if (continueLabel != null)
+            continueLabel.text = "무한 모드로 계속";
+
+        RectTransform exitRect = exitButton.GetComponent<RectTransform>();
+        RectTransform continueRect = continueObject.GetComponent<RectTransform>();
+        float shift = (exitRect.sizeDelta.x + 24f) / 2f;
+        exitRect.anchoredPosition += new Vector2(shift, 0f);
+        continueRect.anchoredPosition -= new Vector2(shift, 0f);
+    }
+
+    public void ContinueInfiniteMode()
+    {
+        GameManager.Instance.ContinueToInfinite();
     }
 
     private static void SetPanelText(GameObject root, string objectName, string value)
@@ -260,7 +317,11 @@ public class UIManager : MonoBehaviour
     private void UpdateLives(int lives) { if (livesText != null) livesText.text = $"Lives: {lives}"; }
     private void UpdateWave(int wave)
     {
-        if (waveText != null) waveText.text = $"Wave: {wave}";
+        if (waveText != null)
+        {
+            bool infinite = GameManager.Instance != null && GameManager.Instance.Mode == GameMode.Infinite;
+            waveText.text = infinite ? $"Wave: {wave} (무한)" : $"Wave: {wave}";
+        }
         // Clearing a boss stage raises the pull price, so refresh the label with the wave.
         UpdateBuyButtonText();
     }
@@ -340,6 +401,244 @@ public class UIManager : MonoBehaviour
     // PlayerPrefs.Save writes to disk, which is far too heavy to run on every slider
     // frame; persist once when the scene goes away instead.
     private void OnApplicationQuit() => PlayerPrefs.Save();
+
+    // Restores the saved window mode/resolution before the rest of Start() runs.
+    private void ApplyDisplaySettingsFromPrefs()
+    {
+        FullScreenMode mode = (FullScreenMode)PlayerPrefs.GetInt(FullScreenModeKey, (int)Screen.fullScreenMode);
+        int width = PlayerPrefs.GetInt(ResolutionWidthKey, Screen.currentResolution.width);
+        int height = PlayerPrefs.GetInt(ResolutionHeightKey, Screen.currentResolution.height);
+        Screen.SetResolution(width, height, mode);
+    }
+
+    // Exposed as three cycle buttons (window mode / aspect ratio / resolution) rather
+    // than TMP_Dropdowns — same runtime-created-button convention as CreateSpeedToggleButton,
+    // and avoids depending on a dropdown template being hand-placed in the scene.
+    private void InitializeDisplayControls()
+    {
+        BuildAspectRatioOptions();
+
+        int savedAspectW = PlayerPrefs.GetInt(AspectRatioWidthKey, 16);
+        int savedAspectH = PlayerPrefs.GetInt(AspectRatioHeightKey, 9);
+        currentAspectIndex = aspectRatios.FindIndex(r => r.width == savedAspectW && r.height == savedAspectH);
+        if (currentAspectIndex < 0) currentAspectIndex = 0;
+
+        RefreshResolutionOptions();
+
+        int savedResW = PlayerPrefs.GetInt(ResolutionWidthKey, Screen.width);
+        int savedResH = PlayerPrefs.GetInt(ResolutionHeightKey, Screen.height);
+        currentResolutionIndex = filteredResolutions.FindIndex(r => r.width == savedResW && r.height == savedResH);
+        if (currentResolutionIndex < 0) currentResolutionIndex = filteredResolutions.Count - 1;
+
+        CreateDisplayControlButtons();
+        UpdateWindowModeButtonText();
+        UpdateAspectRatioButtonText();
+        UpdateResolutionButtonText();
+    }
+
+    private void BuildAspectRatioOptions()
+    {
+        aspectRatios.Clear();
+        var seen = new HashSet<(int width, int height)>();
+
+        foreach (Resolution res in Screen.resolutions)
+        {
+            int divisor = GreatestCommonDivisor(res.width, res.height);
+            if (divisor <= 0) continue;
+
+            var ratio = (res.width / divisor, res.height / divisor);
+            if (seen.Add(ratio))
+                aspectRatios.Add(ratio);
+        }
+
+        if (aspectRatios.Count == 0)
+            aspectRatios.Add((16, 9));
+    }
+
+    private static int GreatestCommonDivisor(int a, int b) => b == 0 ? a : GreatestCommonDivisor(b, a % b);
+
+    private void RefreshResolutionOptions()
+    {
+        filteredResolutions.Clear();
+        if (aspectRatios.Count == 0) return;
+
+        (int width, int height) target = aspectRatios[currentAspectIndex];
+        float targetRatio = (float)target.width / target.height;
+
+        foreach (Resolution res in Screen.resolutions)
+        {
+            float ratio = (float)res.width / res.height;
+            if (Mathf.Abs(ratio - targetRatio) < 0.01f)
+                filteredResolutions.Add(res);
+        }
+
+        if (filteredResolutions.Count == 0)
+            filteredResolutions.Add(Screen.currentResolution);
+    }
+
+    public void ToggleWindowMode()
+    {
+        FullScreenMode next;
+        switch (Screen.fullScreenMode)
+        {
+            case FullScreenMode.ExclusiveFullScreen:
+                next = FullScreenMode.FullScreenWindow;
+                break;
+            case FullScreenMode.FullScreenWindow:
+                next = FullScreenMode.Windowed;
+                break;
+            default:
+                next = FullScreenMode.ExclusiveFullScreen;
+                break;
+        }
+
+        Screen.SetResolution(Screen.width, Screen.height, next);
+        PlayerPrefs.SetInt(FullScreenModeKey, (int)next);
+        UpdateWindowModeButtonText();
+        SFXManager.Instance?.PlayButtonClick();
+    }
+
+    public void CycleAspectRatio()
+    {
+        if (aspectRatios.Count == 0) return;
+
+        currentAspectIndex = (currentAspectIndex + 1) % aspectRatios.Count;
+        RefreshResolutionOptions();
+        currentResolutionIndex = filteredResolutions.Count - 1;
+
+        (int width, int height) selected = aspectRatios[currentAspectIndex];
+        PlayerPrefs.SetInt(AspectRatioWidthKey, selected.width);
+        PlayerPrefs.SetInt(AspectRatioHeightKey, selected.height);
+
+        ApplySelectedResolution();
+        UpdateAspectRatioButtonText();
+        UpdateResolutionButtonText();
+        SFXManager.Instance?.PlayButtonClick();
+    }
+
+    public void CycleResolution()
+    {
+        if (filteredResolutions.Count == 0) return;
+
+        currentResolutionIndex = (currentResolutionIndex + 1) % filteredResolutions.Count;
+        ApplySelectedResolution();
+        UpdateResolutionButtonText();
+        SFXManager.Instance?.PlayButtonClick();
+    }
+
+    private void ApplySelectedResolution()
+    {
+        if (currentResolutionIndex < 0 || currentResolutionIndex >= filteredResolutions.Count) return;
+
+        Resolution res = filteredResolutions[currentResolutionIndex];
+        Screen.SetResolution(res.width, res.height, Screen.fullScreenMode);
+        PlayerPrefs.SetInt(ResolutionWidthKey, res.width);
+        PlayerPrefs.SetInt(ResolutionHeightKey, res.height);
+    }
+
+    private void UpdateWindowModeButtonText()
+    {
+        if (windowModeButtonText == null) return;
+
+        string label;
+        switch (Screen.fullScreenMode)
+        {
+            case FullScreenMode.ExclusiveFullScreen: label = "전체화면"; break;
+            case FullScreenMode.FullScreenWindow: label = "테두리없는창"; break;
+            default: label = "창모드"; break;
+        }
+        windowModeButtonText.text = label;
+    }
+
+    private void UpdateAspectRatioButtonText()
+    {
+        if (aspectRatioButtonText == null || aspectRatios.Count == 0) return;
+        (int width, int height) ratio = aspectRatios[currentAspectIndex];
+        aspectRatioButtonText.text = $"비율 {ratio.width}:{ratio.height}";
+    }
+
+    private void UpdateResolutionButtonText()
+    {
+        if (resolutionButtonText == null || filteredResolutions.Count == 0 ||
+            currentResolutionIndex < 0 || currentResolutionIndex >= filteredResolutions.Count) return;
+
+        Resolution res = filteredResolutions[currentResolutionIndex];
+        resolutionButtonText.text = $"{res.width}x{res.height}";
+    }
+
+    // Placed inside the options panel itself, stacked below the volume sliders, so these
+    // controls only show up while the panel is open (unlike the always-visible speed toggle).
+    private void CreateDisplayControlButtons()
+    {
+        if (windowModeButton != null) return;
+
+        RectTransform anchor = bgSound != null ? bgSound.transform as RectTransform
+            : (efxSound != null ? efxSound.transform as RectTransform : null);
+        if (anchor == null) return;
+
+        Vector2 nextPosition = anchor.anchoredPosition - new Vector2(0f, anchor.sizeDelta.y + 28f);
+
+        windowModeButton = CreateOptionCycleButton("Button_WindowMode", anchor, nextPosition, ToggleWindowMode, out windowModeButtonText);
+        if (windowModeButton == null) return;
+
+        nextPosition -= new Vector2(0f, 56f);
+        aspectRatioButton = CreateOptionCycleButton("Button_AspectRatio", anchor, nextPosition, CycleAspectRatio, out aspectRatioButtonText);
+        if (aspectRatioButton == null) return;
+
+        nextPosition -= new Vector2(0f, 56f);
+        resolutionButton = CreateOptionCycleButton("Button_Resolution", anchor, nextPosition, CycleResolution, out resolutionButtonText);
+    }
+
+    // Shared by all three display-setting buttons. Borrows the same "panel's own sprite"
+    // trick as CreateStatusSellButton since the built-in UI sprite isn't available here.
+    private Button CreateOptionCycleButton(string objectName, RectTransform referenceRect, Vector2 anchoredPosition, UnityEngine.Events.UnityAction onClick, out TextMeshProUGUI labelText)
+    {
+        labelText = null;
+        if (referenceRect == null) return null;
+
+        var buttonObject = new GameObject(objectName, typeof(RectTransform), typeof(Image), typeof(Button));
+        buttonObject.transform.SetParent(referenceRect.parent, false);
+
+        var rect = buttonObject.GetComponent<RectTransform>();
+        rect.anchorMin = referenceRect.anchorMin;
+        rect.anchorMax = referenceRect.anchorMax;
+        rect.pivot = referenceRect.pivot;
+        rect.sizeDelta = new Vector2(230f, 44f);
+        rect.anchoredPosition = anchoredPosition;
+
+        Image background = buttonObject.GetComponent<Image>();
+        Sprite panelSprite = FindPanelSprite();
+        if (panelSprite != null)
+        {
+            background.sprite = panelSprite;
+            background.type = Image.Type.Sliced;
+        }
+        background.color = new Color(0.20f, 0.22f, 0.28f, 0.95f);
+
+        Button button = buttonObject.GetComponent<Button>();
+        button.targetGraphic = background;
+        button.onClick.AddListener(onClick);
+        SFXManager.Instance?.BindButtonClickSound(button);
+
+        if (statusTextTitle != null)
+        {
+            labelText = Instantiate(statusTextTitle, buttonObject.transform);
+            labelText.name = objectName + "_Text";
+            labelText.alignment = TextAlignmentOptions.Center;
+            labelText.fontSize = statusTextTitle.fontSize;
+            labelText.color = Color.white;
+            labelText.raycastTarget = false;
+
+            RectTransform textRect = labelText.rectTransform;
+            textRect.anchorMin = Vector2.zero;
+            textRect.anchorMax = Vector2.one;
+            textRect.pivot = new Vector2(0.5f, 0.5f);
+            textRect.anchoredPosition = Vector2.zero;
+            textRect.sizeDelta = Vector2.zero;
+        }
+
+        return button;
+    }
 
     private void ApplyEffectsVolume(float volume)
     {

@@ -45,6 +45,10 @@ public class PieceData : ScriptableObject
     public UpgradeFamily upgradeFamily;
     public bool isBoss;
 
+    // Pawn/Queen/King gacha specials: no single upgrade family owns them, so they scale
+    // with the average of all three (see UpgradeManager.GetSpecialAtkMultiplier).
+    public bool isSpecialPiece;
+
     [Header("Knight")]
     public float bonusMaxHpPercent = 5f;
     public float bonusDamageCapPercent = 100f;

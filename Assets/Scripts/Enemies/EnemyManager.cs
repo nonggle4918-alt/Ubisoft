@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
@@ -12,6 +13,7 @@ public class EnemyManager : MonoBehaviour
     private List<Vector3> waypoints;
     private int enemiesAlive;
     private readonly Dictionary<int, PieceData> databaseEnemyData = new Dictionary<int, PieceData>();
+    private readonly Dictionary<string, PieceData> legacyScaledData = new Dictionary<string, PieceData>();
 
     public int RemainingEnemies => Mathf.Max(0, enemiesAlive);
 
@@ -163,12 +165,61 @@ public class EnemyManager : MonoBehaviour
         int pawnCount = 10 + wave;
         int queenCount = Mathf.Max(0, wave - 2);
 
+        // Stage data only covers waves 1-75 (GameManager.FinalStage); infinite mode keeps
+        // scaling this legacy fallback rather than needing a separate generator.
+        int over = Mathf.Max(0, wave - GameManager.FinalStage);
+        float hpMultiplier = Mathf.Min(1f + over * 0.05f, 10f);
+
+        PieceData pawnData = ScaleLegacyEnemyData(enemyPawnData, hpMultiplier);
+        PieceData queenData = ScaleLegacyEnemyData(enemyQueenData, hpMultiplier);
+
         for (int i = 0; i < pawnCount; i++)
-            units.Add(enemyPawnData);
+            units.Add(pawnData);
         for (int i = 0; i < queenCount; i++)
-            units.Add(enemyQueenData);
+            units.Add(queenData);
+
+        if (over > 0 && over % 10 == 0)
+        {
+            PieceData bossData = GetLegacyBossData(hpMultiplier);
+            if (bossData != null)
+                units.Insert(0, bossData);
+        }
 
         return units;
+    }
+
+    // enemyPawnData/enemyQueenData are shared ScriptableObject assets, so scaling must
+    // produce a separate runtime instance rather than mutating them in place.
+    private PieceData ScaleLegacyEnemyData(PieceData source, float hpMultiplier)
+    {
+        if (source == null || hpMultiplier <= 1f) return source;
+
+        string cacheKey = $"{source.pieceName}_{hpMultiplier:F2}";
+        if (legacyScaledData.TryGetValue(cacheKey, out PieceData cached))
+            return cached;
+
+        PieceData scaled = ScriptableObject.CreateInstance<PieceData>();
+        scaled.hideFlags = HideFlags.DontSave;
+        scaled.pieceName = source.pieceName;
+        scaled.team = source.team;
+        scaled.sprite = source.sprite;
+        scaled.maxHP = Mathf.RoundToInt(source.maxHP * hpMultiplier);
+        scaled.movementSpeed = source.movementSpeed;
+        scaled.goldReward = Mathf.RoundToInt(source.goldReward * hpMultiplier);
+        scaled.isBoss = source.isBoss;
+
+        legacyScaledData[cacheKey] = scaled;
+        return scaled;
+    }
+
+    private PieceData GetLegacyBossData(float hpMultiplier)
+    {
+        GameDatabase database = GameManager.Instance?.Database;
+        EnemyRecord bossRecord = database?.Enemies.rows.FirstOrDefault(row => row.IsBoss);
+        if (bossRecord == null) return null;
+
+        PieceData baseBoss = GetDatabaseEnemyData(bossRecord.id);
+        return ScaleLegacyEnemyData(baseBoss, hpMultiplier);
     }
 
     private PieceData GetDatabaseEnemyData(int enemyId)

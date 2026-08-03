@@ -9,9 +9,18 @@ public enum GameState
     Victory
 }
 
+public enum GameMode
+{
+    Normal,
+    Infinite
+}
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+
+    // Set by ScencsChane before loading InGameScens; consumed once in Awake.
+    public static GameMode RequestedMode = GameMode.Normal;
 
     [Header("Game Settings")]
     [SerializeField] private int startGold = 100;
@@ -24,6 +33,7 @@ public class GameManager : MonoBehaviour
     public int CurrentWave { get; private set; } = 1;
     public GameState State { get; private set; } = GameState.Ready;
     public GameDatabase Database { get; private set; }
+    public GameMode Mode { get; private set; } = GameMode.Normal;
 
     public event Action<int> OnGoldChanged;
     public event Action<int> OnLivesChanged;
@@ -39,6 +49,7 @@ public class GameManager : MonoBehaviour
         }
         Instance = this;
         Database = GameDatabase.Load();
+        Mode = RequestedMode;
         Gold = startGold;
         Lives = startLives;
     }
@@ -81,7 +92,7 @@ public class GameManager : MonoBehaviour
 
     public void EndWave()
     {
-        if (IsFinalStage)
+        if (Mode == GameMode.Normal && IsFinalStage)
         {
             SetState(GameState.Victory);
             return;
@@ -90,6 +101,21 @@ public class GameManager : MonoBehaviour
         CurrentWave++;
         OnWaveChanged?.Invoke(CurrentWave);
         SetState(GameState.Ready);
+    }
+
+    // Called from the Victory panel's "continue" button to keep playing past the final stage.
+    // TimerManager's GameLoop coroutine already exited when State became Victory (see
+    // TimerManager.IsRunning), so it must be restarted explicitly, same as Restart() does.
+    public void ContinueToInfinite()
+    {
+        Mode = GameMode.Infinite;
+        CurrentWave++;
+        OnWaveChanged?.Invoke(CurrentWave);
+        SetState(GameState.Ready);
+
+        var timerManager = FindFirstObjectByType<TimerManager>();
+        if (timerManager != null)
+            timerManager.RestartTimer();
     }
 
     // A boss that survives its lap allowance ends the run regardless of remaining lives.
@@ -112,6 +138,7 @@ public class GameManager : MonoBehaviour
         var gm = FindFirstObjectByType<GridManager>();
         if (gm != null) gm.ClearGrid();
 
+        Mode = RequestedMode;
         Gold = startGold;
         Lives = startLives;
         CurrentWave = 1;

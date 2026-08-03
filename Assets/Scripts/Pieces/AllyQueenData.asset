@@ -17,10 +17,10 @@ MonoBehaviour:
   attackType: 4
   sprite: {fileID: 21300000, guid: fcb342116f2d2d64797c041d8b4d9f52, type: 3}
   cost: 11
-  maxHP: 80
-  attackDamage: 10
-  attackRange: 4
-  attackCooldown: 0.35
+  maxHP: 90
+  attackDamage: 22
+  attackRange: 4.5
+  attackCooldown: 0.45
   projectileSpeed: 6
   visualScale: 1
   movementSpeed: 2
@@ -37,4 +37,5 @@ MonoBehaviour:
   slowPercent: 20
   buffRange: 1.5
   buffAttackPercent: 20
+  isSpecialPiece: 1
   gachaWeight: 1000
