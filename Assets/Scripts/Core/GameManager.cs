@@ -71,12 +71,25 @@ public class GameManager : MonoBehaviour
         return true;
     }
 
+    // Plain gold gain — no relic multiplier. Used by selling pieces and anything else that
+    // isn't a combat reward; the gold-gain relic is specifically about kill rewards.
     public void AddGold(int amount)
+    {
+        Gold += amount;
+        OnGoldChanged?.Invoke(Gold);
+    }
+
+    // Enemy kill rewards only — this is the one path the gold-gain relic amplifies.
+    public void AddKillGold(int amount)
     {
         float relicMult = RelicManager.Instance != null ? RelicManager.Instance.GoldMultiplier : 1f;
         Gold += Mathf.RoundToInt(amount * relicMult);
         OnGoldChanged?.Invoke(Gold);
     }
+
+    // Returns exactly what was spent on a failed purchase — plain AddGold already skips
+    // the relic multiplier, but this name makes the refund intent explicit at call sites.
+    public void RefundGold(int amount) => AddGold(amount);
 
     public void LoseLife(int amount = 1)
     {
@@ -160,6 +173,8 @@ public class GameManager : MonoBehaviour
 
         if (RelicManager.Instance != null)
             RelicManager.Instance.ResetRelics();
+
+        MerchantManager.Instance?.CloseShop();
 
         var timerManager = FindFirstObjectByType<TimerManager>();
         if (timerManager != null)

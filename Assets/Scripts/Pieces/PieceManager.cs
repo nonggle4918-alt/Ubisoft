@@ -24,6 +24,10 @@ public class PieceManager : MonoBehaviour
     // Every boss left behind makes the next piece more expensive.
     public int CurrentPullCost => pullCost + pullCostPerBoss * ClearedBossCount();
 
+    // Sum of gachaWeight across the gacha pool — used by the merchant to price a specific
+    // piece relative to how rare pulling it actually is.
+    public int TotalGachaWeight => totalWeight;
+
     private int ClearedBossCount()
     {
         if (bossStages == null || GameManager.Instance == null) return 0;
@@ -96,7 +100,7 @@ public class PieceManager : MonoBehaviour
         PieceData selected = WeightedRandom();
         if (selected == null)
         {
-            GameManager.Instance.AddGold(cost);
+            GameManager.Instance.RefundGold(cost);
             return;
         }
 
@@ -106,7 +110,7 @@ public class PieceManager : MonoBehaviour
         if (!TryPlaceRuntimePiece(runtimeData, out string failReason))
         {
             Debug.Log(failReason);
-            GameManager.Instance.AddGold(cost);
+            GameManager.Instance.RefundGold(cost);
         }
     }
 
@@ -266,5 +270,17 @@ public class PieceManager : MonoBehaviour
                 return pd;
         }
         return gachaPool.Count > 0 ? gachaPool[0] : null;
+    }
+
+    // Looks up a template by name from the same pool the gacha draws from — used by the
+    // merchant to build a specific offer (e.g. "a Bishop") rather than rolling one.
+    public PieceData GetTemplateByName(string pieceName)
+    {
+        foreach (var pd in gachaPool)
+        {
+            if (pd != null && string.Equals(pd.pieceName, pieceName, StringComparison.OrdinalIgnoreCase))
+                return pd;
+        }
+        return null;
     }
 }

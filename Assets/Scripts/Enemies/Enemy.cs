@@ -209,7 +209,7 @@ public class Enemy : MonoBehaviour
         isDying = true;
 
         int goldReward = data != null ? data.goldReward : 10;
-        GameManager.Instance.AddGold(goldReward);
+        GameManager.Instance.AddKillGold(goldReward);
         OnAnyEnemyRemoved?.Invoke();
         SFXManager.Instance?.PlayEnemyDestroyed();
         SpawnDeathFragments();
