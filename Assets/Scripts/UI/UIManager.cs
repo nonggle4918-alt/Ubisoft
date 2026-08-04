@@ -279,7 +279,7 @@ public class UIManager : MonoBehaviour
             RefreshSelectedPieceInfo();
 
         if (countdownText == null || GameManager.Instance == null) return;
-        if (GameManager.Instance.State == GameState.Ready)
+        if (GameManager.Instance.State == GameState.Ready && MerchantManager.Instance?.IsShopOpen != true)
         {
             countdownText.gameObject.SetActive(true);
             countdownText.text = $"Wave {GameManager.Instance.CurrentWave} starts soon...";

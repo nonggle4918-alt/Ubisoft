@@ -38,7 +38,18 @@ public class TimerManager : MonoBehaviour
         while (GameManager.Instance != null && IsRunning())
         {
             CurrentState = TimerState.Ready;
+
+            // MerchantManager.Instance rather than a cached field: it's created at runtime
+            // by UIManager (see EnsureMerchantManager), and Start() call order between
+            // scripts isn't guaranteed — a field cached too early could stay null forever.
+            bool merchantWave = MerchantManager.Instance != null && GameManager.Instance.IsMerchantWave;
+            if (merchantWave)
+                MerchantManager.Instance.OpenShop();
+
             yield return CountDown(readyDuration, "Ready");
+
+            if (merchantWave)
+                yield return WaitForMerchantStart();
 
             if (GameManager.Instance.State != GameState.Ready)
                 continue;
@@ -69,6 +80,18 @@ public class TimerManager : MonoBehaviour
         {
             if (timerText != null)
                 timerText.text = "Boss";
+            yield return null;
+        }
+    }
+
+    // Same "poll a condition every frame" shape as WaitForBoss — the wave simply won't
+    // auto-start while the merchant panel is up; the player has to press its Start button.
+    private IEnumerator WaitForMerchantStart()
+    {
+        while (IsRunning() && MerchantManager.Instance != null && MerchantManager.Instance.IsShopOpen)
+        {
+            if (timerText != null)
+                timerText.text = "상인이 방문했습니다 - 시작 버튼을 눌러주세요";
             yield return null;
         }
     }
