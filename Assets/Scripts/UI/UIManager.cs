@@ -77,6 +77,7 @@ public class UIManager : MonoBehaviour
         TrySubscribe();
         PieceDragHandler.OnAllyPieceSelected += ToggleSelectedPieceInfo;
         PieceDragHandler.OnAllyPieceDeselected += HideSelectedPieceInfo;
+        BoxSelectionManager.OnBoxSelectionChanged += HandleBoxSelectionChanged;
     }
 
     private void TrySubscribe()
@@ -114,6 +115,7 @@ public class UIManager : MonoBehaviour
 
         PieceDragHandler.OnAllyPieceSelected -= ToggleSelectedPieceInfo;
         PieceDragHandler.OnAllyPieceDeselected -= HideSelectedPieceInfo;
+        BoxSelectionManager.OnBoxSelectionChanged -= HandleBoxSelectionChanged;
     }
 
     private void Start()
@@ -138,6 +140,7 @@ public class UIManager : MonoBehaviour
         InitializeSoundControls();
         InitializeDisplayControls();
         InitializeSelectedPieceStatus();
+        EnsureBoxSelectionManager();
 
         if (pieceManager != null)
             pieceManager.OnPiecePulled += OnPiecePulled;
@@ -155,6 +158,7 @@ public class UIManager : MonoBehaviour
 
         PieceDragHandler.OnAllyPieceSelected -= ToggleSelectedPieceInfo;
         PieceDragHandler.OnAllyPieceDeselected -= HideSelectedPieceInfo;
+        BoxSelectionManager.OnBoxSelectionChanged -= HandleBoxSelectionChanged;
 
         PlayerPrefs.Save();
     }
@@ -300,7 +304,7 @@ public class UIManager : MonoBehaviour
             SetGameSpeed(2f);
 
         if (keyboard.deleteKey.wasPressedThisFrame)
-            SellSelectedPiece();
+            OnSellButtonClicked();
     }
 
     public void ToggleOptionWindow()
@@ -671,6 +675,15 @@ public class UIManager : MonoBehaviour
             panelStatus.SetActive(false);
     }
 
+    // No scene object hosts BoxSelectionManager, so it's created here at runtime —
+    // same convention as the dynamically-created buttons throughout this class.
+    private void EnsureBoxSelectionManager()
+    {
+        if (FindFirstObjectByType<BoxSelectionManager>() != null) return;
+
+        new GameObject("BoxSelectionManager").AddComponent<BoxSelectionManager>();
+    }
+
     private void CreateStatusCategoryText()
     {
         if (statusCategoryText != null || panelStatus == null || statusTextTitle == null) return;
@@ -740,7 +753,7 @@ public class UIManager : MonoBehaviour
 
         statusSellButton = sellObject.GetComponent<Button>();
         statusSellButton.targetGraphic = background;
-        statusSellButton.onClick.AddListener(SellSelectedPiece);
+        statusSellButton.onClick.AddListener(OnSellButtonClicked);
         SFXManager.Instance?.BindButtonClickSound(statusSellButton);
 
         statusSellText = Instantiate(statusTextTitle, sellObject.transform);
@@ -942,6 +955,54 @@ public class UIManager : MonoBehaviour
         panelStatus.SetActive(true);
     }
 
+    // BoxSelectionManager fires this with every ally piece currently inside the drag box
+    // (empty list once the box is cleared). Multi-select takes over the status panel from
+    // the single-piece view while it's non-empty.
+    private void HandleBoxSelectionChanged(List<Piece> pieces)
+    {
+        boxSelectedPieces.Clear();
+        if (pieces != null) boxSelectedPieces.AddRange(pieces);
+
+        if (boxSelectedPieces.Count > 0)
+        {
+            selectedPiece = null;
+            ShowMultiSelectInfo();
+        }
+        else if (selectedPiece == null)
+        {
+            HideSelectedPieceInfo();
+        }
+    }
+
+    private void ShowMultiSelectInfo()
+    {
+        if (panelStatus == null || statusTextTitle == null || statusText == null) return;
+
+        int total = 0;
+        foreach (Piece piece in boxSelectedPieces)
+            total += GetSellPrice(piece);
+
+        statusTextTitle.text = $"{boxSelectedPieces.Count}개 선택됨";
+        if (statusCategoryText != null) statusCategoryText.text = string.Empty;
+        if (statusTierText != null) statusTierText.text = string.Empty;
+        statusText.text = $"선택된 유닛: {boxSelectedPieces.Count}개";
+
+        if (statusSellText != null)
+            statusSellText.text = $"선택 판매  +{total}G";
+
+        panelStatus.SetActive(true);
+    }
+
+    // Bound to the status panel's sell button and the Delete shortcut; branches to a
+    // bulk sell when a box selection is active, otherwise sells the single selected piece.
+    public void OnSellButtonClicked()
+    {
+        if (boxSelectedPieces.Count > 0)
+            SellSelectedPieces();
+        else
+            SellSelectedPiece();
+    }
+
     private void SellSelectedPiece()
     {
         if (selectedPiece == null || selectedPiece.Data == null || selectedPiece.IsDead) return;
@@ -954,6 +1015,33 @@ public class UIManager : MonoBehaviour
             GameManager.Instance.AddGold(sellPrice);
 
         Destroy(pieceToSell.gameObject);
+    }
+
+    private void SellSelectedPieces()
+    {
+        if (boxSelectedPieces.Count == 0) return;
+
+        var toSell = new List<Piece>(boxSelectedPieces);
+        int total = 0;
+        foreach (Piece piece in toSell)
+        {
+            if (piece == null || piece.Data == null || piece.IsDead) continue;
+            total += GetSellPrice(piece);
+        }
+
+        boxSelectedPieces.Clear();
+        HideSelectedPieceInfo();
+
+        // One AddGold call for the whole batch rather than per-piece, so a single sale
+        // fires GameManager.OnGoldChanged (and the HUD refresh it drives) exactly once.
+        if (GameManager.Instance != null && total > 0)
+            GameManager.Instance.AddGold(total);
+
+        foreach (Piece piece in toSell)
+        {
+            if (piece != null)
+                Destroy(piece.gameObject);
+        }
     }
 
     private static int GetSellPrice(Piece piece)
