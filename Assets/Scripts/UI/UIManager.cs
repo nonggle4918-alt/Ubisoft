@@ -141,6 +141,7 @@ public class UIManager : MonoBehaviour
         InitializeDisplayControls();
         InitializeSelectedPieceStatus();
         EnsureBoxSelectionManager();
+        EnsureRelicManager();
 
         if (pieceManager != null)
             pieceManager.OnPiecePulled += OnPiecePulled;
@@ -682,6 +683,14 @@ public class UIManager : MonoBehaviour
         if (FindFirstObjectByType<BoxSelectionManager>() != null) return;
 
         new GameObject("BoxSelectionManager").AddComponent<BoxSelectionManager>();
+    }
+
+    // Same reasoning as EnsureBoxSelectionManager — RelicManager has no scene object either.
+    private void EnsureRelicManager()
+    {
+        if (FindFirstObjectByType<RelicManager>() != null) return;
+
+        new GameObject("RelicManager").AddComponent<RelicManager>();
     }
 
     private void CreateStatusCategoryText()

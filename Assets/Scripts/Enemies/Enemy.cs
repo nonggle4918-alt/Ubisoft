@@ -74,8 +74,9 @@ public class Enemy : MonoBehaviour
         Vector3 target = waypoints[currentWaypointIndex];
         UpdateFacing(target - transform.position);
         float speed = data != null && data.movementSpeed > 0f ? data.movementSpeed : moveSpeed;
+        float relicSlow = RelicManager.Instance != null ? RelicManager.Instance.EnemyPermanentSlowMultiplier : 1f;
         transform.position = Vector3.MoveTowards(
-            transform.position, target, speed * slowMultiplier * Time.deltaTime);
+            transform.position, target, speed * slowMultiplier * relicSlow * Time.deltaTime);
 
         if (Vector3.Distance(transform.position, target) < 0.05f)
         {
@@ -130,6 +131,9 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float damage, Piece source = null)
     {
         if (isDying) return;
+
+        if (RelicManager.Instance != null)
+            damage *= RelicManager.Instance.EnemyDamageTakenMultiplier;
 
         CurrentHP -= Mathf.RoundToInt(damage);
         SpawnDamagePopup(damage);

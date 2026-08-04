@@ -66,22 +66,27 @@ public class UpgradeManager : MonoBehaviour
 
     public float GetCoolPercent(PieceUpgradeType type) => GetCoolPercentAt(type, GetLevel(type));
 
-    public float GetAtkMultiplier(PieceUpgradeType type) => 1f + GetAtkPercent(type) / 100f;
+    // Relic amplification only scales the earned bonus percent, never the raw base stat,
+    // so a level-0 (unupgraded) piece is completely unaffected regardless of owned relics.
+    private static float AmplifyPercent(float percent) =>
+        percent * (RelicManager.Instance != null ? RelicManager.Instance.UpgradeEffectAmplifier : 1f);
 
-    public float GetCoolMultiplier(PieceUpgradeType type) => Mathf.Max(0.05f, 1f - GetCoolPercent(type) / 100f);
+    public float GetAtkMultiplier(PieceUpgradeType type) => 1f + AmplifyPercent(GetAtkPercent(type)) / 100f;
+
+    public float GetCoolMultiplier(PieceUpgradeType type) => Mathf.Max(0.05f, 1f - AmplifyPercent(GetCoolPercent(type)) / 100f);
 
     // Gacha specials (Pawn/Queen/King) aren't part of any single upgrade family, so they
     // scale with the average of all three rather than picking one.
     public float GetSpecialAtkMultiplier()
     {
         float avg = (GetAtkPercent(PieceUpgradeType.Bishop) + GetAtkPercent(PieceUpgradeType.Knight) + GetAtkPercent(PieceUpgradeType.Rook)) / 3f;
-        return 1f + avg / 100f;
+        return 1f + AmplifyPercent(avg) / 100f;
     }
 
     public float GetSpecialCoolMultiplier()
     {
         float avg = (GetCoolPercent(PieceUpgradeType.Bishop) + GetCoolPercent(PieceUpgradeType.Knight) + GetCoolPercent(PieceUpgradeType.Rook)) / 3f;
-        return Mathf.Max(0.05f, 1f - avg / 100f);
+        return Mathf.Max(0.05f, 1f - AmplifyPercent(avg) / 100f);
     }
 
     public bool TryUpgrade(PieceUpgradeType type)

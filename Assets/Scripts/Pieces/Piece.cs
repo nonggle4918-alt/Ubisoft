@@ -115,12 +115,14 @@ public class Piece : MonoBehaviour
 
     public float GetAttackDamage()
     {
-        return data.attackDamage * AttackBuff * GetUpgradeAtkMultiplier();
+        float relicMult = RelicManager.Instance != null ? RelicManager.Instance.GetAttackDamageMultiplier(this) : 1f;
+        return data.attackDamage * AttackBuff * GetUpgradeAtkMultiplier() * relicMult;
     }
 
     public float GetAttackCooldown()
     {
-        return data.attackCooldown * GetUpgradeCoolMultiplier();
+        float relicMult = RelicManager.Instance != null ? RelicManager.Instance.GetAttackSpeedMultiplier(this) : 1f;
+        return data.attackCooldown * GetUpgradeCoolMultiplier() * relicMult;
     }
 
     private float GetUpgradeAtkMultiplier()

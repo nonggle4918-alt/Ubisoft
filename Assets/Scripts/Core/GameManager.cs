@@ -73,7 +73,8 @@ public class GameManager : MonoBehaviour
 
     public void AddGold(int amount)
     {
-        Gold += amount;
+        float relicMult = RelicManager.Instance != null ? RelicManager.Instance.GoldMultiplier : 1f;
+        Gold += Mathf.RoundToInt(amount * relicMult);
         OnGoldChanged?.Invoke(Gold);
     }
 
@@ -89,6 +90,13 @@ public class GameManager : MonoBehaviour
     public const int FinalStage = 75;
 
     public bool IsFinalStage => CurrentWave >= FinalStage;
+
+    // Wave 20, 30, 40, ... — read at the Ready-countdown point in TimerManager.GameLoop,
+    // where CurrentWave already means "the wave about to start" (EndWave increments it
+    // before returning to Ready).
+    public const int MerchantStartWave = 20;
+    public const int MerchantInterval = 10;
+    public bool IsMerchantWave => CurrentWave >= MerchantStartWave && (CurrentWave - MerchantStartWave) % MerchantInterval == 0;
 
     public void EndWave()
     {
@@ -149,6 +157,9 @@ public class GameManager : MonoBehaviour
 
         if (UpgradeManager.Instance != null)
             UpgradeManager.Instance.ResetLevels();
+
+        if (RelicManager.Instance != null)
+            RelicManager.Instance.ResetRelics();
 
         var timerManager = FindFirstObjectByType<TimerManager>();
         if (timerManager != null)
