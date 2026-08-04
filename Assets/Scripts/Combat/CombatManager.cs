@@ -215,7 +215,10 @@ public class CombatManager : MonoBehaviour
             if (Vector3.Distance(enemy.transform.position, target.transform.position) <= piece.Data.splashRadius)
             {
                 enemy.TakeDamage(atk, piece);
-                enemy.ApplySlow(piece.Data.slowPercent / 100f, 2f);
+                // 1.3s rather than King's own attack interval: King's base cooldown
+                // (1.6s) already exceeds this, so the slow expires between hits at low
+                // upgrade levels instead of being kept up permanently by re-application.
+                enemy.ApplySlow(piece.Data.slowPercent / 100f, 1.3f);
             }
         }
     }

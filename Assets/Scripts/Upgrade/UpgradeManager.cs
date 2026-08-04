@@ -83,11 +83,16 @@ public class UpgradeManager : MonoBehaviour
         return 1f + AmplifyPercent(avg) / 100f;
     }
 
-    public float GetSpecialCoolMultiplier()
+    // Exposed separately (rather than folded straight into a multiplier) so a piece can
+    // scale down its own efficiency on this before the floor is applied — see
+    // Piece.GetUpgradeCoolMultiplier and PieceData.coolUpgradeEfficiency (King).
+    public float GetSpecialCoolPercent()
     {
         float avg = (GetCoolPercent(PieceUpgradeType.Bishop) + GetCoolPercent(PieceUpgradeType.Knight) + GetCoolPercent(PieceUpgradeType.Rook)) / 3f;
-        return Mathf.Max(0.05f, 1f - AmplifyPercent(avg) / 100f);
+        return AmplifyPercent(avg);
     }
+
+    public float GetSpecialCoolMultiplier() => Mathf.Max(0.05f, 1f - GetSpecialCoolPercent() / 100f);
 
     public bool TryUpgrade(PieceUpgradeType type)
     {

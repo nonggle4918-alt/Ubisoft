@@ -53,6 +53,11 @@ public class PieceData : ScriptableObject
     // special piece that should outscale the rest (e.g. The Colossus). 1 = no bonus.
     public float bonusUpgradeMultiplier = 1f;
 
+    // Scales how much of the averaged special cooldown-reduction% a piece actually gets
+    // (applied before the multiplier's floor, see Piece.GetUpgradeCoolMultiplier). 1 =
+    // full effect; King uses 0.5 so upgrades can't shrink its attack interval as fast.
+    public float coolUpgradeEfficiency = 1f;
+
     [Header("Knight")]
     public float bonusMaxHpPercent = 5f;
     public float bonusDamageCapPercent = 100f;

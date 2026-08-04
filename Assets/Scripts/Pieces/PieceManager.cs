@@ -144,6 +144,7 @@ public class PieceManager : MonoBehaviour
         runtimeData.projectileCount = source.projectileCount;
         runtimeData.sprite = source.sprite;
         runtimeData.isSpecialPiece = source.isSpecialPiece;
+        runtimeData.coolUpgradeEfficiency = source.coolUpgradeEfficiency;
 
         runtimeData.tier = tier;
         ApplyTierToData(runtimeData, tier);

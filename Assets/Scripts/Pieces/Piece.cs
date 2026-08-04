@@ -137,7 +137,11 @@ public class Piece : MonoBehaviour
     private float GetUpgradeCoolMultiplier()
     {
         if (UpgradeManager.Instance == null || data == null) return 1f;
-        if (data.isSpecialPiece) return UpgradeManager.Instance.GetSpecialCoolMultiplier();
+        if (data.isSpecialPiece)
+        {
+            float percent = UpgradeManager.Instance.GetSpecialCoolPercent() * data.coolUpgradeEfficiency;
+            return Mathf.Max(0.05f, 1f - percent / 100f);
+        }
         if (TryGetUpgradeType(out PieceUpgradeType type))
             return UpgradeManager.Instance.GetCoolMultiplier(type);
         return 1f;

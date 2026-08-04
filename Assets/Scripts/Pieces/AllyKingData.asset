@@ -34,8 +34,9 @@ MonoBehaviour:
   maxChargeMultiplier: 0
   homingDuration: 0
   splashRadius: 1
-  slowPercent: 20
+  slowPercent: 17
   buffRange: 2.0
   buffAttackPercent: 30
   isSpecialPiece: 1
+  coolUpgradeEfficiency: 0.5
   gachaWeight: 2500
