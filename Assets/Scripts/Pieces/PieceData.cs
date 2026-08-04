@@ -49,6 +49,10 @@ public class PieceData : ScriptableObject
     // with the average of all three (see UpgradeManager.GetSpecialAtkMultiplier).
     public bool isSpecialPiece;
 
+    // Extra flat multiplier on top of the special atk scaling above, for a specific
+    // special piece that should outscale the rest (e.g. The Colossus). 1 = no bonus.
+    public float bonusUpgradeMultiplier = 1f;
+
     [Header("Knight")]
     public float bonusMaxHpPercent = 5f;
     public float bonusDamageCapPercent = 100f;

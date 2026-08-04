@@ -40,4 +40,4 @@ MonoBehaviour:
   buffRange: 1.5
   buffAttackPercent: 20
   isSpecialPiece: 1
-  gachaWeight: 1000
+  gachaWeight: 3750

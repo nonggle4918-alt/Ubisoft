@@ -12,8 +12,24 @@ public class EnemyManager : MonoBehaviour
 
     private List<Vector3> waypoints;
     private int enemiesAlive;
-    private readonly Dictionary<int, PieceData> databaseEnemyData = new Dictionary<int, PieceData>();
+    private readonly Dictionary<string, PieceData> databaseEnemyData = new Dictionary<string, PieceData>();
     private readonly Dictionary<string, PieceData> legacyScaledData = new Dictionary<string, PieceData>();
+
+    // Late-game (post-hero-fix) player power grows faster than the hand-tuned 1-75 stage
+    // curve accounts for, so stages past this wave get a gradually increasing HP buff on
+    // top of their designed enemy.json values. Stages up to this wave are untouched.
+    // Uncapped on the wave side so infinite mode (wave 76+) keeps riding the same curve
+    // instead of switching to a different formula past the final stage; only the resulting
+    // multiplier is capped, as a sanity ceiling for very long infinite runs.
+    private const int DifficultyScaleStartWave = 30;
+    private const float DifficultyScalePerWave = 0.02f;
+    private const float DifficultyScaleMaxMultiplier = 10f;
+
+    private static float GetStageDifficultyMultiplier(int wave)
+    {
+        int scalingWaves = Mathf.Max(0, wave - DifficultyScaleStartWave);
+        return Mathf.Min(1f + scalingWaves * DifficultyScalePerWave, DifficultyScaleMaxMultiplier);
+    }
 
     public int RemainingEnemies => Mathf.Max(0, enemiesAlive);
 
@@ -141,7 +157,7 @@ public class EnemyManager : MonoBehaviour
             var databaseUnits = new List<PieceData>();
             foreach (SpawnRecord spawn in database.GetSpawns(stage.spawnGroupId))
             {
-                PieceData enemyData = GetDatabaseEnemyData(spawn.enemyId);
+                PieceData enemyData = GetDatabaseEnemyData(spawn.enemyId, wave);
                 if (enemyData == null)
                 {
                     Debug.LogWarning($"Enemy ID {spawn.enemyId} is missing from enemy.json and was skipped.");
@@ -166,9 +182,10 @@ public class EnemyManager : MonoBehaviour
         int queenCount = Mathf.Max(0, wave - 2);
 
         // Stage data only covers waves 1-75 (GameManager.FinalStage); infinite mode keeps
-        // scaling this legacy fallback rather than needing a separate generator.
-        int over = Mathf.Max(0, wave - GameManager.FinalStage);
-        float hpMultiplier = Mathf.Min(1f + over * 0.05f, 10f);
+        // scaling this legacy fallback rather than needing a separate generator. Uses the
+        // same continuous curve as the DB-driven stages (GetStageDifficultyMultiplier) so
+        // there's no discontinuity right at wave 75.
+        float hpMultiplier = GetStageDifficultyMultiplier(wave);
 
         PieceData pawnData = ScaleLegacyEnemyData(enemyPawnData, hpMultiplier);
         PieceData queenData = ScaleLegacyEnemyData(enemyQueenData, hpMultiplier);
@@ -178,9 +195,10 @@ public class EnemyManager : MonoBehaviour
         for (int i = 0; i < queenCount; i++)
             units.Add(queenData);
 
+        int over = wave - GameManager.FinalStage;
         if (over > 0 && over % 10 == 0)
         {
-            PieceData bossData = GetLegacyBossData(hpMultiplier);
+            PieceData bossData = GetLegacyBossData(wave);
             if (bossData != null)
                 units.Insert(0, bossData);
         }
@@ -212,19 +230,23 @@ public class EnemyManager : MonoBehaviour
         return scaled;
     }
 
-    private PieceData GetLegacyBossData(float hpMultiplier)
+    // GetDatabaseEnemyData already applies GetStageDifficultyMultiplier(wave) internally,
+    // so the boss doesn't need a second pass through ScaleLegacyEnemyData like pawn/queen do.
+    private PieceData GetLegacyBossData(int wave)
     {
         GameDatabase database = GameManager.Instance?.Database;
         EnemyRecord bossRecord = database?.Enemies.rows.FirstOrDefault(row => row.IsBoss);
         if (bossRecord == null) return null;
 
-        PieceData baseBoss = GetDatabaseEnemyData(bossRecord.id);
-        return ScaleLegacyEnemyData(baseBoss, hpMultiplier);
+        return GetDatabaseEnemyData(bossRecord.id, wave);
     }
 
-    private PieceData GetDatabaseEnemyData(int enemyId)
+    // Cached per (enemyId, wave) rather than just enemyId, since the same enemy type can
+    // now need a different HP at different waves (see GetStageDifficultyMultiplier).
+    private PieceData GetDatabaseEnemyData(int enemyId, int wave)
     {
-        if (databaseEnemyData.TryGetValue(enemyId, out PieceData cachedData))
+        string cacheKey = enemyId + "_" + wave;
+        if (databaseEnemyData.TryGetValue(cacheKey, out PieceData cachedData))
             return cachedData;
 
         GameDatabase database = GameManager.Instance?.Database;
@@ -235,13 +257,13 @@ public class EnemyManager : MonoBehaviour
         data.hideFlags = HideFlags.DontSave;
         data.pieceName = record.name;
         data.team = Team.Enemy;
-        data.maxHP = record.hp;
+        data.maxHP = Mathf.RoundToInt(record.hp * GetStageDifficultyMultiplier(wave));
         data.movementSpeed = record.speed;
         data.goldReward = record.dropGold;
         data.isBoss = record.IsBoss;
         data.sprite = database.GetSprite(record.imageResourceId);
 
-        databaseEnemyData[enemyId] = data;
+        databaseEnemyData[cacheKey] = data;
         return data;
     }
 

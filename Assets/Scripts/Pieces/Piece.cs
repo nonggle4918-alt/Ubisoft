@@ -126,7 +126,7 @@ public class Piece : MonoBehaviour
     private float GetUpgradeAtkMultiplier()
     {
         if (UpgradeManager.Instance == null || data == null) return 1f;
-        if (data.isSpecialPiece) return UpgradeManager.Instance.GetSpecialAtkMultiplier();
+        if (data.isSpecialPiece) return UpgradeManager.Instance.GetSpecialAtkMultiplier() * data.bonusUpgradeMultiplier;
         if (TryGetUpgradeType(out PieceUpgradeType type))
             return UpgradeManager.Instance.GetAtkMultiplier(type);
         return 1f;
@@ -345,33 +345,46 @@ public static class PromotionFactory
         data.gachaWeight = 0;
         data.tier = 1;
 
-        switch (Random.Range(0, 6))
+        // Weighted rather than uniform 1/6: The Colossus is meant to be the single
+        // strongest hero (see the isSpecialPiece + bonusUpgradeMultiplier below), so it
+        // rolls less often than the other five (10% vs 18% each, sums to 100).
+        int roll = Random.Range(0, 100);
+        if (roll < 18)
         {
-            case 0:
-                Configure(data, "Pegasus", AttackType.Pegasus, UpgradeFamily.Knight, "Sprites/White/char_white_pegasus", 30f, 4f, 0.5f, 8f);
-                break;
-            case 1:
-                Configure(data, "Dragon", AttackType.Dragon, UpgradeFamily.Knight, "Sprites/White/char_white_dragon", 15f, 4f, 1.5f, 7f);
-                break;
-            case 2:
-                Configure(data, "The Colossus", AttackType.Direct, UpgradeFamily.Rook, "Sprites/White/char_white_thecolosus", 120f, 3f, 3f, 0f);
-                data.bonusMaxHpPercent = 5f;
-                data.bonusDamageCapPercent = 500f;
-                data.bonusUsesTargetMaxHP = true;
-                break;
-            case 3:
-                Configure(data, "Cannon", AttackType.Cannon, UpgradeFamily.Rook, "Sprites/White/Char_White_cannon", 30f, 6f, 1f, 8f);
-                data.splashRadius = 1.4f;
-                break;
-            case 4:
-                Configure(data, "Astronomer", AttackType.Meteor, UpgradeFamily.Bishop, "Sprites/White/Char_White_Astronomer", 30f, 6f, 3f, 0f);
-                data.splashRadius = 1.25f;
-                break;
-            default:
-                Configure(data, "Alchemist", AttackType.Alchemy, UpgradeFamily.Bishop, "Sprites/White/Char_White_alchemist", 26f, 5f, 1f, 7f);
-                data.splashRadius = 1.15f;
-                data.slowPercent = 15f;
-                break;
+            Configure(data, "Pegasus", AttackType.Pegasus, UpgradeFamily.Knight, "Sprites/White/char_white_pegasus", 30f, 4f, 0.5f, 8f);
+        }
+        else if (roll < 36)
+        {
+            Configure(data, "Dragon", AttackType.Dragon, UpgradeFamily.Knight, "Sprites/White/char_white_dragon", 48f, 4f, 0.8f, 7f);
+        }
+        else if (roll < 46)
+        {
+            // Not bound to Knight/Bishop/Rook like the others — those three were meant as
+            // placeholders for a future expansion that hasn't happened yet. The Colossus
+            // instead scales like Pawn/Queen/King (average of all three families) with an
+            // extra multiplier on top, so it keeps outscaling them at every level.
+            Configure(data, "The Colossus", AttackType.Direct, UpgradeFamily.None, "Sprites/White/char_white_thecolosus", 120f, 3f, 3f, 0f);
+            data.bonusMaxHpPercent = 5f;
+            data.bonusDamageCapPercent = 500f;
+            data.bonusUsesTargetMaxHP = true;
+            data.isSpecialPiece = true;
+            data.bonusUpgradeMultiplier = 1.3f;
+        }
+        else if (roll < 64)
+        {
+            Configure(data, "Cannon", AttackType.Cannon, UpgradeFamily.Rook, "Sprites/White/Char_White_cannon", 30f, 6f, 1f, 8f);
+            data.splashRadius = 1.4f;
+        }
+        else if (roll < 82)
+        {
+            Configure(data, "Astronomer", AttackType.Meteor, UpgradeFamily.Bishop, "Sprites/White/Char_White_Astronomer", 40f, 6f, 1f, 0f);
+            data.splashRadius = 1.25f;
+        }
+        else
+        {
+            Configure(data, "Alchemist", AttackType.Alchemy, UpgradeFamily.Bishop, "Sprites/White/Char_White_alchemist", 26f, 5f, 1f, 7f);
+            data.splashRadius = 1.15f;
+            data.slowPercent = 15f;
         }
 
         return data;
