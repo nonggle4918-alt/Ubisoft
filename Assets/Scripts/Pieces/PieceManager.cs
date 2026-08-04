@@ -100,55 +100,75 @@ public class PieceManager : MonoBehaviour
             return;
         }
 
-        GridCell cell = gridManager.GetEmptyCell();
-        if (cell == null)
-        {
-            Debug.Log("빈 칸이 없습니다.");
-            GameManager.Instance.AddGold(cost);
-            return;
-        }
-
         int tier = GameManager.Instance.Database.RollTier();
+        PieceData runtimeData = BuildRuntimeData(selected, tier);
 
+        if (!TryPlaceRuntimePiece(runtimeData, out string failReason))
+        {
+            Debug.Log(failReason);
+            GameManager.Instance.AddGold(cost);
+        }
+    }
+
+    // Copies a template piece's stats into a fresh runtime instance and applies the given
+    // tier's stat overrides. Shared by the gacha pull above and merchant purchases.
+    public PieceData BuildRuntimeData(PieceData source, int tier)
+    {
         PieceData runtimeData = ScriptableObject.CreateInstance<PieceData>();
-        runtimeData.pieceName = selected.pieceName;
-        runtimeData.team = selected.team;
-        runtimeData.attackType = selected.attackType;
-        runtimeData.maxHP = selected.maxHP;
-        runtimeData.attackDamage = selected.attackDamage;
-        runtimeData.attackRange = selected.attackRange;
-        runtimeData.attackCooldown = selected.attackCooldown;
-        runtimeData.cost = selected.cost;
-        runtimeData.projectileSpeed = selected.projectileSpeed;
-        runtimeData.visualScale = selected.visualScale;
-        runtimeData.bonusMaxHpPercent = selected.bonusMaxHpPercent;
-        runtimeData.bonusDamageCapPercent = selected.bonusDamageCapPercent;
-        runtimeData.extraRange = selected.extraRange;
-        runtimeData.chargeDuration = selected.chargeDuration;
-        runtimeData.maxChargeMultiplier = selected.maxChargeMultiplier;
-        runtimeData.homingDuration = selected.homingDuration;
-        runtimeData.splashRadius = selected.splashRadius;
-        runtimeData.slowPercent = selected.slowPercent;
-        runtimeData.buffRange = selected.buffRange;
-        runtimeData.buffAttackPercent = selected.buffAttackPercent;
-        runtimeData.movementSpeed = selected.movementSpeed;
-        runtimeData.goldReward = selected.goldReward;
-        runtimeData.projectileCount = selected.projectileCount;
-        runtimeData.sprite = selected.sprite;
-        runtimeData.isSpecialPiece = selected.isSpecialPiece;
+        runtimeData.pieceName = source.pieceName;
+        runtimeData.team = source.team;
+        runtimeData.attackType = source.attackType;
+        runtimeData.maxHP = source.maxHP;
+        runtimeData.attackDamage = source.attackDamage;
+        runtimeData.attackRange = source.attackRange;
+        runtimeData.attackCooldown = source.attackCooldown;
+        runtimeData.cost = source.cost;
+        runtimeData.projectileSpeed = source.projectileSpeed;
+        runtimeData.visualScale = source.visualScale;
+        runtimeData.bonusMaxHpPercent = source.bonusMaxHpPercent;
+        runtimeData.bonusDamageCapPercent = source.bonusDamageCapPercent;
+        runtimeData.extraRange = source.extraRange;
+        runtimeData.chargeDuration = source.chargeDuration;
+        runtimeData.maxChargeMultiplier = source.maxChargeMultiplier;
+        runtimeData.homingDuration = source.homingDuration;
+        runtimeData.splashRadius = source.splashRadius;
+        runtimeData.slowPercent = source.slowPercent;
+        runtimeData.buffRange = source.buffRange;
+        runtimeData.buffAttackPercent = source.buffAttackPercent;
+        runtimeData.movementSpeed = source.movementSpeed;
+        runtimeData.goldReward = source.goldReward;
+        runtimeData.projectileCount = source.projectileCount;
+        runtimeData.sprite = source.sprite;
+        runtimeData.isSpecialPiece = source.isSpecialPiece;
 
         runtimeData.tier = tier;
         ApplyTierToData(runtimeData, tier);
+        return runtimeData;
+    }
+
+    // Places an already-built PieceData onto the first empty grid cell. Shared by the
+    // gacha pull above and merchant purchases; the caller owns refunding gold on failure.
+    public bool TryPlaceRuntimePiece(PieceData data, out string failReason)
+    {
+        GridCell cell = gridManager.GetEmptyCell();
+        if (cell == null)
+        {
+            failReason = "빈 칸이 없습니다.";
+            return false;
+        }
 
         Piece piece = Instantiate(piecePrefab, cell.transform.position, Quaternion.identity);
-        piece.SetData(runtimeData);
+        piece.SetData(data);
         piece.CurrentCell = cell;
         cell.SetPiece(piece);
 
         SFXManager.Instance?.PlayUnitPurchased();
-        SFXManager.Instance?.PlayTierReward(tier);
-        TrySpawnRarityEffect(runtimeData, piece.transform.position);
-        OnPiecePulled?.Invoke(runtimeData);
+        SFXManager.Instance?.PlayTierReward(data.tier);
+        TrySpawnRarityEffect(data, piece.transform.position);
+        OnPiecePulled?.Invoke(data);
+
+        failReason = null;
+        return true;
     }
 
     // Lightning strike marking a piece's arrival. Fires for every pull so the feedback is
